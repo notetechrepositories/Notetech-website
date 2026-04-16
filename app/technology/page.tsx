@@ -36,7 +36,7 @@ export default function TechnologyPage() {
         <Button href="/contact" variant="primary" className="px-6">
           Schedule a Call
         </Button>
-        <Button href="/services" variant="ghost" className="px-6">
+        <Button href="/services" variant="ghostOnDark" className="px-6">
           View services
         </Button>
       </PageHero>

@@ -3,7 +3,6 @@
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import {
-  MOTION_DURATION_HERO_IMAGE,
   MOTION_DURATION_REVEAL,
   MOTION_EASE_STANDARD,
   MOTION_REVEAL_Y,
@@ -17,7 +16,6 @@ type PageHeroProps = {
   primaryHref: string;
   secondaryLabel?: string;
   secondaryHref?: string;
-  backgroundImage?: string;
 };
 
 export default function PageHero({
@@ -27,31 +25,12 @@ export default function PageHero({
   primaryHref,
   secondaryLabel,
   secondaryHref,
-  backgroundImage = "/imagery/hero-enterprise-city.jpg",
 }: PageHeroProps) {
   const reduceMotion = useReducedMotion();
 
   return (
     <section id="hero" className="scroll-mt-20">
       <div className="relative isolate min-h-[78vh] overflow-hidden bg-navy text-white sm:min-h-[82vh] lg:min-h-[88vh]">
-        <motion.img
-          src={backgroundImage}
-          alt="Modern office towers"
-          className="absolute inset-0 h-full w-full object-cover saturate-[0.7] brightness-[0.52]"
-          initial={reduceMotion ? false : { scale: 1.05 }}
-          animate={reduceMotion ? undefined : { scale: 1 }}
-          transition={
-            reduceMotion
-              ? undefined
-              : { duration: MOTION_DURATION_HERO_IMAGE, ease: MOTION_EASE_STANDARD }
-          }
-        />
-        {/* Single overlay to keep image visible while preserving text readability */}
-        <div
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(8,18,38,0.93)_0%,rgba(8,18,38,0.88)_36%,rgba(8,18,38,0.78)_64%,rgba(8,18,38,0.7)_100%)]"
-          aria-hidden
-        />
-
         <Container className="relative z-10 flex min-h-[78vh] items-center sm:min-h-[82vh] lg:min-h-[88vh]">
           <motion.div
             className="w-full max-w-3xl pt-14 sm:pt-18 lg:pt-20"

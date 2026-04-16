@@ -171,7 +171,17 @@ export default function MobileMenu() {
                       >
                         <div className="w-full py-4 text-left text-base font-semibold tracking-tight text-ink">
                           <span className="flex min-h-[2.75rem] items-center justify-between gap-3">
-                            {item.label}
+                            {item.href ? (
+                              <Link
+                                href={item.href}
+                                className="motion-interactive hover:text-primary"
+                                onClick={() => setOpen(false)}
+                              >
+                                {item.label}
+                              </Link>
+                            ) : (
+                              item.label
+                            )}
                             <span className="text-label text-primary">Browse</span>
                           </span>
                         </div>

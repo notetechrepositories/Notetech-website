@@ -18,6 +18,7 @@ export type NavNode = {
 export const mainNavigation: NavNode[] = [
   {
     label: "Services",
+    href: "/services",
     children: [
       {
         label: "Dedicated Development Teams",
@@ -51,16 +52,8 @@ export const mainNavigation: NavNode[] = [
     ],
   },
   {
-    label: "Case Studies",
-    children: [
-      { label: "All Case Studies", href: "/case-studies" },
-      { label: "By Industry", href: "/case-studies/by-industry" },
-      { label: "By Capability", href: "/case-studies/by-capability" },
-      { label: "Major Work Highlights", href: "/case-studies/highlights" },
-    ],
-  },
-  {
     label: "How We Work",
+    href: "/how-we-work",
     children: [
       { label: "Engagement Models", href: "/how-we-work/engagement-models" },
       { label: "Delivery Process", href: "/how-we-work/delivery-process" },
@@ -77,10 +70,12 @@ export const mainNavigation: NavNode[] = [
   },
   {
     label: "Company",
+    href: "/company",
     children: [
       { label: "About Notetech", href: "/company/about" },
       { label: "Leadership / Core Team", href: "/company/leadership" },
       { label: "Awards & Recognition", href: "/company/awards" },
+      { label: "Selected Engagements", href: "/selected-engagements" },
       { label: "Products", href: "/products" },
       { label: "Careers", href: "/company/careers" },
       { label: "Contact", href: "/contact" },
@@ -88,6 +83,7 @@ export const mainNavigation: NavNode[] = [
   },
   {
     label: "Resources",
+    href: "/resources",
     children: [
       { label: "Blog / Insights", href: "/blog" },
       { label: "Guides", href: "/resources/guides" },

@@ -28,6 +28,8 @@ export type ServiceDetail = {
   slug: ServiceSlug;
   /** Navigation / card title */
   title: string;
+  imageSrc?: string;
+  imageAlt?: string;
   /** Large page headline (often differs from H1 in doc — we use one strong line) */
   headline: string;
   intro: string;
@@ -60,6 +62,8 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "dedicated-development-teams": {
     slug: "dedicated-development-teams",
     title: "Dedicated Development Teams",
+    imageSrc: "/imagery/service-dedicated-team.jpg",
+    imageAlt: "Software development team collaborating around project deliverables",
     headline: "A stable engineering team aligned to your product goals",
     intro:
       "Dedicated teams give you predictable capacity without the overhead of building and retaining a large in-house org overnight. We embed with your tools, your ceremonies, and your standards—so delivery feels like an extension of your company, with clear ownership and transparent progress tracking.",
@@ -96,6 +100,8 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "software-product-development": {
     slug: "software-product-development",
     title: "Software Product Development",
+    imageSrc: "/imagery/service-product-development.jpg",
+    imageAlt: "Engineers planning and building software product features",
     headline: "From MVP to enterprise-grade releases",
     intro:
       "We design, build, and evolve software products and internal platforms with a focus on reliability, scalability, and long-term ownership. You set priorities and requirements; our team designs, builds, tests, and maintains the software while adapting to your tools and standards.",
@@ -134,6 +140,8 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "cloud-aws-modernization": {
     slug: "cloud-aws-modernization",
     title: "Cloud & AWS Modernization",
+    imageSrc: "/imagery/service-cloud-modernization.jpg",
+    imageAlt: "Cloud infrastructure and hardware environment for modernization services",
     headline: "Pragmatic modernization with a path to the cloud",
     intro:
       "We help teams modernize business-critical systems without pretending migrations are instant. Our approach favors phased change, reduced release risk, and operational clarity—so you improve reliability now while moving toward cloud-ready architectures when it makes sense.",
@@ -169,6 +177,8 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "qa-test-automation": {
     slug: "qa-test-automation",
     title: "QA & Test Automation",
+    imageSrc: "/imagery/service-qa-automation.jpg",
+    imageAlt: "Quality engineer validating software quality and automated test outcomes",
     headline: "Predictable quality gates for product releases",
     intro:
       "We help teams build verification discipline that matches product risk—without turning quality into paperwork. That means practical test strategy, automation where it earns its keep, and feedback loops that support faster, safer releases.",
@@ -204,6 +214,8 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "support-maintenance": {
     slug: "support-maintenance",
     title: "Support & Maintenance",
+    imageSrc: "/imagery/service-support-maintenance.jpg",
+    imageAlt: "Operations team coordinating support and maintenance workflows",
     headline: "Long-term reliability for production systems",
     intro:
       "We provide structured support and maintenance—bug fixes, enhancements, and operational improvements—so your product stays stable and continues to evolve. We’re built for multi-year ownership, not one-off break-fix cycles that quietly accumulate risk.",
@@ -238,6 +250,8 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "integrations-apis": {
     slug: "integrations-apis",
     title: "Integrations & APIs",
+    imageSrc: "/imagery/service-integrations-api.jpg",
+    imageAlt: "Developer integrating software systems and APIs across platforms",
     headline: "Secure, reliable integrations built for production",
     intro:
       "We design and deliver APIs and integrations that handle failures, scale cleanly, and keep data consistent. Production integration work is never “just connect the endpoints”—it’s operational behavior under load, auth boundaries, retries, and monitoring.",
@@ -273,6 +287,8 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "ai-workflow-automation": {
     slug: "ai-workflow-automation",
     title: "AI Workflow Automation",
+    imageSrc: "/imagery/service-product-development.jpg",
+    imageAlt: "Enterprise software team exploring AI-assisted workflow automation",
     headline: "Assistants and workflow automation—with guardrails",
     intro:
       "We help organizations adopt AI-assisted workflows where access boundaries, audit expectations, and data handling matter. This is not “drop in a model and hope”—it’s grounded automation tied to your systems, roles, and risk posture.",
