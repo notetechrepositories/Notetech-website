@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  serverExternalPackages: [
+    "payload",
+    "@payloadcms/db-sqlite",
+    "drizzle-kit",
+    "@libsql/client",
+    "@libsql/hrana-client",
+    "@esbuild/win32-x64",
+  ],
 };
 
 export default nextConfig;

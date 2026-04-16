@@ -1,0 +1,25 @@
+Photography in this folder was downloaded from Unsplash under the Unsplash License
+(https://unsplash.com/license). Attribution is appreciated.
+
+Photo IDs used (search on unsplash.com to open the original page):
+- hero-data-center.jpg — Unsplash photo id 1558494949-ef010cbdcc31
+- hero-enterprise-city.jpg — Unsplash photo id 1486406146926-c627a92ad1ab
+- hero-enterprise-city-bright.jpg — Unsplash photo id 1486325212027-8081e485255e
+- hero-enterprise-city-alt.jpg — Unsplash photo id 1497366216548-37526070297c
+- service-dedicated-team.jpg — Unsplash photo id 1522071820081-009f0129c71c
+- service-product-development.jpg — Unsplash photo id 1551434678-e076c223a692
+- service-cloud-modernization.jpg — Unsplash photo id 1518770660439-4636190af475
+- service-qa-automation.jpg — Unsplash photo id 1580894732444-8ecded7900cd
+- service-support-maintenance.jpg — Unsplash photo id 1517245386807-bb43f82c33c4
+- service-integrations-api.jpg — Unsplash photo id 1461749280684-dccba630e2f6
+- audience-product-companies.jpg — Unsplash photo id 1520607162513-77705c0f0d4a
+- audience-enterprise-it.jpg — Unsplash photo id 1486406146926-c627a92ad1ab
+- why-long-term-delivery.jpg — Unsplash photo id 1454165804606-c3d57bc86b40
+- why-stable-teams.jpg — Unsplash photo id 1521737604893-d14cc237f11d
+- why-transparent-tracking.jpg — Unsplash photo id 1460925895917-afdab827c52f
+- why-engineering-discipline.jpg — Unsplash photo id 1516321318423-f06f85e504b3
+- why-ip-safe-delivery.jpg — Unsplash photo id 1555949963-aa79dcee981c
+- services-network.jpg — Unsplash photo id 1517430816045-df4b7de11d1d
+- case-studies-global-systems.jpg — Unsplash photo id 1451187580459-43490279c0fa
+- technology-analytics.jpg — Unsplash photo id 1551288049-bebda4e38f71
+- cta-circuit.jpg — Unsplash photo id 1518770660439-4636190af475
