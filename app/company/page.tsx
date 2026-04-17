@@ -40,7 +40,7 @@ export default function CompanyPage() {
         {companyLanding.secondaryCtaHref && companyLanding.secondaryCtaLabel ? (
           <Button
             href={companyLanding.secondaryCtaHref}
-            variant="ghostOnDark"
+            variant="primary"
             className="px-6"
           >
             {companyLanding.secondaryCtaLabel}

@@ -40,7 +40,7 @@ export default function ResourcesPage() {
         {resourcesLanding.secondaryCtaHref && resourcesLanding.secondaryCtaLabel ? (
           <Button
             href={resourcesLanding.secondaryCtaHref}
-            variant="ghostOnDark"
+            variant="primary"
             className="px-6"
           >
             {resourcesLanding.secondaryCtaLabel}

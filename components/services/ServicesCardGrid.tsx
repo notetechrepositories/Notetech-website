@@ -52,7 +52,7 @@ export default function ServicesCardGrid({
         >
           <Link
             href={`/services/${s.slug}`}
-            className="group motion-interactive block h-full overflow-hidden rounded-[var(--radius-card)] border border-stone-200/80 bg-[#f7f4ee] p-7 shadow-[var(--shadow-card-value)] hover:-translate-y-[2px] hover:border-primary/25 hover:shadow-[var(--shadow-card-hover-value)] lg:p-8"
+            className="group motion-interactive block h-full overflow-hidden rounded-[var(--radius-card)] border border-[#d3caba] bg-[#e5dfd3] p-7 shadow-[var(--shadow-card-value)] hover:-translate-y-[2px] hover:border-[#4f76a8] hover:bg-[#4f76a8] hover:shadow-[var(--shadow-card-hover-value)] active:border-[#4f76a8] active:bg-[#4f76a8] lg:p-8"
           >
             <div className="flex h-full min-h-[20rem] flex-col">
               <motion.div
@@ -86,16 +86,16 @@ export default function ServicesCardGrid({
 
               <div className="mt-auto flex items-end justify-between gap-4 pt-10">
                 <div className="min-w-0">
-                  <h3 className="font-display text-[1.12rem] font-semibold tracking-tight text-slate-900 sm:text-[1.22rem]">
+                  <h3 className="font-display text-[1.12rem] font-semibold tracking-tight text-slate-900 group-hover:text-white group-active:text-white sm:text-[1.22rem]">
                     {s.title}
                   </h3>
-                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-slate-600">
+                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-slate-700 group-hover:text-white/85 group-active:text-white/85">
                     {excerpt(s.intro)}
                   </p>
                 </div>
 
                 <span
-                  className="motion-interactive inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-primary/22 bg-white/75 text-primary group-hover:border-primary/40 group-hover:bg-white"
+                  className="motion-interactive inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-primary/22 bg-white/75 text-primary group-hover:border-white/35 group-hover:bg-white/15 group-hover:text-white group-active:border-white/35 group-active:bg-white/15 group-active:text-white"
                   aria-hidden
                 >
                   <svg

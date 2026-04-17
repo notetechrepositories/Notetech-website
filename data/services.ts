@@ -35,6 +35,7 @@ export type ServiceDetail = {
   intro: string;
   bestFor: string[];
   whatYouGet: string[];
+  workingModel?: string;
   toolsCapabilities?: string[];
   cta: ServiceCta;
   /** Optional launch / status badge (e.g. AI) */
@@ -64,33 +65,27 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
     title: "Dedicated Development Teams",
     imageSrc: "/imagery/service-dedicated-team.jpg",
     imageAlt: "Software development team collaborating around project deliverables",
-    headline: "A stable engineering team aligned to your product goals",
+    headline: "Stable engineering capacity aligned to your roadmap",
     intro:
-      "Dedicated teams give you predictable capacity without the overhead of building and retaining a large in-house org overnight. We embed with your tools, your ceremonies, and your standards—so delivery feels like an extension of your company, with clear ownership and transparent progress tracking.",
+      "Build a dedicated team that operates as an extension of your organization—clear ownership, transparent tracking, and maintainable delivery.",
     bestFor: [
-      "Ongoing product development and multi-quarter roadmaps",
-      "Teams that need continuity, not a revolving cast of contractors",
-      "Organizations scaling delivery while keeping IP and repos client-controlled",
-      "Leaders who want engineering discipline alongside roadmap flexibility",
+      "Continuous product development and roadmap execution",
+      "Enterprise platforms needing reliable capacity",
+      "Long-running programs where knowledge retention matters",
     ],
     whatYouGet: [
-      "Engineers working as a cohesive unit, with continuity planning and low attrition practices",
-      "Sprint-ready execution: planning support, implementation, code review, and testing",
-      "Communication rhythms aligned to your stakeholders—status, demos, and risk visibility",
-      "Engineering practices that favor maintainability: reviews, automation, and clear documentation",
-      "Models that scale up or down as priorities change within responsible boundaries",
+      "Dedicated engineers (lead + senior developers + QA; DevOps as needed)",
+      "Delivery in 1–2 week cycles with shared tracking",
+      "Written progress updates and clear escalation path",
+      "Engineering discipline: code reviews, testing, maintainability",
+      "Continuity planning to reduce single points of failure",
     ],
-    toolsCapabilities: [
-      "Alignment to your stack and toolchain (issue tracking, CI/CD, cloud accounts as you define)",
-      "Support for mixed teams: your leads plus our engineers, or our leads with your ICs",
-    ],
+    workingModel:
+      "You set priorities and requirements; our team designs, builds, tests, and maintains the software while adapting to your tools and standards.",
     cta: {
-      title: "Discuss a dedicated team model",
-      body: "Share your roadmap, team shape, and constraints—we’ll propose a practical staffing plan.",
+      title: "Schedule a Call",
       primaryLabel: "Schedule a Call",
       primaryHref: "/contact",
-      secondaryLabel: "How we work",
-      secondaryHref: "/how-we-work/engagement-models",
     },
     metaTitle: "Dedicated Development Teams",
     metaDescription:
@@ -100,7 +95,7 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "software-product-development": {
     slug: "software-product-development",
     title: "Software Product Development",
-    imageSrc: "/imagery/service-product-development.jpg",
+    imageSrc: "/imagery/service/CODE_PC.jpg",
     imageAlt: "Engineers planning and building software product features",
     headline: "From MVP to enterprise-grade releases",
     intro:
@@ -140,7 +135,7 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "cloud-aws-modernization": {
     slug: "cloud-aws-modernization",
     title: "Cloud & AWS Modernization",
-    imageSrc: "/imagery/service-cloud-modernization.jpg",
+    imageSrc: "/imagery/service/aws.jpg",
     imageAlt: "Cloud infrastructure and hardware environment for modernization services",
     headline: "Pragmatic modernization with a path to the cloud",
     intro:
@@ -177,7 +172,7 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "qa-test-automation": {
     slug: "qa-test-automation",
     title: "QA & Test Automation",
-    imageSrc: "/imagery/service-qa-automation.jpg",
+    imageSrc: "/imagery/service/qa_test.jpg",
     imageAlt: "Quality engineer validating software quality and automated test outcomes",
     headline: "Predictable quality gates for product releases",
     intro:
@@ -214,7 +209,7 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "support-maintenance": {
     slug: "support-maintenance",
     title: "Support & Maintenance",
-    imageSrc: "/imagery/service-support-maintenance.jpg",
+    imageSrc: "/imagery/service/support_hand.jpg",
     imageAlt: "Operations team coordinating support and maintenance workflows",
     headline: "Long-term reliability for production systems",
     intro:
@@ -250,7 +245,7 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "integrations-apis": {
     slug: "integrations-apis",
     title: "Integrations & APIs",
-    imageSrc: "/imagery/service-integrations-api.jpg",
+    imageSrc: "/imagery/service/code.jpg",
     imageAlt: "Developer integrating software systems and APIs across platforms",
     headline: "Secure, reliable integrations built for production",
     intro:
@@ -287,7 +282,7 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "ai-workflow-automation": {
     slug: "ai-workflow-automation",
     title: "AI Workflow Automation",
-    imageSrc: "/imagery/service-product-development.jpg",
+    imageSrc: "/imagery/service/AI.jpg",
     imageAlt: "Enterprise software team exploring AI-assisted workflow automation",
     headline: "Assistants and workflow automation—with guardrails",
     intro:

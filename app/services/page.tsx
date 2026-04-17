@@ -1,3 +1,4 @@
+import CTASection from "@/components/home/CTASection";
 import PageHero from "@/components/marketing/PageHero";
 import HomeSection from "@/components/home/HomeSection";
 import SectionHeading from "@/components/home/SectionHeading";
@@ -44,7 +45,7 @@ export default function ServicesLandingPage() {
         </Button>
       </PageHero>
 
-      <HomeSection tone="subtle">
+      <HomeSection tone="white" className="!bg-[#f6f2ea]">
         <SectionHeading
           eyebrow="Services"
           title="Core offerings"
@@ -52,6 +53,21 @@ export default function ServicesLandingPage() {
           spacing="compact"
         />
         <ServicesCardGrid services={services} />
+      </HomeSection>
+
+      <HomeSection tone="white" className="!bg-[#f6f2ea] pb-24 lg:pb-28">
+        <CTASection
+          variant="band"
+          bandTone="dark"
+          bandImageSrc="/imagery/cta-circuit.jpg"
+          title="Ready to start?"
+          description="Tell us what you are building and your timeline. We will recommend the lowest-risk path and a team model aligned to your roadmap."
+          primaryLabel="Schedule a Call"
+          primaryHref="/contact"
+          secondaryLabel="View Case Studies"
+          secondaryHref="/case-studies"
+          forcePrimaryButtons
+        />
       </HomeSection>
     </>
   );

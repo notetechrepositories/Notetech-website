@@ -8,6 +8,19 @@ import VisualSlot from "@/components/visuals/VisualSlot";
 import { howWeWorkLanding } from "@/data/navLandings";
 import type { Metadata } from "next";
 
+const howWeWorkCircleImageByHref = {
+  "/how-we-work/engagement-models": "/imagery/2623597.jpg",
+  "/how-we-work/delivery-process": "/imagery/5415251564243.jpg",
+  "/how-we-work/communication-reporting":
+    "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+  "/how-we-work/onboarding-kickoff": "/imagery/13868.jpg",
+  "/how-we-work/pricing-approach": "/imagery/79003071435657.jpg",
+  "/how-we-work/pilot-engagements": "/imagery/9191566793009.jpg",
+  "/security-ip/ip-ownership-nda":
+    "/imagery/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
+  "/technology": "/imagery/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
+};
+
 export const metadata: Metadata = {
   title: howWeWorkLanding.metaTitle,
   description: howWeWorkLanding.metaDescription,
@@ -40,7 +53,7 @@ export default function HowWeWorkPage() {
         {howWeWorkLanding.secondaryCtaHref && howWeWorkLanding.secondaryCtaLabel ? (
           <Button
             href={howWeWorkLanding.secondaryCtaHref}
-            variant="ghostOnDark"
+            variant="primary"
             className="px-6"
           >
             {howWeWorkLanding.secondaryCtaLabel}
@@ -48,14 +61,18 @@ export default function HowWeWorkPage() {
         ) : null}
       </PageHero>
 
-      <HomeSection tone="subtle">
+      <HomeSection tone="white" className="!bg-[#f6f2ea]">
         <SectionHeading
           eyebrow={howWeWorkLanding.sectionLabel}
           title={howWeWorkLanding.sectionTitle}
           description={howWeWorkLanding.sectionIntro}
           spacing="compact"
         />
-        <LandingLinksCardGrid links={howWeWorkLanding.links} />
+        <LandingLinksCardGrid
+          links={howWeWorkLanding.links}
+          circleImageByHref={howWeWorkCircleImageByHref}
+          variant="beigeInteractive"
+        />
       </HomeSection>
 
       <HomeSection tone="patterned">
@@ -76,20 +93,11 @@ export default function HowWeWorkPage() {
         </div>
       </HomeSection>
 
-      <HomeSection tone="white">
-        <div className="surface-card overflow-hidden border-primary/12">
-          <VisualSlot
-            slot="quality"
-            aspectClassName="h-48 sm:h-60 max-h-[14rem] sm:max-h-[17rem]"
-            sizes="(max-width: 1024px) 100vw, 1100px"
-            showEyebrow={false}
-          />
-        </div>
-      </HomeSection>
-
-      <HomeSection tone="patterned" className="pb-24 lg:pb-28">
+      <HomeSection tone="white" className="!bg-[#f6f2ea] pb-24 lg:pb-28">
         <CTASection
           variant="band"
+          bandTone="beige"
+          bandImageSrc="/imagery/pexels-wood.jpg"
           title="Ready to start?"
           description="Tell us what you are building and your timeline. We will recommend the lowest-risk path and a team model aligned to your roadmap."
           primaryLabel="Schedule a Call"

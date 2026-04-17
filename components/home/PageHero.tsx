@@ -8,6 +8,7 @@ import {
   MOTION_REVEAL_Y,
 } from "@/lib/motion";
 import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 
 type PageHeroProps = {
   headline: string;
@@ -16,6 +17,7 @@ type PageHeroProps = {
   primaryHref: string;
   secondaryLabel?: string;
   secondaryHref?: string;
+  backgroundImage?: string;
 };
 
 export default function PageHero({
@@ -25,12 +27,23 @@ export default function PageHero({
   primaryHref,
   secondaryLabel,
   secondaryHref,
+  backgroundImage = "/imagery/hero-enterprise-city.jpg",
 }: PageHeroProps) {
   const reduceMotion = useReducedMotion();
 
   return (
     <section id="hero" className="scroll-mt-20">
       <div className="relative isolate min-h-[78vh] overflow-hidden bg-navy text-white sm:min-h-[82vh] lg:min-h-[88vh]">
+        <Image
+          src={backgroundImage}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-30"
+          aria-hidden
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-navy/92 via-navy/78 to-navy/88" aria-hidden />
         <Container className="relative z-10 flex min-h-[78vh] items-center sm:min-h-[82vh] lg:min-h-[88vh]">
           <motion.div
             className="w-full max-w-3xl pt-14 sm:pt-18 lg:pt-20"

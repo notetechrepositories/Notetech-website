@@ -45,6 +45,7 @@ export default function HomePage() {
         primaryHref={homeHero.ctas.primaryHref}
         secondaryLabel={homeHero.ctas.secondaryLabel}
         secondaryHref={homeHero.ctas.secondaryHref}
+        backgroundImage={homeHero.backgroundImage}
       />
 
       <HomeSection id={homeWhatWeDo.sectionId} tone="white">

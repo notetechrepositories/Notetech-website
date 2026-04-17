@@ -19,7 +19,7 @@ type ButtonProps = {
 
 const variants = {
   primary:
-    "motion-interactive inline-flex items-center justify-center rounded-[var(--radius-card)] bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:-translate-y-px hover:bg-primary-hover hover:shadow-md active:translate-y-0 active:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2",
+    "motion-interactive inline-flex items-center justify-center rounded-[var(--radius-card)] bg-primary px-4 py-2 text-sm font-semibold text-white visited:text-white shadow-sm hover:-translate-y-px hover:bg-primary-hover hover:shadow-md active:translate-y-0 active:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2",
   ghost:
     "motion-interactive inline-flex items-center justify-center rounded-[var(--radius-card)] border border-border-subtle bg-surface px-4 py-2 text-sm font-semibold text-ink hover:-translate-y-px hover:border-primary/20 hover:bg-surface-muted hover:text-primary active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2",
   inverse:

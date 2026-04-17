@@ -5,6 +5,40 @@ import Container from "@/components/ui/Container";
 import Badge from "@/components/ui/Badge";
 import type { ReactNode } from "react";
 
+function HeroPatternBackground() {
+  return (
+    <div className="pointer-events-none absolute inset-0" aria-hidden>
+      <svg
+        viewBox="0 0 1600 600"
+        preserveAspectRatio="xMidYMid slice"
+        className="absolute inset-0 h-full w-full opacity-68"
+      >
+        <defs>
+          <pattern id="hero-geo-panels" width="420" height="240" patternUnits="userSpaceOnUse">
+            <rect width="420" height="240" fill="transparent" />
+            <polygon points="0,0 118,0 204,44 86,44" fill="rgba(255,255,255,0.095)" />
+            <polygon points="86,44 204,44 204,128 86,128" fill="rgba(255,255,255,0.055)" />
+            <polygon points="204,44 324,44 420,92 300,92" fill="rgba(255,255,255,0.072)" />
+            <polygon points="300,92 420,92 420,176 300,176" fill="rgba(255,255,255,0.05)" />
+            <polygon points="0,128 86,128 204,176 118,176" fill="rgba(255,255,255,0.06)" />
+            <polygon points="118,176 300,176 420,226 238,226" fill="rgba(255,255,255,0.045)" />
+            <path d="M0 192 L120 144 L120 240 L0 240 Z" fill="rgba(255,255,255,0.04)" />
+            <path d="M220 116 L300 84 L300 174 L220 206 Z" fill="rgba(255,255,255,0.04)" />
+          </pattern>
+          <pattern id="hero-geo-lines" width="420" height="240" patternUnits="userSpaceOnUse">
+            <path d="M0 182 L126 132" stroke="rgba(255,255,255,0.072)" strokeWidth="1" />
+            <path d="M0 194 L126 144" stroke="rgba(255,255,255,0.055)" strokeWidth="1" />
+            <path d="M0 206 L126 156" stroke="rgba(255,255,255,0.048)" strokeWidth="1" />
+          </pattern>
+        </defs>
+        <rect width="1600" height="600" fill="url(#hero-geo-panels)" />
+        <rect width="1600" height="600" fill="url(#hero-geo-lines)" opacity="0.5" />
+      </svg>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(255,255,255,0.095),transparent_44%),radial-gradient(circle_at_82%_14%,rgba(255,255,255,0.06),transparent_40%)]" />
+    </div>
+  );
+}
+
 type PageHeroProps = {
   breadcrumbs: BreadcrumbItem[];
   title: string;
@@ -38,11 +72,12 @@ export default function PageHero({
     <div
       className={
         isWarm
-          ? "border-b border-t border-stone-300/70 bg-[#f7f4ee] text-slate-900"
-          : "border-b border-t border-white/10 bg-navy text-white"
+          ? "relative border-b border-t border-stone-300/70 bg-[#f7f4ee] text-slate-900"
+          : "relative isolate overflow-hidden border-b border-t border-white/10 bg-[#081a35] text-white"
       }
     >
-      <Container className="py-10 sm:py-14 lg:py-16">
+      {!isWarm ? <HeroPatternBackground /> : null}
+      <Container className="relative z-10 py-10 sm:py-14 lg:py-16">
         <Breadcrumbs
           items={breadcrumbs}
           className={

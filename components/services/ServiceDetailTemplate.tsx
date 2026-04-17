@@ -1,7 +1,7 @@
 import CTASection from "@/components/home/CTASection";
 import HomeSection from "@/components/home/HomeSection";
-import SectionHeading from "@/components/home/SectionHeading";
 import PageHero from "@/components/marketing/PageHero";
+import Button from "@/components/ui/Button";
 import VisualSlot from "@/components/visuals/VisualSlot";
 import type { ServiceDetail } from "@/data/services";
 
@@ -15,11 +15,12 @@ export default function ServiceDetailTemplate({
   const sectionLinks = [
     { href: "#best-for-heading", label: "Best for" },
     { href: "#what-you-get-heading", label: "What you get" },
-    ...(service.toolsCapabilities?.length
-      ? [{ href: "#tools-heading", label: "Tools & capabilities" }]
-      : []),
+    { href: "#working-model-heading", label: "Working model" },
     { href: "#next-step-heading", label: "Next step" },
   ];
+  const workingModelText =
+    service.workingModel ??
+    "You set priorities and requirements; our team designs, builds, tests, and maintains the software while adapting to your tools and standards.";
 
   return (
     <>
@@ -45,119 +46,138 @@ export default function ServiceDetailTemplate({
       <HomeSection tone="subtle">
         <nav
           aria-label="Service detail sections"
-          className="mb-10 flex flex-wrap gap-3 lg:mb-12"
+          className="mb-12 flex flex-wrap items-center gap-x-5 gap-y-2 border-b border-stone-300/70 pb-5 lg:mb-16"
         >
           {sectionLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="motion-interactive rounded-full border border-stone-300/75 bg-[#f7f4ee] px-4 py-2 text-sm font-semibold text-slate-800 hover:border-primary/25 hover:bg-white hover:text-primary"
+              className="motion-interactive text-[0.78rem] font-semibold tracking-[0.08em] text-slate-600 uppercase hover:text-primary"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
+        <div className="space-y-18 lg:space-y-24">
           <section
-            aria-labelledby="best-for-heading"
-            className="lg:col-span-4 lg:sticky lg:top-24 lg:self-start"
+            id="best-for-heading"
+            aria-labelledby="best-for-title"
+            className="grid gap-8 border-b border-stone-300/70 pb-14 lg:grid-cols-12 lg:gap-14 lg:pb-16"
           >
-            <div className="rounded-[var(--radius-hero)] border border-stone-300/75 bg-[#f7f4ee] p-6 shadow-card lg:p-7">
-              <SectionHeading
-                title="Best for"
-                id="best-for-heading"
-                spacing="flush"
-              />
-              <ul className="grid gap-3">
-                {service.bestFor.map((item, i) => (
-                  <li
-                    key={i}
-                    className="flex gap-3 rounded-[var(--radius-card)] border border-stone-300/70 bg-white/88 p-4 text-sm leading-relaxed text-slate-800"
-                  >
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
-                      {i + 1}
-                    </span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="lg:col-span-5">
+              <h2
+                id="best-for-title"
+                className="font-display text-4xl tracking-tight text-slate-900 sm:text-5xl"
+              >
+                Best for
+              </h2>
+            </div>
+            <ul className="space-y-6 lg:col-span-7 lg:pt-2">
+              {service.bestFor.map((item, i) => (
+                <li
+                  key={i}
+                  className="border-b border-stone-300/70 pb-5 text-[1.04rem] leading-relaxed text-slate-700 last:border-b-0 last:pb-0"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section
+            id="what-you-get-heading"
+            aria-labelledby="what-you-get-title"
+            className="grid gap-8 lg:grid-cols-12 lg:gap-14"
+          >
+            <div className="lg:col-span-5">
+              <h2
+                id="what-you-get-title"
+                className="font-display text-4xl tracking-tight text-slate-900 sm:text-5xl"
+              >
+                What you get
+              </h2>
+            </div>
+            <ul className="divide-y divide-stone-300/70 border-y border-stone-300/70 lg:col-span-7 lg:mt-1">
+              {service.whatYouGet.map((item, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-4 py-4 text-[1.01rem] leading-relaxed text-slate-700 sm:py-5"
+                >
+                  <span className="mt-0.5 inline-flex min-w-[2rem] text-[0.74rem] font-semibold tracking-[0.08em] text-slate-500 uppercase">
+                    {(i + 1).toString().padStart(2, "0")}
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section
+            id="working-model-heading"
+            aria-labelledby="working-model-title"
+            className="grid items-start gap-10 border-t border-stone-300/70 pt-14 lg:grid-cols-12 lg:gap-14 lg:pt-16"
+          >
+            <div className="lg:col-span-5">
+              <h2
+                id="working-model-title"
+                className="font-display text-4xl tracking-tight text-slate-900 sm:text-5xl"
+              >
+                Working model
+              </h2>
+              <p className="mt-6 max-w-md text-[1.03rem] leading-relaxed text-slate-700">
+                {workingModelText}
+              </p>
+              <div className="mt-8">
+                <Button href="/contact" variant="primary" className="px-6">
+                  Schedule a Call
+                </Button>
+              </div>
+            </div>
+            <div className="lg:col-span-7">
+              <div className="group overflow-hidden bg-[#e9e2d5]">
+                <VisualSlot
+                  slot="architecture"
+                  aspectClassName="aspect-[16/10]"
+                  sizes="(max-width: 1024px) 100vw, 760px"
+                  showEyebrow={false}
+                />
+              </div>
             </div>
           </section>
 
-          <div className="space-y-8 lg:col-span-8 lg:space-y-10">
-            <section aria-labelledby="what-you-get-heading">
-              <div className="rounded-[var(--radius-hero)] border border-stone-300/75 bg-[#f3efe6] p-6 lg:p-8">
-                <SectionHeading
-                  title="What you get"
-                  id="what-you-get-heading"
-                  spacing="flush"
-                />
-                <ul className="grid gap-4">
-                  {service.whatYouGet.map((item, i) => (
-                    <li
-                      key={i}
-                      className="motion-interactive flex gap-4 rounded-[var(--radius-card)] border border-stone-300/70 bg-white p-5 shadow-card"
-                    >
-                      <span
-                        className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-white"
-                        aria-hidden
-                      >
-                        {i + 1}
-                      </span>
-                      <span className="text-body-muted text-sm leading-relaxed sm:text-[0.95rem]">
-                        {item}
-                      </span>
-                    </li>
+          {service.toolsCapabilities?.length ? (
+            <section id="tools-heading" className="border-t border-stone-300/70 pt-14 lg:pt-16">
+              <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
+                <div className="lg:col-span-5">
+                  <h2 className="font-display text-4xl tracking-tight text-slate-900 sm:text-5xl">
+                    Tools & capabilities
+                  </h2>
+                  <p className="mt-5 max-w-md text-[1.01rem] leading-relaxed text-slate-700">
+                    Aligned to your standards and environment-not a one-size-fits-all stack mandate.
+                  </p>
+                </div>
+                <dl className="divide-y divide-stone-300/70 border-y border-stone-300/70 lg:col-span-7">
+                  {service.toolsCapabilities.map((item, i) => (
+                    <div key={i} className="py-4 sm:py-5">
+                      <dt className="sr-only">Capability {i + 1}</dt>
+                      <dd className="flex gap-3 text-[1rem] leading-relaxed text-ink">
+                        <span className="font-semibold text-primary" aria-hidden>
+                          /
+                        </span>
+                        <span>{item}</span>
+                      </dd>
+                    </div>
                   ))}
-                </ul>
+                </dl>
               </div>
             </section>
-
-            <div className="surface-card overflow-hidden border-primary/12">
-              <VisualSlot
-                slot="architecture"
-                aspectClassName="h-44 sm:h-56"
-                sizes="(max-width: 1024px) 100vw, 1100px"
-                showEyebrow={false}
-              />
-            </div>
-          </div>
+          ) : null}
         </div>
-
-        {service.toolsCapabilities?.length ? (
-          <section
-            className="mt-14 lg:mt-16"
-            aria-labelledby="tools-heading"
-          >
-            <SectionHeading
-              title="Tools & capabilities"
-              id="tools-heading"
-              description="Aligned to your standards and environment—not a one-size-fits-all stack mandate."
-              spacing="compact"
-            />
-            <dl className="grid gap-4 sm:grid-cols-2">
-              {service.toolsCapabilities.map((item, i) => (
-                <div
-                  key={i}
-                  className="motion-interactive rounded-[var(--radius-card)] border border-border-subtle bg-surface px-5 py-4 shadow-card"
-                >
-                  <dt className="sr-only">Capability {i + 1}</dt>
-                  <dd className="flex gap-3 text-sm leading-relaxed text-ink">
-                    <span className="text-primary font-semibold" aria-hidden>
-                      /
-                    </span>
-                    <span>{item}</span>
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </section>
-        ) : null}
 
         <div
           id="next-step-heading"
-          className="mt-14 rounded-[var(--radius-hero)] border border-stone-300/75 bg-[#f3efe6] p-8 lg:mt-16 lg:p-10"
+          className="mt-16 border-t border-stone-300/80 pt-10 lg:mt-20 lg:pt-12"
         >
           <CTASection
             variant="inline"

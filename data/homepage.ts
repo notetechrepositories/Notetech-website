@@ -43,7 +43,7 @@ export const homeHero = {
     "Dedicated development teams for software products that need predictable delivery.",
   subhead:
     "Founded in 1998, Notetech Software supports software product companies and enterprise IT teams with stable delivery, clear ownership, and an IP-safe working model.",
-    backgroundImage: "imagery\hero-enterprise-city.jpg",
+  backgroundImage: "/imagery/hero-enterprise-city.jpg",
   ctas: {
     primaryLabel: "Schedule a Call",
     primaryHref: "/contact",
@@ -110,14 +110,14 @@ export const homeWhatWeDo = {
       id: "cloud",
       title: "Cloud & AWS Modernization",
       href: "/services/cloud-aws-modernization",
-      imageSrc: "/imagery/service-cloud-modernization.jpg",
+      imageSrc: "/imagery/service/aws.jpg",
       imageAlt: "Cloud infrastructure and hardware environment for modernization services",
     },
     {
       id: "qa",
       title: "QA & Test Automation",
       href: "/services/qa-test-automation",
-      imageSrc: "/imagery/service-qa-automation.jpg",
+      imageSrc: "/imagery/service/qa_test.jpg",
       imageAlt: "Quality engineer validating software quality and automated test outcomes",
     },
     {
@@ -131,7 +131,7 @@ export const homeWhatWeDo = {
       id: "integrations",
       title: "Integrations & APIs",
       href: "/services/integrations-apis",
-      imageSrc: "/imagery/service-integrations-api.jpg",
+      imageSrc: "/imagery/service/code.jpg",
       imageAlt: "Developer integrating software systems and APIs across platforms",
     },
   ] as HomeServiceCard[],
