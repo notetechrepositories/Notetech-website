@@ -28,26 +28,39 @@ export default function VisualSlot({
 }: VisualSlotProps) {
   const config = visualSlots[slot];
   const pos = objectPosition ?? config.objectPosition ?? "50% 45%";
+  const isServicesVisual = slot === "services";
+  const isBrandMarkVisual = slot === "brand-mark";
 
   return (
     <div
-      className={`relative w-full overflow-hidden bg-surface-muted ${aspectClassName} ${className}`}
+      className={`relative w-full overflow-hidden ${isBrandMarkVisual ? "bg-[#e5dfd3]" : "bg-surface-muted"} ${aspectClassName} ${className}`}
     >
-      <Image
-        src={config.src}
-        alt={decorative ? "" : config.alt}
-        fill
-        sizes={sizes}
-        priority={priority}
-        className="object-cover saturate-[0.93] contrast-[1.03]"
-        style={{ objectPosition: pos }}
-      />
-      {showOverlay ? (
-        <div
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(160deg,rgb(11_18_32/0.08),transparent_45%),radial-gradient(circle_at_84%_14%,rgb(70_195_230/0.28),transparent_46%),linear-gradient(to_top,rgb(11_18_32/0.65),rgb(11_18_32/0.12)_38%,transparent)]"
-          aria-hidden
+      {isServicesVisual ? (
+        <img
+          src={config.src}
+          alt={decorative ? "" : config.alt}
+          className="absolute inset-0 h-full w-full object-cover saturate-[0.92] contrast-[1.04]"
+          style={{ objectPosition: pos }}
         />
-      ) : null}
+      ) : (
+        <>
+          <Image
+            src={config.src}
+            alt={decorative ? "" : config.alt}
+            fill
+            sizes={sizes}
+            priority={priority}
+            className={`${isBrandMarkVisual ? "object-contain p-8 sm:p-10" : "object-cover saturate-[0.93] contrast-[1.03]"}`}
+            style={{ objectPosition: pos }}
+          />
+          {showOverlay && !isBrandMarkVisual ? (
+            <div
+              className="pointer-events-none absolute inset-0 bg-[linear-gradient(160deg,rgb(11_18_32/0.08),transparent_45%),radial-gradient(circle_at_84%_14%,rgb(70_195_230/0.28),transparent_46%),linear-gradient(to_top,rgb(11_18_32/0.65),rgb(11_18_32/0.12)_38%,transparent)]"
+              aria-hidden
+            />
+          ) : null}
+        </>
+      )}
       {showEyebrow ? (
         <span className="absolute left-3 top-3 rounded-[var(--radius-card)] border border-white/25 bg-navy/60 px-2.5 py-1 text-[0.62rem] font-semibold tracking-[0.16em] text-white uppercase sm:left-4 sm:top-4">
           {config.eyebrow}

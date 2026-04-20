@@ -9,8 +9,8 @@ export const techImagery = {
     alt: "Modern enterprise office architecture with premium corporate interior perspective",
   },
   services: {
-    src: "/imagery/services-network.jpg",
-    alt: "Network server equipment and cabling in a technical environment",
+    src: "/imagery/service/AI.jpg",
+    alt: "Abstract geometric pattern representing modern service capabilities",
   },
   caseStudies: {
     src: "/imagery/case-studies-global-systems.jpg",

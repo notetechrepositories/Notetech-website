@@ -14,7 +14,7 @@ export const companyPages: Record<CompanySlug, DocPageData> = {
       "Notetech Software is a software engineering partner for software product companies and enterprise IT organizations across the USA, Canada, and Europe. We help teams deliver and modernize business-critical systems with stable engineering capacity, disciplined execution, and an IP-safe working model.",
     parentLabel: "Company",
     parentHref: "/company",
-    visualSlot: "case-studies",
+    visualSlot: "brand-mark",
     sections: [
       {
         title: "Company snapshot",

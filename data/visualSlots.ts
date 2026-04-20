@@ -7,7 +7,8 @@ export type VisualSlotId =
   | "technology"
   | "cta"
   | "architecture"
-  | "quality";
+  | "quality"
+  | "brand-mark";
 
 type VisualSlotConfig = {
   src: string;
@@ -26,11 +27,11 @@ export const visualSlots: Record<VisualSlotId, VisualSlotConfig> = {
     objectPosition: "50% 52%",
   },
   services: {
-    src: techImagery.services.src,
-    alt: "Modern engineering workspace with network and compute systems",
+    src: "https://insights.techmahindra.com/styles/inner01/s3/images/capabilities_banner.jpeg?h=5a22e328",
+    alt: "Premium enterprise capability visual with integrated digital systems",
     eyebrow: "Service execution",
     tags: ["Architecture", "Integration", "Support"],
-    objectPosition: "50% 36%",
+    objectPosition: "56% 50%",
   },
   "case-studies": {
     src: techImagery.caseStudies.src,
@@ -66,5 +67,12 @@ export const visualSlots: Record<VisualSlotId, VisualSlotConfig> = {
     eyebrow: "Quality engineering",
     tags: ["Testing", "CI discipline"],
     objectPosition: "50% 42%",
+  },
+  "brand-mark": {
+    src: "/brand/notetech-logo-mark.png",
+    alt: "Notetech brand mark",
+    eyebrow: "Notetech",
+    tags: [],
+    objectPosition: "50% 50%",
   },
 };

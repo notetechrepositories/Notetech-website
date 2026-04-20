@@ -49,6 +49,12 @@ type PageHeroProps = {
   children?: ReactNode;
   /** Optional right-column visual (desktop); stacks below copy on small screens */
   aside?: ReactNode;
+  /** Render aside without framed container */
+  asideUnframed?: boolean;
+  /** Optional background decor rendered behind hero content */
+  backgroundDecor?: ReactNode;
+  /** Optional min-height classes for hero content region */
+  contentMinHeightClassName?: string;
   /** Visual theme; default keeps existing navy treatment */
   tone?: "navy" | "warm";
 };
@@ -64,6 +70,9 @@ export default function PageHero({
   badge,
   children,
   aside,
+  asideUnframed = false,
+  backgroundDecor,
+  contentMinHeightClassName = "",
   tone = "navy",
 }: PageHeroProps) {
   const isWarm = tone === "warm";
@@ -77,6 +86,11 @@ export default function PageHero({
       }
     >
       {!isWarm ? <HeroPatternBackground /> : null}
+      {backgroundDecor ? (
+        <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+          {backgroundDecor}
+        </div>
+      ) : null}
       <Container className="relative z-10 py-10 sm:py-14 lg:py-16">
         <Breadcrumbs
           items={breadcrumbs}
@@ -87,7 +101,7 @@ export default function PageHero({
           }
         />
         <div
-          className={`mt-7 ${aside ? "grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-12" : ""}`}
+          className={`mt-7 ${aside ? "grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-12" : ""} ${contentMinHeightClassName}`}
         >
           <div className="min-w-0">
             <div className="flex flex-wrap items-start gap-4">
@@ -126,15 +140,19 @@ export default function PageHero({
           </div>
           {aside ? (
             <div className="min-w-0 lg:pt-1">
-              <div
-                className={`overflow-hidden rounded-[var(--radius-hero)] ${
-                  isWarm
-                    ? "border border-stone-300/70 bg-stone-100/60 shadow-[var(--shadow-card-value)]"
-                    : "border border-white/10 bg-white/5 shadow-[0_1px_0_0_rgb(255_255_255/0.06)_inset,var(--shadow-card-value)] ring-1 ring-inset ring-aqua/15"
-                }`}
-              >
-                {aside}
-              </div>
+              {asideUnframed ? (
+                aside
+              ) : (
+                <div
+                  className={`overflow-hidden rounded-[var(--radius-hero)] ${
+                    isWarm
+                      ? "border border-stone-300/70 bg-stone-100/60 shadow-[var(--shadow-card-value)]"
+                      : "border border-white/10 bg-white/5 shadow-[0_1px_0_0_rgb(255_255_255/0.06)_inset,var(--shadow-card-value)] ring-1 ring-inset ring-aqua/15"
+                  }`}
+                >
+                  {aside}
+                </div>
+              )}
             </div>
           ) : null}
         </div>

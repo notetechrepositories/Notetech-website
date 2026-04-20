@@ -124,7 +124,7 @@ export default function MobileMenu() {
         <div className="fixed inset-0 z-[100] xl:hidden" id={panelId}>
           <button
             type="button"
-            className="absolute inset-0 bg-navy/45 backdrop-blur-[2px]"
+            className="absolute inset-0 bg-navy/80 backdrop-blur-[3px]"
             aria-label="Close menu"
             onClick={() => setOpen(false)}
           />
@@ -134,13 +134,13 @@ export default function MobileMenu() {
             aria-modal="true"
             aria-label="Mobile navigation menu"
             tabIndex={-1}
-            className="border-border-subtle absolute right-0 top-0 z-10 flex h-full w-full max-w-md flex-col border-l bg-surface shadow-2xl shadow-primary/10"
+            className="absolute right-0 top-0 z-10 flex h-full w-full max-w-sm flex-col border-l border-stone-200 bg-white shadow-2xl shadow-navy/20"
           >
-            <div className="border-border-subtle flex items-center justify-between border-b px-5 py-5">
-              <span className="text-label text-ink-muted">Menu</span>
+            <div className="flex items-center justify-between border-b border-stone-200 bg-white px-5 py-4">
+              <span className="text-[0.65rem] font-bold tracking-[0.2em] text-slate-500 uppercase">Navigation</span>
               <button
                 type="button"
-                className="text-ink-muted motion-interactive flex min-h-11 min-w-11 items-center justify-center rounded-[var(--radius-card)] hover:bg-primary/[0.06] hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2"
+                className="motion-interactive flex min-h-10 min-w-10 items-center justify-center rounded-[var(--radius-card)] text-slate-600 hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2"
                 onClick={() => setOpen(false)}
                 aria-label="Close menu"
               >

@@ -113,7 +113,7 @@ export default function HomePage() {
           {homeWhyNotetech.points.map((p) => (
             <li
               key={p.id}
-              className="surface-card motion-interactive flex flex-col gap-4 overflow-hidden p-4 lg:p-5"
+              className="surface-card motion-interactive group flex flex-col gap-4 overflow-hidden border border-primary/10 bg-surface p-4 transition-colors duration-300 ease-out hover:border-[#e6dccd] hover:bg-[#f7f2ea] active:border-[#e6dccd] active:bg-[#f7f2ea] lg:p-5"
             >
               {"imageSrc" in p && typeof p.imageSrc === "string" ? (
                 <div className="relative aspect-[16/9] overflow-hidden rounded-[var(--radius-card)] border border-primary/10 bg-surface-muted">
@@ -122,19 +122,19 @@ export default function HomePage() {
                     alt={"imageAlt" in p && typeof p.imageAlt === "string" ? p.imageAlt : "Why Notetech visual"}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 48vw, 33vw"
-                    className="object-cover"
+                    className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]"
                   />
-                  <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy/25 via-transparent to-transparent" />
+                  <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy/25 via-transparent to-transparent transition-colors duration-300 group-hover:from-[#a89273]/22" />
                 </div>
               ) : null}
               <div className="flex gap-4">
                 <span
-                  className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-[var(--radius-card)] border border-primary/20 bg-primary text-[11px] font-bold text-white"
+                  className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-[var(--radius-card)] border border-primary/20 bg-primary text-[11px] font-bold text-white transition-colors duration-300 group-hover:border-[#d0bfa8] group-hover:bg-[#efe5d6] group-hover:text-[#7a6548]"
                   aria-hidden
                 >
                   ✓
                 </span>
-                <span className="text-sm font-medium leading-relaxed text-ink">
+                <span className="text-sm font-medium leading-relaxed text-ink transition-colors duration-300 group-hover:text-[#7a6548]">
                   {p.text}
                 </span>
               </div>

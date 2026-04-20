@@ -4,7 +4,6 @@ import HomeSection from "@/components/home/HomeSection";
 import SectionHeading from "@/components/home/SectionHeading";
 import ServicesCardGrid from "@/components/services/ServicesCardGrid";
 import Button from "@/components/ui/Button";
-import VisualSlot from "@/components/visuals/VisualSlot";
 import { servicesLanding } from "@/data/services";
 import { getAllServices } from "@/lib/content/services";
 import type { Metadata } from "next";
@@ -29,12 +28,16 @@ export default function ServicesLandingPage() {
         title={servicesLanding.heroTitle}
         subtitle={servicesLanding.headline}
         description={servicesLanding.intro}
-        aside={
-          <VisualSlot
-            slot="services"
-            aspectClassName="aspect-[4/3] sm:aspect-[16/11]"
-            sizes="(max-width: 1024px) 100vw, 520px"
-          />
+        contentMinHeightClassName="min-h-[18rem] sm:min-h-[21rem] lg:min-h-[24rem]"
+        backgroundDecor={
+          <div className="absolute -inset-y-[18%] -right-[2%] hidden w-[45%] overflow-hidden [clip-path:polygon(0_32%,100%_0,100%_68%,0_100%)] lg:block">
+            <img
+              src="/imagery/capabilities-banner.jpg"
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover object-[56%_50%] saturate-[0.92] contrast-[1.04]"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(118deg,rgb(8_18_36/0.45)_0%,transparent_50%),linear-gradient(to_top,rgb(8_18_36/0.28)_0%,transparent_42%)]" />
+          </div>
         }
       >
         <Button href="/contact" variant="primary" className="px-6">

@@ -37,8 +37,10 @@ export default function ServiceDetailTemplate({
         aside={
           <VisualSlot
             slot="services"
-            aspectClassName="aspect-[4/3] sm:aspect-[16/11]"
+            aspectClassName="min-h-[19rem] sm:min-h-[22rem] lg:h-full lg:min-h-[26rem]"
             sizes="(max-width: 1024px) 100vw, 520px"
+            showEyebrow={false}
+            showTags={false}
           />
         }
       />
