@@ -57,7 +57,7 @@ export default function DesktopNav() {
                     <NavLink
                       href={item.href}
                       external={item.external}
-                      className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-[var(--radius-card)] px-3.5 py-2 text-[0.7rem] font-semibold leading-none tracking-[0.06em] text-[#0b0f18] uppercase hover:-translate-y-px hover:bg-primary/[0.06] hover:text-primary active:translate-y-0"
+                      className="inline-flex items-center gap-2 whitespace-nowrap rounded-[var(--radius-card)] border border-stone-200/70 bg-stone-100/80 px-5 py-2.5 text-[0.75rem] font-semibold leading-none tracking-[0.06em] text-[#0b0f18] uppercase hover:-translate-y-px hover:border-primary/25 hover:bg-primary/[0.07] hover:text-primary active:translate-y-0"
                     >
                       <span className="leading-tight">{item.label}</span>
                       <span
@@ -82,7 +82,7 @@ export default function DesktopNav() {
                   ) : (
                     <button
                       type="button"
-                      className="text-[#0b0f18] motion-interactive inline-flex items-center gap-1.5 whitespace-nowrap rounded-[var(--radius-card)] px-3.5 py-2 text-[0.7rem] font-semibold leading-none tracking-[0.06em] uppercase outline-none hover:-translate-y-px hover:bg-primary/[0.06] hover:text-primary active:translate-y-0 focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2"
+                      className="motion-interactive inline-flex items-center gap-2 whitespace-nowrap rounded-[var(--radius-card)] border border-stone-200/70 bg-stone-100/80 px-5 py-2.5 text-[0.75rem] font-semibold leading-none tracking-[0.06em] text-[#0b0f18] uppercase outline-none hover:-translate-y-px hover:border-primary/25 hover:bg-primary/[0.07] hover:text-primary active:translate-y-0 focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2"
                       aria-haspopup="true"
                     >
                       <span className="leading-tight">{item.label}</span>
@@ -109,7 +109,7 @@ export default function DesktopNav() {
                 <NavLink
                   href={item.href}
                   external={item.external}
-                  className="block whitespace-nowrap rounded-[var(--radius-card)] px-3.5 py-2 text-[0.7rem] font-semibold leading-tight tracking-[0.06em] text-[#0b0f18] uppercase hover:-translate-y-px hover:bg-primary/[0.06] hover:text-primary active:translate-y-0"
+                  className="block whitespace-nowrap rounded-[var(--radius-card)] border border-stone-200/70 bg-stone-100/80 px-5 py-2.5 text-[0.75rem] font-semibold leading-tight tracking-[0.06em] text-[#0b0f18] uppercase hover:-translate-y-px hover:border-primary/25 hover:bg-primary/[0.07] hover:text-primary active:translate-y-0"
                 >
                   {item.label}
                 </NavLink>
