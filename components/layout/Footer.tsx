@@ -1,8 +1,43 @@
 import Logo from "@/components/brand/Logo";
 import Container from "@/components/ui/Container";
 import NavLink from "@/components/ui/NavLink";
-import { footerColumns, footerNote } from "@/data/footer";
-import { siteName } from "@/data/site";
+import { footerNote } from "@/data/footer";
+import { siteName, voiceFirstUrl, scheduleCallHref } from "@/data/site";
+
+const essentialLinks = [
+  { label: "Services", href: "/services" },
+  { label: "How We Work", href: "/how-we-work" },
+  { label: "About", href: "/company/about" },
+  { label: "Careers", href: "/company/careers" },
+  { label: "Contact", href: "/contact" },
+  { label: "VoiceFirst", href: voiceFirstUrl, external: true },
+];
+
+const legalLinks = [
+  { label: "Privacy Policy", href: "/legal/privacy-policy" },
+  { label: "Terms of Use", href: "/legal/terms-of-use" },
+];
+
+const socialLinks = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/notetech",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden>
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+      </svg>
+    ),
+  },
+  {
+    label: "X / Twitter",
+    href: "https://twitter.com/notetech",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden>
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+      </svg>
+    ),
+  },
+];
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -10,77 +45,82 @@ export default function Footer() {
   return (
     <footer className="relative mt-auto w-full overflow-hidden border-t border-white/10 bg-[linear-gradient(180deg,#081a35_0%,#071830_100%)] text-navy-foreground">
       <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <svg
-          viewBox="0 0 1600 560"
-          preserveAspectRatio="xMidYMid slice"
-          className="absolute inset-0 h-full w-full opacity-70"
-        >
+        <svg viewBox="0 0 1600 400" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full opacity-50">
           <defs>
-            <pattern id="footer-panel-outline" width="520" height="320" patternUnits="userSpaceOnUse">
-              <rect width="520" height="320" fill="transparent" />
-              <path d="M72 24 L306 24 L306 264 L72 264 Z" fill="none" stroke="rgba(255,255,255,0.17)" strokeWidth="1.2" />
-              <path d="M72 84 L306 84 M72 124 L306 124 M72 164 L306 164 M72 204 L306 204 M72 244 L306 244" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="1.05" />
-              <path d="M-120 136 L184 26 M-120 216 L184 106 M-120 296 L184 186 M136 296 L440 186 M256 336 L560 226" fill="none" stroke="rgba(255,255,255,0.135)" strokeWidth="1.05" />
-            </pattern>
-            <pattern id="footer-panel-outline-offset" width="520" height="320" patternUnits="userSpaceOnUse">
-              <rect width="520" height="320" fill="transparent" />
-              <path d="M292 152 L474 152 L474 320 L292 320 Z" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="1.05" />
-              <path d="M292 192 L474 192 M292 230 L474 230 M292 268 L474 268" fill="none" stroke="rgba(255,255,255,0.105)" strokeWidth="1" />
+            <pattern id="footer-grid" width="520" height="320" patternUnits="userSpaceOnUse">
+              <path d="M72 24 L306 24 L306 264 L72 264 Z" fill="none" stroke="rgba(255,255,255,0.14)" strokeWidth="1" />
+              <path d="M-120 136 L184 26 M-120 216 L184 106 M136 296 L440 186" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
             </pattern>
           </defs>
-          <rect width="1600" height="560" fill="url(#footer-panel-outline)" />
-          <rect width="1600" height="560" fill="url(#footer-panel-outline-offset)" />
+          <rect width="1600" height="400" fill="url(#footer-grid)" />
         </svg>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_6%,rgba(255,255,255,0.1),transparent_40%),radial-gradient(circle_at_85%_2%,rgba(255,255,255,0.085),transparent_34%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,16,32,0.25)_0%,rgba(5,16,32,0.6)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_0%,rgba(255,255,255,0.07),transparent_50%)]" />
       </div>
 
-      <Container className="relative z-10 py-14 sm:py-16 lg:py-20">
-        <div className="flex flex-col gap-6 pb-10 sm:gap-7 lg:flex-row lg:items-end lg:justify-between lg:pb-12">
-          <Logo variant="footer" className="drop-shadow-[0_12px_24px_rgba(0,0,0,0.28)]" />
-          <p className="max-w-xl text-sm leading-relaxed text-navy-foreground/72 sm:text-[0.95rem]">
-            Engineering delivery for software products and enterprise platforms, with client-owned IP and
-            disciplined long-term support.
+      <Container className="relative z-10 py-10 sm:py-12">
+
+        {/* Top row: logo + tagline */}
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <Logo variant="footer" className="drop-shadow-[0_8px_16px_rgba(0,0,0,0.25)]" />
+          <p className="text-sm text-navy-foreground/55 sm:text-right">
+            Engineering delivery for software products, with client-owned IP.
           </p>
         </div>
 
-        <div className="h-px w-full bg-gradient-to-r from-white/0 via-white/16 to-white/0" />
+        <div className="my-7 h-px bg-gradient-to-r from-white/0 via-white/14 to-white/0" />
 
-        <div className="grid gap-x-10 gap-y-12 pt-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-14 xl:grid-cols-6 xl:gap-y-16">
-          {footerColumns.map((column) => (
-            <div key={column.title}>
-              <h3 className="text-label tracking-[0.11em] text-navy-foreground/62">{column.title}</h3>
-              <ul className="mt-5 space-y-3.5">
-                {column.links.map((link) => (
-                  <li key={`${column.title}-${link.label}`}>
-                    <NavLink
-                      href={link.href}
-                      external={link.external}
-                      className="inline-flex items-center gap-1 text-sm font-medium text-navy-foreground/82 decoration-transparent underline-offset-4 transition-[color,text-decoration-color] duration-200 hover:text-white hover:decoration-white/35"
-                    >
-                      {link.label}
-                      {link.external ? (
-                        <span className="ml-0.5 text-navy-foreground/50 transition-colors duration-200" aria-hidden>
-                          ↗
-                        </span>
-                      ) : null}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        {/* Middle row: links + social */}
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <nav aria-label="Footer">
+            <ul className="flex flex-wrap gap-x-6 gap-y-3">
+              {essentialLinks.map((link) => (
+                <li key={link.href}>
+                  <NavLink
+                    href={link.href}
+                    external={link.external}
+                    className="inline-flex items-center gap-1 text-sm text-navy-foreground/72 transition-colors duration-200 hover:text-white"
+                  >
+                    {link.label}
+                    {link.external ? <span className="text-navy-foreground/40" aria-hidden>↗</span> : null}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="flex items-center gap-2.5 shrink-0">
+            {socialLinks.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.label}
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 text-navy-foreground/50 transition-colors duration-200 hover:border-white/35 hover:text-white"
+              >
+                {s.icon}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="mt-7 flex flex-wrap items-center gap-y-1 border-t border-white/10 pt-6 text-xs text-navy-foreground/45">
+          <span>© {year} {siteName}. All rights reserved.</span>
+          {legalLinks.map((link) => (
+            <span key={link.href} className="flex items-center">
+              <span className="mx-3 text-white/20" aria-hidden>·</span>
+              <NavLink href={link.href} className="transition-colors duration-200 hover:text-white/80">
+                {link.label}
+              </NavLink>
+            </span>
           ))}
+          <span className="flex items-center">
+            <span className="mx-3 text-white/20" aria-hidden>·</span>
+            <span className="text-navy-foreground/35">{footerNote}</span>
+          </span>
         </div>
 
-        <div className="mt-12 rounded-[var(--radius-card)] border border-white/12 bg-white/[0.035] px-4 py-3.5 sm:px-5">
-          <p className="max-w-3xl text-xs leading-relaxed tracking-[0.01em] text-navy-foreground/62">{footerNote}</p>
-        </div>
-
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/12 pt-8 sm:pt-9 lg:mt-14">
-          <p className="text-sm text-navy-foreground/60">
-            © {year} {siteName}. All rights reserved.
-          </p>
-        </div>
       </Container>
     </footer>
   );
