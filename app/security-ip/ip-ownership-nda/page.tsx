@@ -12,6 +12,15 @@ const securityIpPage: DocPageData = {
   parentLabel: "How We Work",
   parentHref: "/how-we-work",
   visualSlot: "technology",
+  heroImageSrc:
+    "/imagery/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
+  sectionImages: [
+    "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
+    "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
+    "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+    "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
+    "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
+  ],
   sections: [
     {
       title: "IP ownership and confidentiality",

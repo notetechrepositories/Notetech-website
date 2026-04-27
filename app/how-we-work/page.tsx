@@ -87,10 +87,13 @@ export default function HowWeWorkPage() {
         />
         <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
           {howWeWorkLanding.features.map((feature) => (
-            <div key={feature.title} className="surface-card p-7 lg:p-8">
-              <p className="text-label">{howWeWorkLanding.featureLabel}</p>
-              <h3 className="mt-3 text-lg font-semibold text-ink">{feature.title}</h3>
-              <p className="text-body-muted mt-3 text-sm leading-relaxed">{feature.body}</p>
+            <div
+              key={feature.title}
+              className="rounded-[var(--radius-card)] border border-[#9dc4d0] bg-[#D1EAF0] p-7 shadow-[var(--shadow-card-value)] lg:p-8"
+            >
+              <p className="text-label text-[#3d6b7a]">{howWeWorkLanding.featureLabel}</p>
+              <h3 className="mt-3 text-lg font-semibold text-[#0c2338]">{feature.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-[#2a4f5c]">{feature.body}</p>
             </div>
           ))}
         </div>

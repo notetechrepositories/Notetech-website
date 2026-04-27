@@ -4,9 +4,36 @@ import SectionHeading from "@/components/home/SectionHeading";
 import LandingLinksCardGrid from "@/components/nav/LandingLinksCardGrid";
 import PageHero from "@/components/marketing/PageHero";
 import Button from "@/components/ui/Button";
-import VisualSlot from "@/components/visuals/VisualSlot";
 import { companyLanding } from "@/data/navLandings";
 import type { Metadata } from "next";
+
+const companyCircleImageByHref = {
+  "/company/about": "/brand/notetech-logo-mark-black-bg.png",
+  "/company/awards": "/imagery/awards-trophy.png",
+  "/company/leadership": "/imagery/companyPage/leardeship.jpg",
+  "/products": "/imagery/companyPage/Prodcut.jpg",
+  "/selected-engagements": "/imagery/companyPage/engagement.jpg",
+  "/company/careers": "/imagery/companyPage/careers.jpg",
+  "/contact": "/imagery/contact-hud.png",
+};
+
+const companyCircleImageClassNameByHref = {
+  "/company/about": "object-contain p-2 opacity-100 group-hover:scale-[1.04]",
+  "/company/awards": "object-cover object-[50%_50%] opacity-100",
+  "/company/leadership": "object-cover object-[50%_50%] opacity-100",
+  "/products": "object-cover object-[58%_48%] opacity-100",
+  "/selected-engagements": "object-cover object-[58%_48%] opacity-100",
+  "/company/careers": "object-cover object-[42%_48%] opacity-100",
+  "/contact": "object-cover object-[50%_50%] opacity-100",
+};
+
+const companyHideCircleOverlayByHref = {
+  "/contact": true,
+};
+
+const companyCenteredCardContentByHref = {
+  "/contact": true,
+};
 
 export const metadata: Metadata = {
   title: companyLanding.metaTitle,
@@ -59,10 +86,17 @@ export default function CompanyPage() {
           description={companyLanding.sectionIntro}
           spacing="compact"
         />
-        <LandingLinksCardGrid links={companyLanding.links} variant="beigeInteractive" />
+        <LandingLinksCardGrid
+          links={companyLanding.links}
+          circleImageByHref={companyCircleImageByHref}
+          circleImageClassNameByHref={companyCircleImageClassNameByHref}
+          hideCircleOverlayByHref={companyHideCircleOverlayByHref}
+          centeredContentByHref={companyCenteredCardContentByHref}
+          variant="beigeInteractive"
+        />
       </HomeSection>
 
-      <HomeSection tone="white" className="!bg-[#f6f2ea]">
+      <HomeSection tone="patterned">
         <SectionHeading
           eyebrow={companyLanding.featureLabel}
           title={companyLanding.featureTitle}
@@ -73,30 +107,21 @@ export default function CompanyPage() {
           {companyLanding.features.map((feature) => (
             <div
               key={feature.title}
-              className="rounded-[var(--radius-card)] border border-[#d3caba] bg-[#e5dfd3] p-7 shadow-[var(--shadow-card-value)] lg:p-8"
+              className="rounded-[var(--radius-card)] border border-[#9dc4d0] bg-[#D1EAF0] p-7 shadow-[var(--shadow-card-value)] lg:p-8"
             >
-              <p className="text-label">{companyLanding.featureLabel}</p>
-              <h3 className="mt-3 text-lg font-semibold text-ink">{feature.title}</h3>
-              <p className="text-body-muted mt-3 text-sm leading-relaxed">{feature.body}</p>
+              <p className="text-label text-[#3d6b7a]">{companyLanding.featureLabel}</p>
+              <h3 className="mt-3 text-lg font-semibold text-[#0c2338]">{feature.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-[#2a4f5c]">{feature.body}</p>
             </div>
           ))}
-        </div>
-      </HomeSection>
-
-      <HomeSection tone="white" className="!bg-[#f6f2ea]">
-        <div className="overflow-hidden rounded-[var(--radius-card)] border border-[#d3caba] bg-[#e5dfd3] shadow-[var(--shadow-card-value)]">
-          <VisualSlot
-            slot="architecture"
-            aspectClassName="h-48 sm:h-60 max-h-[14rem] sm:max-h-[17rem]"
-            sizes="(max-width: 1024px) 100vw, 1100px"
-            showEyebrow={false}
-          />
         </div>
       </HomeSection>
 
       <HomeSection tone="white" className="!bg-[#f6f2ea] pb-24 lg:pb-28">
         <CTASection
           variant="band"
+          bandTone="beige"
+          bandImageSrc="/imagery/pexels-wood.jpg"
           title="Talk with Notetech"
           description="If you are looking for stable engineering capacity, clear governance, and a long-term delivery partner, we are happy to discuss your roadmap."
           primaryLabel="Contact Us"

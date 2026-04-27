@@ -30,6 +30,8 @@ export type ServiceDetail = {
   title: string;
   imageSrc?: string;
   imageAlt?: string;
+  /** Per-section images: [bestFor, whatYouGet, workingModel]. Falls back to imageSrc. */
+  sectionImages?: [string?, string?, string?];
   /** Large page headline (often differs from H1 in doc — we use one strong line) */
   headline: string;
   intro: string;
@@ -65,6 +67,11 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
     title: "Dedicated Development Teams",
     imageSrc: "/imagery/service-dedicated-team.jpg",
     imageAlt: "Software development team collaborating around project deliverables",
+    sectionImages: [
+      "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
+      "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
+      "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+    ],
     headline: "Stable engineering capacity aligned to your roadmap",
     intro:
       "Build a dedicated team that operates as an extension of your organization—clear ownership, transparent tracking, and maintainable delivery.",
@@ -97,21 +104,24 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
     title: "Software Product Development",
     imageSrc: "/imagery/service/CODE_PC.jpg",
     imageAlt: "Engineers planning and building software product features",
+    sectionImages: [
+      "/imagery/79003071435657.jpg",
+      "/imagery/9191566793009.jpg",
+      "/imagery/5415251564243.jpg",
+    ],
     headline: "From MVP to enterprise-grade releases",
     intro:
-      "We design, build, and evolve software products and internal platforms with a focus on reliability, scalability, and long-term ownership. You set priorities and requirements; our team designs, builds, tests, and maintains the software while adapting to your tools and standards.",
+      "We design, build, and evolve software products and internal platforms with a focus on reliability, scalability, and long-term ownership.",
     bestFor: [
-      "New module builds and greenfield MVPs that must grow into maintainable products",
-      "Continuous roadmap execution—features, refactoring, and hardening in one rhythm",
-      "Platforms where release quality and upgrade risk must be actively managed",
-      "Teams that need architecture judgment without handing off control of IP",
+      "MVP builds and new product modules",
+      "Major features and platform extensions",
+      "Refactoring/rebuilds for performance and stability",
     ],
     whatYouGet: [
-      "End-to-end delivery support from design through implementation and release",
-      "Quality practices integrated into delivery: reviews, testing, and release discipline",
-      "Roadmap execution that balances speed with maintainability and operability",
-      "Documentation and handover-friendly structure so knowledge does not live in one person",
-      "Collaboration with your product and engineering stakeholders on priorities and tradeoffs",
+      "Architecture and delivery plan aligned to business goals",
+      "Web/API development and integration-ready implementation",
+      "Release readiness support (rollout planning and operational basics)",
+      "Documentation and knowledge transfer as needed",
     ],
     toolsCapabilities: [
       ".NET/C#, web and API layers",
@@ -137,31 +147,33 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
     title: "Cloud & AWS Modernization",
     imageSrc: "/imagery/service/aws.jpg",
     imageAlt: "Cloud infrastructure and hardware environment for modernization services",
-    headline: "Pragmatic modernization with a path to the cloud",
+    sectionImages: [
+      "/imagery/13868.jpg",
+      "/imagery/1541.jpg",
+      "/imagery/2623597.jpg",
+    ],
+    headline: " Modernize safely—without disrupting operations",
     intro:
-      "We help teams modernize business-critical systems without pretending migrations are instant. Our approach favors phased change, reduced release risk, and operational clarity—so you improve reliability now while moving toward cloud-ready architectures when it makes sense.",
+      "We modernize legacy systems and prepare platforms for cloud deployment with phased delivery and controlled risk.",
     bestFor: [
-      "Legacy systems that must stay stable while you plan or execute migration",
-      "Teams targeting AWS or hybrid patterns with limited appetite for big-bang cutovers",
-      "Products where security, access boundaries, and environment parity matter",
-      "Leaders who need a partner that can work inside existing operational constraints",
+      "Legacy applications that are hard to scale or change",
+      "AWS migration and cloud readiness",
+      "Reliability and performance improvements",
     ],
     whatYouGet: [
-      "Modernization plans that sequence risk: stabilize, decouple, migrate where justified",
-      "AWS-aligned patterns where appropriate—accounts, networking, and services used responsibly",
-      "Release improvements to make change safer and more predictable",
-      "Collaboration with your operations and security stakeholders on boundaries and access",
-      "Engineering support that protects business continuity during technical transition",
+      "Assessment + phased modernization plan",
+      "Migration approach with rollback strategy",
+      "CI/CD improvements (where applicable)",
+      "Monitoring and alerting aligned to your environment",
+      "Cost-aware architecture decisions",
     ],
     toolsCapabilities: [
-      "AWS building blocks (compute, storage, networking) as your standards allow",
-      ".NET and common enterprise stacks on cloud or hybrid topologies",
-      "Automation for deploy and verification where it reduces operational risk",
+      "EC2, RDS, S3, CloudFront, Lambda (based on need)",
     ],
     cta: {
       title: "Plan the next step in your modernization",
       body: "Share your constraints—we’ll help you sequence work for stability and clarity.",
-      primaryLabel: "Schedule a Call",
+      primaryLabel: "Request an assessment",
       primaryHref: "/contact",
     },
     metaTitle: "Cloud & AWS Modernization",
@@ -174,31 +186,32 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
     title: "QA & Test Automation",
     imageSrc: "/imagery/service/qa_test.jpg",
     imageAlt: "Quality engineer validating software quality and automated test outcomes",
-    headline: "Predictable quality gates for product releases",
+    sectionImages: [
+      "/imagery/new 3d 5.jpg",
+      "/imagery/new 3d 2.jpg",
+      "/imagery/new 3d 1.jpg",
+    ],
+    headline: "Release with confidence",
     intro:
-      "We help teams build verification discipline that matches product risk—without turning quality into paperwork. That means practical test strategy, automation where it earns its keep, and feedback loops that support faster, safer releases.",
+      "We strengthen quality through test strategy and automation—reducing regressions and improving release readiness.",
     bestFor: [
-      "Products needing predictable quality gates before customer-facing releases",
-      "Teams scaling release frequency without surrendering basic safety nets",
-      "Organizations catching regressions late and paying in production instability",
-      "Platforms where integrations and data flows multiply test surface area",
+      "Teams experiencing regressions and release risk",
+      "Integration-heavy systems with complex workflows",
+      "Products needing predictable quality gates",
     ],
     whatYouGet: [
-      "Test planning tied to risk: what must never break vs. what can be lighter-touch",
-      "Automation that supports regression and release confidence—not vanity metrics",
-      "Integration with your pipelines and environments as you define them",
-      "Clear defect workflows and communication so issues are visible early",
-      "Maintainability: tests and fixtures structured so teams can extend them over time",
+      "Test strategy (unit / integration / E2E as appropriate)",
+      "Automated regression suite setup and maintenance",
+      "CI integration for quality checks",
+      "Performance testing support when required",
     ],
     toolsCapabilities: [
-      "Common test automation frameworks appropriate to your stack",
-      "API and UI testing patterns where they reduce manual drag",
-      "Support for performance or smoke suites where justified by critical paths",
+      "Playwright / Cypress / Selenium",
     ],
     cta: {
-      title: "Strengthen your release confidence",
-      body: "Tell us your release cadence and pain points—we’ll propose a sensible QA model.",
-      primaryLabel: "Schedule a Call",
+      title: "Improve QA",
+      body: "Tell us where quality gaps are creating risk, and we will recommend a practical QA approach.",
+      primaryLabel: "Improve QA",
       primaryHref: "/contact",
     },
     metaTitle: "QA & Test Automation",
@@ -211,21 +224,25 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
     title: "Support & Maintenance",
     imageSrc: "/imagery/service/support_hand.jpg",
     imageAlt: "Operations team coordinating support and maintenance workflows",
+    sectionImages: [
+      "/imagery/new 3d 6.jpg",
+      "/imagery/new 3d 3.jpg",
+      "/imagery/new 3d 4.jpg",
+    ],
     headline: "Long-term reliability for production systems",
     intro:
-      "We provide structured support and maintenance—bug fixes, enhancements, and operational improvements—so your product stays stable and continues to evolve. We’re built for multi-year ownership, not one-off break-fix cycles that quietly accumulate risk.",
+      "We provide structured support and maintenance—bug fixes, enhancements, and operational improvements—so your product stays stable and continues to evolve.",
     bestFor: [
-      "Production systems requiring ongoing stability and measured change",
-      "Teams that need a steady maintenance lane alongside feature work",
-      "Products with compliance, audit, or operational expectations on changes",
-      "Organizations that value continuity over constantly re-learning the codebase",
+      "Production systems requiring ongoing stability",
+      "Roadmap + maintenance handled by one team",
+      "Teams seeking continuity and long-term ownership",
     ],
     whatYouGet: [
-      "Prioritized intake for defects, small enhancements, and operational fixes",
-      "Release management aligned to your risk tolerance and customer commitments",
-      "Communication practices that keep stakeholders informed without overload",
-      "Engineering hygiene: root-cause thinking, regression awareness, and documentation updates",
-      "Transition support if you later move maintenance in-house",
+      "Issue triage and resolution workflow",
+      "Bug fixes, enhancements, and maintenance releases",
+      "Root-cause analysis for major incidents (as needed)",
+      "Reliability improvements aligned to your environment",
+      "Optional SLA-style support structure",
     ],
     toolsCapabilities: [
       "Support tiers and SLAs shaped to your criticality (defined in agreement)",
@@ -234,7 +251,7 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
     cta: {
       title: "Talk about your support needs",
       body: "Share production criticality and pain points—we’ll propose a sustainable model.",
-      primaryLabel: "Schedule a Call",
+      primaryLabel: "Talk support options",
       primaryHref: "/contact",
     },
     metaTitle: "Support & Maintenance",
@@ -247,22 +264,24 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
     title: "Integrations & APIs",
     imageSrc: "/imagery/service/code.jpg",
     imageAlt: "Developer integrating software systems and APIs across platforms",
+    sectionImages: [
+      "/imagery/new 3d 8.jpg",
+      "/imagery/new 3d 9.jpg",
+    ],
     headline: "Secure, reliable integrations built for production",
     intro:
-      "We design and deliver APIs and integrations that handle failures, scale cleanly, and keep data consistent. Production integration work is never “just connect the endpoints”—it’s operational behavior under load, auth boundaries, retries, and monitoring.",
+      "We design and deliver APIs and integrations that handle failures, scale cleanly, and keep data consistent.",
     bestFor: [
-      "Products that must connect to CRMs, ERPs, messaging, or internal systems",
-      "Teams building API layers for partners or internal consumers",
-      "Workflows where bad data or partial failures create downstream chaos",
-      "Platforms expanding to new regions or tenants with stricter isolation needs",
+      "Connecting systems (ERP, CRM, internal services, payments, etc.)",
+      "Building API layers for products and internal teams",
+      "Synchronization and workflow orchestration"
     ],
     whatYouGet: [
-      "API design with versioning, error models, and practical consumer ergonomics",
-      "Resilience patterns: timeouts, retries where safe, idempotency where needed",
-      "Observability hooks: logging and metrics that make incidents diagnosable",
-      "Security-minded defaults aligned to your environment and review process",
-      "Documentation that helps internal teams and partners integrate without guessing",
-    ],
+      "API design (security, versioning, documentation)",
+      "Reliability patterns (retries/idempotency where needed)",
+      "Monitoring for failures and latency",
+      "Integration testing and operational handover",
+        ],
     toolsCapabilities: [
       "REST and service-oriented patterns common in enterprise stacks",
       "AWS and hybrid hosting for integration components when required",
@@ -271,7 +290,7 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
     cta: {
       title: "Design integrations that survive production",
       body: "Describe the systems and failure modes you worry about—we’ll map a pragmatic approach.",
-      primaryLabel: "Schedule a Call",
+      primaryLabel: "Plan an integration",
       primaryHref: "/contact",
     },
     metaTitle: "Integrations & APIs",
@@ -284,19 +303,23 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
     title: "AI Workflow Automation",
     imageSrc: "/imagery/service/AI.jpg",
     imageAlt: "Enterprise software team exploring AI-assisted workflow automation",
-    headline: "Assistants and workflow automation—with guardrails",
+    sectionImages: [
+      "/imagery/new 3d 7.jpg",
+      "/imagery/AI 1.jpg",
+    ],
+    headline: "Coming June 2026: practical agentic automation with controls",
     intro:
-      "We help organizations adopt AI-assisted workflows where access boundaries, audit expectations, and data handling matter. This is not “drop in a model and hope”—it’s grounded automation tied to your systems, roles, and risk posture.",
+      "Starting June 2026, we plan to expand into agentic AI workflows focused on operational automation—built with guardrails such as approval steps, auditability, and access controls.",
     bestFor: [
-      "Internal knowledge assistants with role-appropriate access to documentation",
-      "Teams experimenting with AI workflow automation without bypassing governance",
-      "Organizations connecting models to internal tools under explicit boundaries",
+      "Workflow automation with human approvals",
+      "Operational assistants with permission controls",
+      "Automation to reduce repetitive operational effort",
     ],
     whatYouGet: [
-      "Workflow design that starts from permissions—not from model novelty",
-      "Engineering support to connect assistants to vetted data sources and tools",
-      "Practical evaluation patterns: what “good enough” means for your use case",
-      "Operational thinking: monitoring, fallbacks, and human-in-the-loop when needed",
+      "Support triage and routing workflows",
+      "QA acceleration workflows",
+      "Operational runbooks and guided incident response",
+      "Knowledge assistants for internal documentation (with access boundaries)",
     ],
     toolsCapabilities: [
       "Patterns for retrieval and grounding aligned to your content stores (as permitted)",
@@ -306,7 +329,7 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
     cta: {
       title: "Explore AI workflow automation (coming soon)",
       body: "We’re launching publicly in June 2026. If you’d like an early conversation, reach out and we’ll connect you to the right team.",
-      primaryLabel: "Schedule a Call",
+      primaryLabel: "Discuss an AI pilot",
       primaryHref: "/contact",
       secondaryLabel: "View services overview",
       secondaryHref: "/services",

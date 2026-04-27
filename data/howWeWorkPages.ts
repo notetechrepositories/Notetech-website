@@ -22,6 +22,12 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     parentLabel: "How We Work",
     parentHref: "/how-we-work",
     visualSlot: "services",
+    heroImageSrc: "/imagery/2623597.jpg",
+    sectionImages: [
+      "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
+      "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
+      "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+    ],
     sections: [
       {
         title: "Core engagement options",
@@ -83,6 +89,11 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     parentLabel: "How We Work",
     parentHref: "/how-we-work",
     visualSlot: "quality",
+    heroImageSrc: "/imagery/5415251564243.jpg",
+    sectionImages: [
+      "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
+      "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+    ],
     sections: [
       {
         title: "From discovery to long-term improvement",
@@ -139,6 +150,13 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     parentLabel: "How We Work",
     parentHref: "/how-we-work",
     visualSlot: "technology",
+    heroImageSrc:
+      "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+    sectionImages: [
+      "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
+      "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
+      "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+    ],
     sections: [
       {
         title: "What you can expect",
@@ -185,6 +203,12 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     parentLabel: "How We Work",
     parentHref: "/how-we-work",
     visualSlot: "services",
+    heroImageSrc: "/imagery/13868.jpg",
+    sectionImages: [
+      "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+      "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
+      "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
+    ],
     sections: [
       {
         title: "Access and tooling",
@@ -233,6 +257,12 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     parentLabel: "How We Work",
     parentHref: "/how-we-work",
     visualSlot: "technology",
+    heroImageSrc: "/imagery/79003071435657.jpg",
+    sectionImages: [
+      "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
+      "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
+      "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+    ],
     sections: [
       {
         title: "What pricing is based on",
@@ -283,6 +313,12 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     parentLabel: "How We Work",
     parentHref: "/how-we-work",
     visualSlot: "case-studies",
+    heroImageSrc: "/imagery/9191566793009.jpg",
+    sectionImages: [
+      "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+      "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
+      "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
+    ],
     sections: [
       {
         title: "When a pilot is useful",

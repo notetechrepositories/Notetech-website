@@ -15,6 +15,13 @@ export const companyPages: Record<CompanySlug, DocPageData> = {
     parentLabel: "Company",
     parentHref: "/company",
     visualSlot: "brand-mark",
+    heroImageSrc: "/brand/notetech-logo-mark-black-bg.png",
+    sectionImages: [
+      "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
+      "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
+      "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+      "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
+    ],
     sections: [
       {
         title: "Company snapshot",
@@ -88,6 +95,12 @@ export const companyPages: Record<CompanySlug, DocPageData> = {
     parentLabel: "Company",
     parentHref: "/company",
     visualSlot: "technology",
+    heroImageSrc: "/imagery/companyPage/leardeship.jpg",
+    sectionImages: [
+      "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
+      "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+      "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
+    ],
     sections: [
       {
         title: "What leadership is accountable for",
@@ -150,6 +163,11 @@ export const companyPages: Record<CompanySlug, DocPageData> = {
     parentLabel: "Company",
     parentHref: "/company",
     visualSlot: "case-studies",
+    heroImageSrc: "/imagery/awards-trophy.png",
+    sectionImages: [
+      "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+      "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
+    ],
     sections: [
       {
         title: "Recognition themes from our track record",
@@ -198,6 +216,11 @@ export const companyPages: Record<CompanySlug, DocPageData> = {
     parentLabel: "Company",
     parentHref: "/company",
     visualSlot: "services",
+    heroImageSrc: "/imagery/companyPage/careers.jpg",
+    sectionImages: [
+      "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
+      "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
+    ],
     sections: [
       {
         title: "What kind of environment we are building",
@@ -237,6 +260,11 @@ export const productsPage: DocPageData = {
   parentLabel: "Company",
   parentHref: "/company",
   visualSlot: "case-studies",
+  heroImageSrc: "/imagery/companyPage/Prodcut.jpg",
+  sectionImages: [
+    "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
+    "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+  ],
   sections: [
     {
       title: "Representative product categories",

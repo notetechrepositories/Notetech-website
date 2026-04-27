@@ -10,6 +10,7 @@ import {
   selectedEngagementsLanding,
 } from "@/data/selected-engagements";
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: selectedEngagementsLanding.metaTitle,
@@ -29,12 +30,19 @@ export default function SelectedEngagementsPage() {
         title={selectedEngagementsLanding.title}
         subtitle={selectedEngagementsLanding.headline}
         description={selectedEngagementsLanding.intro}
-        aside={
-          <VisualSlot
-            slot="case-studies"
-            aspectClassName="aspect-[4/3] sm:aspect-[16/11]"
-            sizes="(max-width: 1024px) 100vw, 520px"
-          />
+        tone="beigePattern"
+        contentMinHeightClassName="min-h-[18rem] sm:min-h-[21rem] lg:min-h-[24rem]"
+        backgroundDecor={
+          <div className="absolute -inset-y-[18%] -right-[2%] hidden w-[45%] overflow-hidden [clip-path:polygon(0_32%,100%_0,100%_68%,0_100%)] lg:block">
+            <Image
+              src="/imagery/companyPage/engagement.jpg"
+              alt=""
+              fill
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              className="absolute inset-0 h-full w-full object-cover object-[58%_48%] saturate-[0.92] contrast-[1.04]"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(118deg,rgb(8_18_36/0.45)_0%,transparent_50%),linear-gradient(to_top,rgb(8_18_36/0.28)_0%,transparent_42%)]" />
+          </div>
         }
       />
 

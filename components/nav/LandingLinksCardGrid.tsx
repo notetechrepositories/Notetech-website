@@ -13,6 +13,12 @@ import Link from "next/link";
 type LandingLinksCardGridProps = {
   links: LandingLink[];
   circleImageByHref?: Record<string, string | StaticImageData>;
+  circleClassNameByHref?: Record<string, string>;
+  circleImageClassNameByHref?: Record<string, string>;
+  hideCircleImageByHref?: Record<string, boolean>;
+  hideCircleOverlayByHref?: Record<string, boolean>;
+  /** Center title, description, and arrow under the circle (e.g. contact). */
+  centeredContentByHref?: Record<string, boolean>;
   variant?: "default" | "beigeInteractive";
 };
 
@@ -28,6 +34,11 @@ const FALLBACK_CIRCLE_IMAGES = [
 export default function LandingLinksCardGrid({
   links,
   circleImageByHref,
+  circleClassNameByHref,
+  circleImageClassNameByHref,
+  hideCircleImageByHref,
+  hideCircleOverlayByHref,
+  centeredContentByHref,
   variant = "default",
 }: LandingLinksCardGridProps) {
   const reduceMotion = useReducedMotion();
@@ -48,6 +59,11 @@ export default function LandingLinksCardGrid({
         const circleImage =
           circleImageByHref?.[link.href] ??
           FALLBACK_CIRCLE_IMAGES[index % FALLBACK_CIRCLE_IMAGES.length];
+        const circleClassNameByHrefValue = circleClassNameByHref?.[link.href] ?? "";
+        const circleImageClassNameByHrefValue = circleImageClassNameByHref?.[link.href] ?? "";
+        const hideCircleImage = hideCircleImageByHref?.[link.href] ?? false;
+        const hideCircleOverlay = hideCircleOverlayByHref?.[link.href] ?? false;
+        const centeredContent = centeredContentByHref?.[link.href] ?? false;
 
         return (
         <motion.div
@@ -67,35 +83,47 @@ export default function LandingLinksCardGrid({
                 : "border border-stone-200/80 bg-[#f7f4ee] hover:-translate-y-[2px] hover:border-primary/25 hover:shadow-[var(--shadow-card-hover-value)]"
             }`}
           >
-            <div className="flex h-full min-h-[20rem] flex-col">
-              <motion.div
-                className="mx-auto mt-1"
-                initial={reduceMotion ? false : { opacity: 0, scale: 0.88, y: 8 }}
-                whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.35 }}
-                transition={{
-                  duration: 0.62,
-                  ease: MOTION_EASE_STANDARD,
-                  delay: reduceMotion ? 0 : 0.08 + index * 0.04,
-                }}
-              >
-                <span
-                  className="relative block h-36 w-36 overflow-hidden rounded-full border border-stone-300/70 bg-[#efe9dd] shadow-[0_8px_18px_-12px_rgb(11_18_32_/_0.35)] sm:h-40 sm:w-40"
-                  aria-hidden
+            <div
+              className={`flex h-full min-h-[20rem] flex-col ${centeredContent ? "items-center text-center" : ""}`}
+            >
+              {hideCircleImage ? null : (
+                <motion.div
+                  className="mx-auto mt-1 shrink-0"
+                  initial={reduceMotion ? false : { opacity: 0, scale: 0.88, y: 8 }}
+                  whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.35 }}
+                  transition={{
+                    duration: 0.62,
+                    ease: MOTION_EASE_STANDARD,
+                    delay: reduceMotion ? 0 : 0.08 + index * 0.04,
+                  }}
                 >
-                  <Image
-                    src={circleImage}
-                    alt=""
-                    fill
-                    sizes="160px"
-                    className="object-cover opacity-[0.94] transition-transform duration-300 ease-out group-hover:scale-[1.04]"
-                  />
-                  <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.32),rgba(30,115,190,0.04)_58%,rgba(11,18,32,0.22)_100%)]" />
-                </span>
-              </motion.div>
+                  <span
+                    className={`relative block h-36 w-36 overflow-hidden rounded-full border border-stone-300/70 bg-[#efe9dd] shadow-[0_8px_18px_-12px_rgb(11_18_32_/_0.35)] sm:h-40 sm:w-40 ${circleClassNameByHrefValue}`}
+                    aria-hidden
+                  >
+                    <Image
+                      src={circleImage}
+                      alt=""
+                      fill
+                      sizes="160px"
+                      className={`object-cover opacity-[0.94] transition-transform duration-300 ease-out group-hover:scale-[1.04] ${circleImageClassNameByHrefValue}`}
+                    />
+                    {hideCircleOverlay ? null : (
+                      <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.32),rgba(30,115,190,0.04)_58%,rgba(11,18,32,0.22)_100%)]" />
+                    )}
+                  </span>
+                </motion.div>
+              )}
 
-              <div className="mt-auto flex items-end justify-between gap-4 pt-10">
-                <div className="min-w-0">
+              <div
+                className={`mt-auto flex w-full gap-4 pt-10 ${
+                  centeredContent
+                    ? "flex-col items-center text-center"
+                    : "items-end justify-between"
+                }`}
+              >
+                <div className={`min-w-0 ${centeredContent ? "max-w-full" : ""}`}>
                   <h3
                     className={`font-display text-[1.12rem] font-semibold tracking-tight sm:text-[1.22rem] ${
                       isBeigeInteractive
