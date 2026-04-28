@@ -65,14 +65,22 @@ export default function DesktopNav() {
             >
               {item.children?.length ? (
                 <>
-                  <span
-                    className="inline-flex items-center gap-1.5 whitespace-nowrap px-2 py-2 text-[0.72rem] font-semibold leading-none tracking-[0.06em] text-[#0b0f18] uppercase"
-                    aria-haspopup="true"
-                    aria-expanded={activeDropdown === item.label}
-                  >
-                    <span className="leading-tight">{item.label}</span>
+                  <span className="inline-flex items-center gap-1.5 whitespace-nowrap px-2 py-2 text-[0.72rem] font-semibold leading-none tracking-[0.06em] text-[#0b0f18] uppercase">
+                    {item.href ? (
+                      <NavLink
+                        href={item.href}
+                        external={item.external}
+                        className="leading-tight hover:text-primary"
+                      >
+                        {item.label}
+                      </NavLink>
+                    ) : (
+                      <span className="leading-tight">{item.label}</span>
+                    )}
                     <span
                       className={`shrink-0 text-[#0b0f18] transition-all duration-200 ${activeDropdown === item.label ? "rotate-180 text-primary/80" : ""}`}
+                      aria-haspopup="true"
+                      aria-expanded={activeDropdown === item.label}
                       aria-hidden
                     >
                       <svg

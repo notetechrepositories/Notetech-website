@@ -53,7 +53,7 @@ export default function CompanyPage() {
         title={companyLanding.heroTitle}
         subtitle={companyLanding.headline}
         description={companyLanding.intro}
-        contentMinHeightClassName="min-h-[18rem] sm:min-h-[21rem] lg:min-h-[24rem]"
+        contentMinHeightClassName="min-h-[14rem] sm:min-h-[16rem] lg:min-h-[18rem]"
         backgroundDecor={
           <div className="absolute -inset-y-[18%] -right-[2%] hidden w-[45%] overflow-hidden [clip-path:polygon(0_32%,100%_0,100%_68%,0_100%)] lg:block">
             <img

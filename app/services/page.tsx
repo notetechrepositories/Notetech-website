@@ -28,7 +28,7 @@ export default function ServicesLandingPage() {
         title={servicesLanding.heroTitle}
         subtitle={servicesLanding.headline}
         description={servicesLanding.intro}
-        contentMinHeightClassName="min-h-[18rem] sm:min-h-[21rem] lg:min-h-[24rem]"
+        contentMinHeightClassName="min-h-[14rem] sm:min-h-[16rem] lg:min-h-[18rem]"
         backgroundDecor={
           <div className="absolute -inset-y-[18%] -right-[2%] hidden w-[45%] overflow-hidden [clip-path:polygon(0_32%,100%_0,100%_68%,0_100%)] lg:block">
             <img
@@ -55,27 +55,73 @@ export default function ServicesLandingPage() {
           spacing="compact"
         />
         <section className="mb-12">
-          <div className="max-w-4xl space-y-4">
-            <article className="rounded-xl border border-stone-300/70 bg-[#f3ede1] p-5 sm:p-6">
-              <h5 className="font-display text-[1.3rem] font-semibold tracking-tight text-[#111827] sm:text-[1.45rem]">
-                Client-owned IP and source code
-              </h5>
-              <p className="mt-2.5 text-[0.98rem] leading-relaxed text-[#1f2937]">
+          <div className="w-full space-y-4">
+            <details
+              open
+              className="group overflow-hidden rounded-xl border border-stone-300/70 bg-[#f3ede1]"
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 p-5 sm:p-6">
+                <h5 className="font-display text-[1.3rem] font-semibold tracking-tight text-[#111827] sm:text-[1.45rem]">
+                  Client-owned IP and source code
+                </h5>
+                <span
+                  aria-hidden
+                  className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-stone-400/70 text-[#111827] transition-transform duration-200 group-open:rotate-180"
+                >
+                  <svg
+                    className="h-4 w-4"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5 8L10 13L15 8"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </summary>
+              <p className="px-5 pb-5 text-[0.98rem] leading-relaxed text-[#1f2937] sm:px-6 sm:pb-6">
                 Clients own the product and source code we build (as defined in the
                 contract/SOW). We prefer working in client-controlled repositories and
                 follow access boundaries aligned to the client environment.
               </p>
-            </article>
-            <article className="rounded-xl border border-stone-300/70 bg-[#f3ede1] p-5 sm:p-6">
-              <h5 className="font-display text-[1.3rem] font-semibold tracking-tight text-[#111827] sm:text-[1.45rem]">
-                Long-term delivery, with a transition option
-              </h5>
-              <p className="mt-2.5 text-[0.98rem] leading-relaxed text-[#1f2937]">
-                We support products over the long term—including maintenance and
+            </details>
+
+            <details className="group overflow-hidden rounded-xl border border-stone-300/70 bg-[#f3ede1]">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 p-5 sm:p-6">
+                <h5 className="font-display text-[1.3rem] font-semibold tracking-tight text-[#111827] sm:text-[1.45rem]">
+                  Long-term delivery, with a transition option
+                </h5>
+                <span
+                  aria-hidden
+                  className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-stone-400/70 text-[#111827] transition-transform duration-200 group-open:rotate-180"
+                >
+                  <svg
+                    className="h-4 w-4"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5 8L10 13L15 8"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </summary>
+              <p className="px-5 pb-5 text-[0.98rem] leading-relaxed text-[#1f2937] sm:px-6 sm:pb-6">
+                We support products over the long term-including maintenance and
                 continuous enhancements. If required, we support a structured transition
                 so your team can move development in-house and operate independently.
               </p>
-            </article>
+            </details>
           </div>
         </section>
         <ServicesCardGrid services={services} />

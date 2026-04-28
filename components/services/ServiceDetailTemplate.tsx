@@ -24,11 +24,7 @@ export default function ServiceDetailTemplate({
     service.slug !== "software-product-development" &&
     service.slug !== "integrations-apis" &&
     service.slug !== "ai-workflow-automation";
-  const imgBestFor = isDedicatedDevelopmentTeams
-    ? "/imagery/service-dedicated-team.jpg"
-    : "/imagery/companyPage/engagement.jpg";
-  const imgWhatYouGet = "/imagery/companyPage/engagement.jpg";
-  const imgWorkingModel = "/imagery/companyPage/engagement.jpg";
+  const imgBestFor = service.imageSrc ?? "/imagery/companyPage/engagement.jpg";
 
   const bestForTitle = isAiWorkflowAutomation ? "Intended focus areas" : "Best for";
   const whatYouGetTitle = isAiWorkflowAutomation
@@ -68,6 +64,10 @@ export default function ServiceDetailTemplate({
       : isSupportMaintenance
         ? "We have supported certain products for up to 17 years."
         : workingModelText;
+  const fallbackCtaTitle = service.cta.title || "Ready to discuss your roadmap?";
+  const fallbackCtaBody =
+    service.cta.body ||
+    "We can shape the right engagement model around your goals, timeline, and internal team setup.";
   const pairedCardsMinHeightClass = (
     isSoftwareProductDevelopment ||
     isQaTestAutomation ||
@@ -127,7 +127,7 @@ export default function ServiceDetailTemplate({
               </p>
             </div>
             <section className="grid gap-4 lg:grid-cols-12">
-              <ScrollReveal direction="left" delayMs={0} className="h-full lg:col-span-5">
+              <ScrollReveal direction="left" delayMs={180} className="h-full lg:col-span-5">
                 <aside className={`flex h-full flex-col overflow-hidden rounded-2xl border border-[#1d4c84] bg-[#123560] p-6 shadow-[0_14px_30px_rgba(8,26,53,0.24)] ring-1 ring-[#5f8fc8]/30 lg:p-8 ${pairedCardsMinHeightClass}`}>
                 <div className="relative mb-6 aspect-[16/9] overflow-hidden rounded-xl border border-[#5f8fc8]/40">
                   <Image
@@ -154,7 +154,7 @@ export default function ServiceDetailTemplate({
               </ScrollReveal>
 
               <div className={`flex flex-col gap-4 lg:col-span-7 ${pairedCardsMinHeightClass}`}>
-                <ScrollReveal direction="right" delayMs={340} className="flex-1">
+                <ScrollReveal direction="right" delayMs={180} className="flex-1">
                   <section id="what-you-get-heading" aria-labelledby="what-you-get-title" className="h-full overflow-hidden rounded-2xl border border-[#1d4c84] bg-[#123560] p-6 shadow-[0_14px_30px_rgba(8,26,53,0.24)] ring-1 ring-[#5f8fc8]/30 lg:p-8">
                   <h3 id="what-you-get-title" className="mt-2 font-display text-2xl tracking-tight text-white">
                     {whatYouGetTitle}
@@ -172,7 +172,7 @@ export default function ServiceDetailTemplate({
                 </ScrollReveal>
 
                 {showWorkingModel ? (
-                <ScrollReveal direction="right" delayMs={700} className="flex-1">
+                <ScrollReveal direction="right" delayMs={180} className="flex-1">
                   <section id="working-model-heading" aria-labelledby="working-model-title" className="h-full overflow-hidden rounded-2xl border border-[#1d4c84] bg-[#123560] p-6 shadow-[0_14px_30px_rgba(8,26,53,0.24)] ring-1 ring-[#5f8fc8]/30 lg:p-8">
                   <h3 id="working-model-title" className="mt-2 font-display text-2xl tracking-tight text-white">
                     {workingModelTitle}
@@ -207,13 +207,13 @@ export default function ServiceDetailTemplate({
                   </section>
                 </ScrollReveal>
                 ) : (
-                <ScrollReveal direction="right" delayMs={700} className="flex-1">
+                <ScrollReveal direction="right" delayMs={180} className="flex-1">
                   <section className="h-full overflow-hidden rounded-2xl border border-[#1d4c84] bg-[#123560] p-6 shadow-[0_14px_30px_rgba(8,26,53,0.24)] ring-1 ring-[#5f8fc8]/30 lg:p-8">
                     <h3 className="mt-2 font-display text-2xl tracking-tight text-white">
-                      Ready to discuss your roadmap?
+                      {fallbackCtaTitle}
                     </h3>
                     <p className="mt-4 text-[0.95rem] leading-relaxed text-[#d8e6f5]">
-                      We can shape the right engagement model around your goals, timeline, and internal team setup.
+                      {fallbackCtaBody}
                     </p>
                     <div className="mt-6">
                       <Button href={service.cta.primaryHref} variant="primary" className="px-6">

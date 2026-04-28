@@ -1,6 +1,7 @@
 import HomeSection from "@/components/home/HomeSection";
 import SectionHeading from "@/components/home/SectionHeading";
 import PageHero from "@/components/marketing/PageHero";
+import ExpandableHowWeWorkCard from "@/components/content/ExpandableHowWeWorkCard";
 import Button from "@/components/ui/Button";
 import VisualSlot from "@/components/visuals/VisualSlot";
 import type { VisualSlotId } from "@/data/visualSlots";
@@ -55,6 +56,12 @@ type DocPageTemplateProps = {
   page: DocPageData;
 };
 
+const PHOTO_CARD_IMAGES = [
+  "/imagery/companyPage/engagement.jpg",
+  "/imagery/companyPage/leardeship.jpg",
+  "/imagery/service-dedicated-team.jpg",
+] as const;
+
 /** Colour assigned to each known label. Falls back to navy. */
 const LABEL_COLOURS: Record<string, string> = {
   "best for":           "text-black",
@@ -99,7 +106,7 @@ export default function DocPageTemplate({ page }: DocPageTemplateProps) {
         subtitle={page.headline}
         description={page.intro}
         tone="navy"
-        contentMinHeightClassName="min-h-[18rem] sm:min-h-[21rem] lg:min-h-[24rem]"
+        contentMinHeightClassName="min-h-[6rem] sm:min-h-[7rem] lg:min-h-[8rem]"
         backgroundDecor={
           (
             <div className="absolute -inset-y-[18%] -right-[2%] hidden w-[45%] overflow-hidden [clip-path:polygon(0_32%,100%_0,100%_68%,0_100%)] lg:block">
@@ -129,7 +136,7 @@ export default function DocPageTemplate({ page }: DocPageTemplateProps) {
 
       {page.sectionImages?.length ? (
         /* ── Card layout: beige bg, alternating image sides ── */
-        <HomeSection tone="white" className="!bg-[#f6f2ea] py-16 lg:py-20">
+        <HomeSection tone="white" className="!bg-white py-16 lg:py-20">
           <div className="space-y-8 lg:space-y-10">
             {page.contentHeading ? (
               <div>
@@ -139,109 +146,14 @@ export default function DocPageTemplate({ page }: DocPageTemplateProps) {
                 <div className="mt-2 h-0.5 w-10 bg-[#46c3e6]" />
               </div>
             ) : null}
-            {page.sections.map((section, index) => {
-              const imgSrc = "/imagery/companyPage/engagement.jpg";
-              const imageLeft = index % 2 === 0;
-              return (
-                <section
-                  key={section.title}
-                  className="overflow-hidden rounded-2xl bg-[#ede7d8] shadow-sm ring-1 ring-stone-300/60"
-                >
-                  <div className={`grid items-stretch lg:grid-cols-2 ${imageLeft ? "" : "lg:[&>*:first-child]:order-last"}`}>
-                    {/* Image */}
-                    <div className="relative aspect-[4/3] lg:aspect-auto">
-                      <Image
-                        src={imgSrc}
-                        alt=""
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                        className="object-cover object-center"
-                      />
-                    </div>
-                    {/* Content */}
-                    <div className="p-8 lg:p-12">
-                      <h2 className="font-display text-2xl tracking-tight text-slate-900 lg:text-3xl">
-                        {section.title}
-                      </h2>
-                      <div className="mb-6 mt-2 h-0.5 w-8 bg-[#46c3e6]" />
-                      {section.description && (
-                        <div className="mb-6 rounded-xl border-l-2 border-[#8a745c]/70 bg-gradient-to-l from-[#8a745c]/45 via-[#8a745c]/20 to-white/70 px-4 py-3">
-                          <LabelledText text={section.description} />
-                        </div>
-                      )}
-                      {section.subsections?.length ? (
-                        <div className="space-y-6">
-                          {section.subsections.map((sub, si) => (
-                            <div key={si}>
-                              <p className="mb-1.5 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-black">
-                                {sub.heading}
-                              </p>
-                              <div className="mb-3 h-px bg-[#8a745c]/20" />
-                              {sub.bullets?.length ? (
-                                <ul className="space-y-2">
-                                  {sub.bullets.map((item, i) => (
-                                    <li key={i} className="flex items-start gap-3 rounded-lg bg-white/50 px-3 py-2 text-[0.9rem] leading-relaxed text-slate-700">
-                                      <span className="mt-px shrink-0 font-semibold text-[#8a745c]">›</span>
-                                      <span className="whitespace-pre-line">{item}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              ) : null}
-                              {sub.note && (
-                                <div className="mt-3 rounded-xl border-l-2 border-[#8a745c]/70 bg-gradient-to-l from-[#8a745c]/45 via-[#8a745c]/20 to-white/70 px-4 py-3">
-                                  <LabelledText text={sub.note} />
-                                </div>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      ) : section.bullets?.length ? (
-                        <>
-                          {section.title === "Team flexibility & replacement policy" ? (
-                            <>
-                              <div className="mb-3 rounded-xl border-l-2 border-[#8a745c]/70 bg-gradient-to-l from-[#8a745c]/45 via-[#8a745c]/20 to-white/70 px-4 py-3">
-                                <p className="text-[0.95rem] leading-relaxed text-slate-700">
-                                  {section.bullets[0]}
-                                </p>
-                              </div>
-                              {section.bullets.slice(1).length ? (
-                                <ul className="space-y-2">
-                                  {section.bullets.slice(1).map((item, i) => (
-                                    <li key={i} className="flex items-start gap-3 rounded-lg bg-white/50 px-3 py-2 text-[0.9rem] leading-relaxed text-slate-700">
-                                      <span className="mt-px shrink-0 font-semibold text-[#8a745c]">›</span>
-                                      <span className="whitespace-pre-line">{item}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              ) : null}
-                            </>
-                          ) : (
-                            <ul className="space-y-2">
-                              {section.bullets.map((item, i) => (
-                                <li key={i} className="flex items-start gap-3 rounded-lg bg-white/50 px-3 py-2 text-[0.9rem] leading-relaxed text-slate-700">
-                                  <span className="mt-px shrink-0 font-semibold text-[#8a745c]">›</span>
-                                  <span className="whitespace-pre-line">{item}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                        </>
-                      ) : null}
-                      {section.cards?.length ? (
-                        <ul className="space-y-3">
-                          {section.cards.map((card, i) => (
-                            <li key={i} className="text-[0.95rem] leading-relaxed text-slate-700">
-                              <span className="font-semibold text-slate-900">{card.title}: </span>
-                              {card.body}
-                            </li>
-                          ))}
-                        </ul>
-                      ) : null}
-                    </div>
-                  </div>
-                </section>
-              );
-            })}
+            <div className="grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+              {page.sections.map((section, index) => {
+                const imgSrc = PHOTO_CARD_IMAGES[index % PHOTO_CARD_IMAGES.length];
+                return (
+                  <ExpandableHowWeWorkCard key={section.title} section={section} imgSrc={imgSrc} />
+                );
+              })}
+            </div>
           </div>
         </HomeSection>
       ) : (
@@ -331,8 +243,8 @@ export default function DocPageTemplate({ page }: DocPageTemplateProps) {
         </>
       )}
 
-      <HomeSection tone="white" className="!bg-[#f6f2ea] pb-16 lg:pb-20">
-        <section className="rounded-2xl bg-[#ede7d8] p-8 text-center shadow-sm ring-1 ring-stone-300/60 lg:p-12">
+      <HomeSection tone="white" className="!bg-white pb-16 lg:pb-20">
+        <section className="rounded-2xl bg-[#f7faff] p-8 text-center shadow-sm ring-1 ring-[#c9d9ee] lg:p-12">
           {page.cta.title && (
             <h2 className="font-display mb-4 text-2xl font-semibold tracking-tight text-slate-900">
               {page.cta.title}

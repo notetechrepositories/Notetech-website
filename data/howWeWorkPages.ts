@@ -30,7 +30,7 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     ],
     sections: [
       {
-        title: "Dedicated Development Team (recommended)",
+        title: "Dedicated Development Team",
         description: "Best for: ongoing product development and long-term roadmaps",
         subsections: [
           {
