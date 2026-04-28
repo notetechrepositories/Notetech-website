@@ -50,11 +50,34 @@ export default function ServicesLandingPage() {
 
       <HomeSection tone="white" className="!bg-[#f6f2ea]">
         <SectionHeading
-          eyebrow="Services"
-          title="Core offerings"
-          subtitle="End-to-end capabilities for product and platform teams - delivered with client-owned IP and disciplined engineering."
+         eyebrow="services"
+          title="How clients engage with us"
           spacing="compact"
         />
+        <section className="mb-12">
+          <div className="max-w-4xl space-y-4">
+            <article className="rounded-xl border border-stone-300/70 bg-[#f3ede1] p-5 sm:p-6">
+              <h5 className="font-display text-[1.3rem] font-semibold tracking-tight text-[#111827] sm:text-[1.45rem]">
+                Client-owned IP and source code
+              </h5>
+              <p className="mt-2.5 text-[0.98rem] leading-relaxed text-[#1f2937]">
+                Clients own the product and source code we build (as defined in the
+                contract/SOW). We prefer working in client-controlled repositories and
+                follow access boundaries aligned to the client environment.
+              </p>
+            </article>
+            <article className="rounded-xl border border-stone-300/70 bg-[#f3ede1] p-5 sm:p-6">
+              <h5 className="font-display text-[1.3rem] font-semibold tracking-tight text-[#111827] sm:text-[1.45rem]">
+                Long-term delivery, with a transition option
+              </h5>
+              <p className="mt-2.5 text-[0.98rem] leading-relaxed text-[#1f2937]">
+                We support products over the long term—including maintenance and
+                continuous enhancements. If required, we support a structured transition
+                so your team can move development in-house and operate independently.
+              </p>
+            </article>
+          </div>
+        </section>
         <ServicesCardGrid services={services} />
       </HomeSection>
 
