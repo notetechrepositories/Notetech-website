@@ -1,3 +1,5 @@
+import type { DocPageData } from "@/components/content/DocPageTemplate";
+
 export type SelectedEngagement = {
   slug: string;
   title: string;
@@ -79,3 +81,45 @@ export const selectedEngagements: SelectedEngagement[] = [
     ],
   },
 ];
+
+export const selectedEngagementsDocPage: DocPageData = {
+  title: selectedEngagementsLanding.title,
+  metaTitle: selectedEngagementsLanding.metaTitle,
+  metaDescription: selectedEngagementsLanding.metaDescription,
+  headline: selectedEngagementsLanding.headline,
+  intro: selectedEngagementsLanding.intro,
+  contentHeading: "Selected engagement snapshots",
+  parentLabel: "Company",
+  parentHref: "/company",
+  visualSlot: "case-studies",
+  heroImageSrc: "/imagery/companyPage/engagement.jpg",
+  sectionImages: [
+    "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
+    "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
+    "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+  ],
+  sections: selectedEngagements.map((engagement) => ({
+    title: engagement.title,
+    description: engagement.summary,
+    subsections: [
+      {
+        heading: "Stack",
+        bullets: engagement.stack,
+      },
+      {
+        heading: "Engagement details",
+        bullets: engagement.details,
+        note: `Outcome: ${engagement.outcome}`,
+      },
+    ],
+  })),
+  cta: {
+    title: "Discuss relevant engagements under NDA",
+    description:
+      "Representative summaries only. Client names and selected product details remain confidential and can be expanded under NDA where appropriate.",
+    primaryLabel: "Schedule a Call",
+    primaryHref: "/contact",
+    secondaryLabel: "Contact Us",
+    secondaryHref: "/contact",
+  },
+};

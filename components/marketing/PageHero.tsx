@@ -116,9 +116,13 @@ export default function PageHero({
           }
         />
         <div
-          className={`mt-7 ${aside ? "grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-12" : ""} ${contentMinHeightClassName}`}
+          className={`mt-7 ${aside ? "grid gap-8 lg:grid-cols-2 lg:items-stretch lg:gap-12" : ""} ${contentMinHeightClassName}`}
         >
-          <div className="min-w-0">
+          <div
+            className={`min-w-0 ${
+              contentMinHeightClassName ? "flex h-full flex-col justify-center" : ""
+            }`}
+          >
             <div className="flex flex-wrap items-start gap-4">
               <h1 className={`text-display-sm max-w-4xl ${isLightTone ? "text-slate-900" : "text-white"}`}>
                 {title}

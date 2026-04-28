@@ -75,7 +75,7 @@ export const mainNavigation: NavNode[] = [
       { label: "About Notetech", href: "/company/about" },
       { label: "Leadership / Core Team", href: "/company/leadership" },
       { label: "Awards & Recognition", href: "/company/awards" },
-      { label: "Selected Engagements", href: "/selected-engagements" },
+      { label: "Selected Engagements", href: "/company/selected-engagements" },
       { label: "Products", href: "/products" },
       { label: "Careers", href: "/company/careers" },
       { label: "Contact", href: "/contact" },

@@ -3,7 +3,7 @@ import { visualSlots } from "@/data/visualSlots";
 import Image from "next/image";
 
 type CTASectionProps = {
-  title: string;
+  title?: string;
   description?: string;
   primaryLabel: string;
   primaryHref: string;
@@ -91,13 +91,15 @@ export default function CTASection({
           aria-hidden
         />
         <div className="relative z-10">
-          <h2
-            className={`font-display mx-auto max-w-2xl text-2xl font-semibold tracking-tight sm:text-3xl lg:text-[2rem] lg:leading-tight ${
-              isBeigeBand ? "text-slate-900" : "text-navy-foreground"
-            }`}
-          >
-            {title}
-          </h2>
+          {title && (
+            <h2
+              className={`font-display mx-auto max-w-2xl text-2xl font-semibold tracking-tight sm:text-3xl lg:text-[2rem] lg:leading-tight ${
+                isBeigeBand ? "text-slate-900" : "text-navy-foreground"
+              }`}
+            >
+              {title}
+            </h2>
+          )}
           {description ? (
             <p
               className={`mx-auto mt-5 max-w-xl text-base leading-relaxed sm:text-[1.0625rem] ${
@@ -124,7 +126,7 @@ export default function CTASection({
 
   return (
     <div>
-      <h2 className="text-section-title">{title}</h2>
+      {title && <h2 className="text-section-title">{title}</h2>}
       {description ? (
         <p className="text-body-muted mt-stack max-w-xl">{description}</p>
       ) : null}

@@ -1,6 +1,11 @@
 import type { DocPageData } from "@/components/content/DocPageTemplate";
 
-export const COMPANY_SLUGS = ["about", "leadership", "awards", "careers"] as const;
+export const COMPANY_SLUGS = [
+  "about",
+  "leadership",
+  "awards",
+  "careers",
+] as const;
 
 export type CompanySlug = (typeof COMPANY_SLUGS)[number];
 

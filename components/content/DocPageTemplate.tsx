@@ -1,7 +1,7 @@
-import CTASection from "@/components/home/CTASection";
 import HomeSection from "@/components/home/HomeSection";
 import SectionHeading from "@/components/home/SectionHeading";
 import PageHero from "@/components/marketing/PageHero";
+import Button from "@/components/ui/Button";
 import VisualSlot from "@/components/visuals/VisualSlot";
 import type { VisualSlotId } from "@/data/visualSlots";
 import Image from "next/image";
@@ -11,10 +11,17 @@ export type DocCard = {
   body: string;
 };
 
+export type DocSubsection = {
+  heading: string;
+  bullets?: string[];
+  note?: string;
+};
+
 export type DocPageSection = {
   title: string;
   description?: string;
   bullets?: string[];
+  subsections?: DocSubsection[];
   cards?: DocCard[];
   columns?: 1 | 2 | 3;
 };
@@ -25,6 +32,7 @@ export type DocPageData = {
   metaDescription: string;
   headline: string;
   intro: string;
+  contentHeading?: string;
   parentLabel: string;
   parentHref: string;
   visualSlot: VisualSlotId;
@@ -34,7 +42,7 @@ export type DocPageData = {
   sectionImages?: string[];
   sections: DocPageSection[];
   cta: {
-    title: string;
+    title?: string;
     description?: string;
     primaryLabel: string;
     primaryHref: string;
@@ -46,6 +54,37 @@ export type DocPageData = {
 type DocPageTemplateProps = {
   page: DocPageData;
 };
+
+/** Colour assigned to each known label. Falls back to navy. */
+const LABEL_COLOURS: Record<string, string> = {
+  "best for":           "text-black",
+  "good when":          "text-black",
+  "good when you need": "text-black",
+  "across all models":  "text-black",
+};
+
+/**
+ * Splits "Label: rest of text" and renders the label as a small
+ * sub-heading line above the body text, matching the "How it works:"
+ * heading style used in subsections.
+ */
+function LabelledText({ text }: { text: string }) {
+  const colonIdx = text.indexOf(": ");
+  if (colonIdx === -1) return <p className="text-[0.95rem] leading-relaxed text-slate-700">{text}</p>;
+
+  const label = text.slice(0, colonIdx);
+  const rest  = text.slice(colonIdx + 2);
+  const colour = LABEL_COLOURS[label.toLowerCase()] ?? "text-[#8a745c]";
+
+  return (
+    <div>
+      <p className={`mb-1 text-[0.7rem] font-bold uppercase tracking-[0.14em] ${colour}`}>
+        {label}
+      </p>
+      <p className="text-[0.95rem] leading-relaxed text-slate-700">{rest}</p>
+    </div>
+  );
+}
 
 export default function DocPageTemplate({ page }: DocPageTemplateProps) {
   return (
@@ -59,13 +98,13 @@ export default function DocPageTemplate({ page }: DocPageTemplateProps) {
         title={page.title}
         subtitle={page.headline}
         description={page.intro}
-        tone="beigePattern"
-        contentMinHeightClassName={page.heroImageSrc ? "min-h-[18rem] sm:min-h-[21rem] lg:min-h-[24rem]" : ""}
+        tone="navy"
+        contentMinHeightClassName="min-h-[18rem] sm:min-h-[21rem] lg:min-h-[24rem]"
         backgroundDecor={
-          page.heroImageSrc ? (
+          (
             <div className="absolute -inset-y-[18%] -right-[2%] hidden w-[45%] overflow-hidden [clip-path:polygon(0_32%,100%_0,100%_68%,0_100%)] lg:block">
               <Image
-                src={page.heroImageSrc}
+                src="/imagery/capabilities-banner.jpg"
                 alt=""
                 fill
                 sizes="(max-width: 1024px) 100vw, 45vw"
@@ -75,7 +114,7 @@ export default function DocPageTemplate({ page }: DocPageTemplateProps) {
               />
               <div className="absolute inset-0 bg-[linear-gradient(118deg,rgb(8_18_36/0.45)_0%,transparent_50%),linear-gradient(to_top,rgb(8_18_36/0.28)_0%,transparent_42%)]" />
             </div>
-          ) : undefined
+          )
         }
         aside={
           page.heroImageSrc ? undefined : (
@@ -92,8 +131,16 @@ export default function DocPageTemplate({ page }: DocPageTemplateProps) {
         /* ── Card layout: beige bg, alternating image sides ── */
         <HomeSection tone="white" className="!bg-[#f6f2ea] py-16 lg:py-20">
           <div className="space-y-8 lg:space-y-10">
+            {page.contentHeading ? (
+              <div>
+                <h2 className="font-display text-2xl tracking-tight text-slate-900 lg:text-3xl">
+                  {page.contentHeading}
+                </h2>
+                <div className="mt-2 h-0.5 w-10 bg-[#46c3e6]" />
+              </div>
+            ) : null}
             {page.sections.map((section, index) => {
-              const imgSrc = page.sectionImages![index % page.sectionImages!.length];
+              const imgSrc = "/imagery/companyPage/engagement.jpg";
               const imageLeft = index % 2 === 0;
               return (
                 <section
@@ -118,21 +165,67 @@ export default function DocPageTemplate({ page }: DocPageTemplateProps) {
                       </h2>
                       <div className="mb-6 mt-2 h-0.5 w-8 bg-[#46c3e6]" />
                       {section.description && (
-                        <p className="mb-5 text-[0.97rem] leading-relaxed text-slate-600">
-                          {section.description}
-                        </p>
+                        <div className="mb-6 rounded-xl border-l-2 border-[#8a745c]/70 bg-gradient-to-l from-[#8a745c]/45 via-[#8a745c]/20 to-white/70 px-4 py-3">
+                          <LabelledText text={section.description} />
+                        </div>
                       )}
-                      {section.bullets?.length ? (
-                        <ul className="space-y-3">
-                          {section.bullets.map((item, i) => (
-                            <li key={i} className="flex items-start gap-3 text-[0.95rem] leading-relaxed text-slate-700">
-                              <span className="mt-0.5 shrink-0 text-[0.65rem] font-bold tracking-[0.12em] text-[#081a35]">
-                                {(i + 1).toString().padStart(2, "0")}
-                              </span>
-                              <span>{item}</span>
-                            </li>
+                      {section.subsections?.length ? (
+                        <div className="space-y-6">
+                          {section.subsections.map((sub, si) => (
+                            <div key={si}>
+                              <p className="mb-1.5 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-black">
+                                {sub.heading}
+                              </p>
+                              <div className="mb-3 h-px bg-[#8a745c]/20" />
+                              {sub.bullets?.length ? (
+                                <ul className="space-y-2">
+                                  {sub.bullets.map((item, i) => (
+                                    <li key={i} className="flex items-start gap-3 rounded-lg bg-white/50 px-3 py-2 text-[0.9rem] leading-relaxed text-slate-700">
+                                      <span className="mt-px shrink-0 font-semibold text-[#8a745c]">›</span>
+                                      <span className="whitespace-pre-line">{item}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : null}
+                              {sub.note && (
+                                <div className="mt-3 rounded-xl border-l-2 border-[#8a745c]/70 bg-gradient-to-l from-[#8a745c]/45 via-[#8a745c]/20 to-white/70 px-4 py-3">
+                                  <LabelledText text={sub.note} />
+                                </div>
+                              )}
+                            </div>
                           ))}
-                        </ul>
+                        </div>
+                      ) : section.bullets?.length ? (
+                        <>
+                          {section.title === "Team flexibility & replacement policy" ? (
+                            <>
+                              <div className="mb-3 rounded-xl border-l-2 border-[#8a745c]/70 bg-gradient-to-l from-[#8a745c]/45 via-[#8a745c]/20 to-white/70 px-4 py-3">
+                                <p className="text-[0.95rem] leading-relaxed text-slate-700">
+                                  {section.bullets[0]}
+                                </p>
+                              </div>
+                              {section.bullets.slice(1).length ? (
+                                <ul className="space-y-2">
+                                  {section.bullets.slice(1).map((item, i) => (
+                                    <li key={i} className="flex items-start gap-3 rounded-lg bg-white/50 px-3 py-2 text-[0.9rem] leading-relaxed text-slate-700">
+                                      <span className="mt-px shrink-0 font-semibold text-[#8a745c]">›</span>
+                                      <span className="whitespace-pre-line">{item}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : null}
+                            </>
+                          ) : (
+                            <ul className="space-y-2">
+                              {section.bullets.map((item, i) => (
+                                <li key={i} className="flex items-start gap-3 rounded-lg bg-white/50 px-3 py-2 text-[0.9rem] leading-relaxed text-slate-700">
+                                  <span className="mt-px shrink-0 font-semibold text-[#8a745c]">›</span>
+                                  <span className="whitespace-pre-line">{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </>
                       ) : null}
                       {section.cards?.length ? (
                         <ul className="space-y-3">
@@ -187,7 +280,37 @@ export default function DocPageTemplate({ page }: DocPageTemplateProps) {
                   </div>
                 ) : null}
 
-                {section.bullets?.length ? (
+                {section.subsections?.length ? (
+                  <div className="grid gap-6">
+                    {section.subsections.map((sub, si) => (
+                      <div key={si}>
+                        <p className="mb-3 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-primary">
+                          {sub.heading}
+                        </p>
+                        {sub.bullets?.length ? (
+                          <ul className="grid gap-3">
+                            {sub.bullets.map((item) => (
+                              <li
+                                key={item}
+                                className="motion-interactive flex gap-3 rounded-[var(--radius-card)] border border-border-subtle bg-surface p-4 text-sm text-ink shadow-card"
+                              >
+                                <span className="text-primary mt-0.5 font-semibold" aria-hidden>
+                                  —
+                                </span>
+                                <span className="whitespace-pre-line">{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                        {sub.note && (
+                          <div className="mt-3">
+                            <LabelledText text={sub.note} />
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ) : section.bullets?.length ? (
                   <ul className="grid gap-3">
                     {section.bullets.map((item) => (
                       <li
@@ -197,7 +320,7 @@ export default function DocPageTemplate({ page }: DocPageTemplateProps) {
                         <span className="text-primary mt-0.5 font-semibold" aria-hidden>
                           —
                         </span>
-                        <span>{item}</span>
+                        <span className="whitespace-pre-line">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -208,17 +331,29 @@ export default function DocPageTemplate({ page }: DocPageTemplateProps) {
         </>
       )}
 
-      <HomeSection tone="patterned" className="pb-24 lg:pb-28">
-        <CTASection
-          variant="band"
-          title={page.cta.title}
-          description={page.cta.description}
-          primaryLabel={page.cta.primaryLabel}
-          primaryHref={page.cta.primaryHref}
-          secondaryLabel={page.cta.secondaryLabel}
-          secondaryHref={page.cta.secondaryHref}
-          forcePrimaryButtons
-        />
+      <HomeSection tone="white" className="!bg-[#f6f2ea] pb-16 lg:pb-20">
+        <section className="rounded-2xl bg-[#ede7d8] p-8 text-center shadow-sm ring-1 ring-stone-300/60 lg:p-12">
+          {page.cta.title && (
+            <h2 className="font-display mb-4 text-2xl font-semibold tracking-tight text-slate-900">
+              {page.cta.title}
+            </h2>
+          )}
+          {page.cta.description && (
+            <p className="mx-auto mb-8 max-w-xl text-[0.97rem] leading-relaxed text-slate-600">
+              {page.cta.description}
+            </p>
+          )}
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button href={page.cta.primaryHref} variant="primary" className="px-6">
+              {page.cta.primaryLabel}
+            </Button>
+            {page.cta.secondaryLabel && page.cta.secondaryHref && (
+              <Button href={page.cta.secondaryHref} variant="primary" className="px-6">
+                {page.cta.secondaryLabel}
+              </Button>
+            )}
+          </div>
+        </section>
       </HomeSection>
     </>
   );

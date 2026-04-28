@@ -16,9 +16,9 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     title: "Engagement Models",
     metaDescription:
       "Flexible engagement models for predictable delivery and long-term ownership, from dedicated teams to milestone-based starts.",
-    headline: "Choose the model that fits your scope, timeline, and change profile",
+    headline: "We offer flexible engagement models designed for predictable delivery and long-term ownership. We’ll recommend the best fit based on your scope clarity, timeline, and how you prefer to manage change.",
     intro:
-      "We offer flexible engagement models designed for predictable delivery and long-term ownership. We recommend the best fit based on your scope clarity, timeline, and how you prefer to manage change.",
+      "",
     parentLabel: "How We Work",
     parentHref: "/how-we-work",
     visualSlot: "services",
@@ -30,49 +30,90 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     ],
     sections: [
       {
-        title: "Core engagement options",
-        cards: [
+        title: "Dedicated Development Team (recommended)",
+        description: "Best for: ongoing product development and long-term roadmaps",
+        subsections: [
           {
-            title: "Dedicated Development Team",
-            body: "Best for ongoing product development and long-term roadmaps. You get a stable team aligned to your product goals, sprint-based execution, shared tracking, and written progress updates while you retain control of priorities.",
+            heading: "How it works:",
+            bullets: [
+              "A stable team aligned to your product goals",
+              "Sprint-based execution (typically 1–2 weeks)",
+              "Shared tracking and written progress updates",
+              "You control priorities; we execute with engineering ownership",
+            ],
+            note: "Good when you need: continuity, capacity, and predictable execution.",
           },
-          {
-            title: "Time & Materials",
-            body: "Best for evolving scope, discovery-heavy work, or fast iteration. Work is prioritized in a backlog, delivered in sprints with clear visibility, and allowed to evolve as requirements change through learning and feedback.",
-          },
-          {
-            title: "Fixed Scope",
-            body: "Best for well-defined requirements and clear acceptance criteria. Scope, milestones, and deliverables are agreed upfront, with changes handled through a controlled change process.",
-          },
-          {
-            title: "Support & Maintenance",
-            body: "Best for production systems requiring long-term reliability. This model supports structured triage, fixes, incremental improvements, optional SLA-style coverage, and release-readiness support.",
-          },
-        ],
-        columns: 2,
-      },
-      {
-        title: "How we usually start",
-        bullets: [
-          "We often begin with a fixed-scope milestone so new clients can validate delivery quality and working style before scaling.",
-          "Once expectations are aligned, teams commonly move into a Time & Materials or Dedicated Development Team model for ongoing roadmap execution.",
-          "The goal is to choose the lowest-risk entry point without blocking a long-term delivery relationship if the fit is right.",
         ],
       },
       {
-        title: "Team flexibility and IP ownership",
+        title: "Time & Materials",
+        description: "Best for: evolving scope, discovery-heavy work, or fast iteration",
+        subsections: [
+          {
+            heading: "How it works:",
+            bullets: [
+              "Work is prioritized in a backlog",
+              "Delivery happens in sprints with clear visibility",
+              "Scope can evolve based on learnings and feedback",
+            ],
+            note: "Good when: requirements change as you learn.",
+          },
+        ],
+      },
+      {
+        title: "Fixed Scope (Milestone-based)",
+        description: "Best for: well-defined requirements and clear acceptance criteria",
+        subsections: [
+          {
+            heading: "How it works:",
+            bullets: [
+              "Scope and deliverables are agreed upfront",
+              "Milestones and acceptance criteria are defined clearly",
+              "Changes are handled through a controlled change process",
+            ],
+          },
+          {
+            heading: "How we typically use this model:",
+            note: "We often start with a fixed-scope milestone engagement to help new clients validate our delivery quality and working style. Once expectations are aligned, teams typically move to a Time & Materials or Dedicated Development Team model for ongoing roadmap execution.",
+          },
+        ],
+      },
+      {
+        title: "Support & Maintenance",
+        description: "Best for: production systems requiring long-term reliability",
+        subsections: [
+          {
+            heading: "How it works:",
+            bullets: [
+              "Structured triage, fixes, improvements",
+              "Optional SLA-style coverage",
+              "Release readiness and operational stability support",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Team flexibility & replacement policy",
         bullets: [
-          "If a resource is not the right fit, clients can request a replacement without lengthy discussion.",
-          "We handle structured knowledge transfer to reduce disruption and keep progress moving during transitions.",
-          "Clients typically own the product IP and source code as defined in the contract or SOW.",
-          "Client-controlled repositories are preferred, and transition support is available if development later moves in-house.",
+          "We want clients to feel fully in control of their delivery team.",
+          "If a resource is not the right fit (skills, communication, performance, or team alignment), you can request a replacement.",
+          "We will act quickly and professionally—no lengthy discussions required.",
+          "We ensure structured knowledge transfer to reduce disruption and keep progress moving.",
+          "Replacement may require a short transition period to ensure continuity and handover.",
+        ],
+      },
+      {
+        title: "Client-owned IP (standard)",
+        description: "Across all models:",
+        bullets: [
+          "Clients typically own the product IP and source code (defined in contract/SOW).",
+          "Client-controlled repositories preferred.",
+          "Transition support available if you bring development in-house.",
         ],
       },
     ],
     cta: {
-      title: "Discuss the right engagement model",
-      description:
-        "Tell us about your scope, timeline, and how much change you expect, and we will recommend a practical starting model.",
+      title: "",
       primaryLabel: "Schedule a Call",
       primaryHref: "/contact",
       secondaryLabel: "Request a Proposal",
@@ -83,9 +124,8 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     title: "Delivery Process",
     metaDescription:
       "A transparent delivery process from discovery through sprint execution and stabilization, designed for clear ownership and predictable progress.",
-    headline: "Transparent delivery so stakeholders know what is done, next, and blocked",
-    intro:
-      "We run delivery with transparency and clear ownership so stakeholders always know what is done, what is next, and what needs a decision.",
+    headline: "We run delivery with transparency and clear ownership—so stakeholders always know what is done, what is next, and what needs a decision.",
+    intro: "",
     parentLabel: "How We Work",
     parentHref: "/how-we-work",
     visualSlot: "quality",
@@ -96,57 +136,68 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     ],
     sections: [
       {
-        title: "From discovery to long-term improvement",
-        cards: [
-          {
-            title: "Step 1: Discovery",
-            body: "We align on goals, constraints, success metrics, users, workflows, timelines, dependencies, and security and IP expectations.",
-          },
-          {
-            title: "Step 2: Plan",
-            body: "We provide a recommended engagement model, team plan, milestones, timeline, and a view of delivery risks with mitigations.",
-          },
-          {
-            title: "Step 3: Kickoff",
-            body: "We set up repositories and access, environments, build and deploy workflows, shared tracking, reporting format, and the initial backlog.",
-          },
-          {
-            title: "Step 4: Build and Deliver",
-            body: "We execute in 1-2 week cycles, implement features and fixes, maintain code quality through reviews and testing, and prepare releases using your release process.",
-          },
-          {
-            title: "Step 5: Stabilize and Improve",
-            body: "As systems grow, we strengthen performance, reliability, automation, maintainability, documentation, and handover readiness.",
-          },
+        title: "Step 1 — Discovery",
+        description: "We align on:",
+        bullets: [
+          "goals, constraints, success metrics",
+          "users and workflows",
+          "timelines and dependencies",
+          "security and IP expectations",
         ],
-        columns: 2,
       },
       {
-        title: "What this process is designed to protect",
+        title: "Step 2 — Plan",
+        description: "We provide:",
         bullets: [
-          "Milestone visibility and clearer decision points for business and engineering stakeholders.",
-          "A structured way to reduce release risk without slowing roadmap progress unnecessarily.",
-          "Delivery continuity as systems scale and teams become more dependent on shared context and maintainability.",
+          "recommended engagement model",
+          "team plan (roles and responsibilities)",
+          "milestones and timeline",
+          "delivery risks and mitigations",
+        ],
+      },
+      {
+        title: "Step 3 — Kickoff",
+        description: "We set up:",
+        bullets: [
+          "repositories and access",
+          "environments and build/deploy process",
+          "shared tracker and reporting format",
+          "initial backlog and sprint plan",
+        ],
+      },
+      {
+        title: "Step 4 — Build and deliver",
+        description: "We execute in 1–2 week cycles:",
+        bullets: [
+          "implement features and fixes",
+          "maintain code quality via reviews/testing",
+          "keep progress visible through tracking and updates",
+          "prepare releases based on your release process",
+        ],
+      },
+      {
+        title: "Step 5 — Stabilize and improve",
+        description: "As systems grow, we strengthen:",
+        bullets: [
+          "performance and reliability",
+          "automation and maintainability",
+          "documentation and handover readiness",
         ],
       },
     ],
     cta: {
-      title: "Talk to delivery leads",
-      description:
-        "If you want a delivery model with clearer ownership and fewer surprises, we can walk you through how we would structure your work.",
-      primaryLabel: "Schedule a Call",
+      title: "",
+      primaryLabel: "Talk to Delivery Leads",
       primaryHref: "/contact",
-      secondaryLabel: "View services",
-      secondaryHref: "/services",
     },
   },
   "communication-reporting": {
     title: "Communication & Reporting",
     metaDescription:
       "Communication practices that reduce delivery risk with shared tracking, written updates, and clear escalation paths.",
-    headline: "Clear communication reduces delivery risk",
+    headline: "Clear communication reduces delivery risk. We work in your tools and keep progress visible through shared tracking and written updates.",
     intro:
-      "We work in your tools and keep progress visible through shared tracking and written updates so decisions stay clear and blockers are surfaced early.",
+      "",
     parentLabel: "How We Work",
     parentHref: "/how-we-work",
     visualSlot: "technology",
@@ -161,34 +212,36 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
       {
         title: "What you can expect",
         bullets: [
-          "Agreed overlap hours for your timezone.",
-          "A shared tracker such as Jira, Linear, or ClickUp with clear owners.",
-          "Written progress updates covering what is done, what is next, and current risks or blockers.",
-          "Regular progress reviews, live or async depending on the engagement.",
-          "A clear escalation path for urgent issues.",
+          "agreed overlap hours for your timezone",
+          "shared tracker (Jira/Linear/ClickUp) with clear owners",
+          "written progress updates (what's done, what's next, risks/blockers)",
+          "regular progress reviews (live or async)",
+          "clear escalation path for urgent issues",
         ],
       },
       {
         title: "Working in your environment",
+        description: "We adapt to your:",
         bullets: [
-          "We adapt to your Git workflow and branching strategy.",
-          "We work within your review and approval process.",
-          "Release governance and documentation expectations follow your operating model.",
+          "Git workflow and branching strategy",
+          "review and approval process",
+          "release governance",
+          "documentation expectations",
         ],
       },
       {
         title: "Stakeholder visibility",
+        description: "We support product and engineering stakeholders with:",
         bullets: [
-          "Milestone progress is visible without requiring constant ad hoc follow-up.",
-          "Risks, dependencies, and release readiness are surfaced early enough to act on them.",
-          "Product and engineering stakeholders get the level of detail they need to make decisions without unnecessary noise.",
+          "milestone progress",
+          "risk visibility",
+          "dependency tracking",
+          "release readiness status",
         ],
       },
     ],
     cta: {
-      title: "Set a communication rhythm that fits your team",
-      description:
-        "We can align reporting, overlap hours, and escalation practices to your workflow and stakeholder expectations.",
+      title: "",
       primaryLabel: "Schedule a Call",
       primaryHref: "/contact",
     },
@@ -197,9 +250,10 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     title: "Onboarding & Kickoff",
     metaDescription:
       "A structured onboarding checklist for access, tooling, expectations, and first-sprint readiness.",
-    headline: "A clean kickoff prevents delays later",
+    headline: "A clean kickoff prevents delays later. We follow a structured onboarding checklist to align access, tooling, and expectations from day one.",
     intro:
-      "We follow a structured onboarding checklist to align access, tooling, and expectations from day one, so delivery starts cleanly instead of losing momentum to avoidable setup issues.",
+      "",
+    contentHeading: "Kickoff checklist",
     parentLabel: "How We Work",
     parentHref: "/how-we-work",
     visualSlot: "services",
@@ -229,13 +283,20 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
         ],
       },
       {
-        title: "Technical setup and first sprint goals",
+        title: "Technical setup",
         bullets: [
           "Local setup and build steps.",
           "CI/CD expectations where applicable.",
-          "Logging, monitoring, integration endpoints, and test accounts where needed.",
-          "Aligned backlog and scope for the first sprint.",
-          "An initial working increment plus confirmation of the communication rhythm and reporting format.",
+          "Logging and monitoring expectations where applicable.",
+          "Integration endpoints and test accounts.",
+        ],
+      },
+      {
+        title: "First sprint goals",
+        bullets: [
+          "align backlog and scope",
+          "deliver initial working increment",
+          "confirm communication rhythm and reporting format",
         ],
       },
     ],
@@ -251,9 +312,8 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     title: "Pricing Approach",
     metaDescription:
       "Transparent pricing aligned to delivery outcomes, with scope, risk, and team mix made explicit upfront.",
-    headline: "Transparent pricing aligned to delivery outcomes",
-    intro:
-      "Final pricing depends on scope clarity, required seniority, and delivery risk. We keep assumptions explicit so pricing conversations support planning instead of creating surprises later.",
+    headline: "We keep pricing transparent and aligned to delivery outcomes. Final pricing depends on scope clarity, required seniority, and delivery risk.",
+    intro: "",
     parentLabel: "How We Work",
     parentHref: "/how-we-work",
     visualSlot: "technology",
@@ -289,27 +349,23 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
           "A team plan and timeline.",
           "A milestone breakdown or backlog plan.",
           "Clear inclusions and exclusions.",
-          "Clarification that clients typically own the product and source code as defined in the contract or SOW.",
         ],
       },
     ],
     cta: {
       title: "Request a proposal",
       description:
-        "Share your current scope and constraints, and we will outline a practical delivery model with clear assumptions.",
+        "Clients typically own the product and source code (as defined in contract/SOW). We can support long-term, and we can also support transition if you move development in-house.",
       primaryLabel: "Request a Proposal",
-      primaryHref: "/contact",
-      secondaryLabel: "Schedule a Call",
-      secondaryHref: "/contact",
+      primaryHref: "/contact"
     },
   },
   "pilot-engagements": {
     title: "Pilot Engagements",
     metaDescription:
       "A 2-4 week pilot model for validating fit, speed, communication, and technical approach before scaling.",
-    headline: "A low-risk way to validate fit before committing to a longer engagement",
-    intro:
-      "A pilot is a practical way to evaluate collaboration, delivery quality, and technical fit before scaling into a broader roadmap relationship.",
+    headline: "A pilot is a low-risk way to validate fit, speed, and communication before committing to a longer engagement",
+    intro:"",
     parentLabel: "How We Work",
     parentHref: "/how-we-work",
     visualSlot: "case-studies",
@@ -323,39 +379,35 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
       {
         title: "When a pilot is useful",
         bullets: [
-          "Scope is unclear or still evolving.",
-          "You want to evaluate delivery quality and responsiveness.",
-          "You want to validate collaboration inside your own tools and processes.",
-          "You want to confirm a technical approach before committing to a larger investment.",
+          "scope is unclear or evolving",
+          "you want to evaluate delivery quality and responsiveness",
+          "you want to validate collaboration in your tools and process",
+          "you want to confirm technical approach before scaling",
         ],
       },
       {
-        title: "Typical pilot format",
+        title: "Typical pilot format (2–4 weeks)",
         bullets: [
-          "A limited scope with clear success criteria.",
-          "Delivery in your repository and tracker where possible.",
-          "A working increment by the end of the pilot.",
-          "A recommendation for next steps, including team shape and roadmap implications.",
+          "limited scope and clear success criteria",
+          "delivery in your repo and tracker (preferred)",
+          "working increment delivered by end of pilot",
+          "recommendation for next steps (team plan + roadmap)",
         ],
       },
       {
         title: "Outcomes of a successful pilot",
         bullets: [
-          "A validated collaboration model.",
-          "A confirmed delivery cadence.",
-          "A clearer roadmap and better estimation quality.",
-          "A grounded decision to scale, continue, or transition.",
+          "validated collaboration model",
+          "confirmed delivery cadence",
+          "clearer roadmap and estimation",
+          "decision to scale, continue, or transition",
         ],
       },
     ],
     cta: {
-      title: "Discuss a pilot",
-      description:
-        "If you want a lower-risk way to validate fit before scaling, we can outline a pilot structure and success criteria.",
-      primaryLabel: "Schedule a Call",
+      title: "",
+      primaryLabel: "Discuss a Pilot",
       primaryHref: "/contact",
-      secondaryLabel: "Contact Us",
-      secondaryHref: "/contact",
     },
   },
 };

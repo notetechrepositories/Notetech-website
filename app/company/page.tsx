@@ -12,7 +12,7 @@ const companyCircleImageByHref = {
   "/company/awards": "/imagery/awards-trophy.png",
   "/company/leadership": "/imagery/companyPage/leardeship.jpg",
   "/products": "/imagery/companyPage/Prodcut.jpg",
-  "/selected-engagements": "/imagery/companyPage/engagement.jpg",
+  "/company/selected-engagements": "/imagery/companyPage/engagement.jpg",
   "/company/careers": "/imagery/companyPage/careers.jpg",
   "/contact": "/imagery/contact-hud.png",
 };
@@ -22,7 +22,7 @@ const companyCircleImageClassNameByHref = {
   "/company/awards": "object-cover object-[50%_50%] opacity-100",
   "/company/leadership": "object-cover object-[50%_50%] opacity-100",
   "/products": "object-cover object-[58%_48%] opacity-100",
-  "/selected-engagements": "object-cover object-[58%_48%] opacity-100",
+  "/company/selected-engagements": "object-cover object-[58%_48%] opacity-100",
   "/company/careers": "object-cover object-[42%_48%] opacity-100",
   "/contact": "object-cover object-[50%_50%] opacity-100",
 };

@@ -155,7 +155,7 @@ export const companyLanding: LandingPageContent = {
     },
     {
       title: "Selected Engagements",
-      href: "/selected-engagements",
+      href: "/company/selected-engagements",
       description:
         "Representative long-term engineering partnerships across ERP, Industrial IoT, CRM mobility, and healthcare intelligence.",
     },

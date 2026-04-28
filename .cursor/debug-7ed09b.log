@@ -1,0 +1,3 @@
+{"sessionId":"7ed09b","runId":"pre-fix","hypothesisId":"H2","location":"components/services/ServiceDetailTemplate.tsx:14","message":"ServiceDetailTemplate invoked","data":{"slug":"dedicated-development-teams"},"timestamp":1777362100457}
+{"sessionId":"7ed09b","runId":"pre-fix","hypothesisId":"H3","location":"components/services/ServiceDetailTemplate.tsx:67","message":"Derived flags computed","data":{"isDedicatedDevelopmentTeams":true,"showWorkingModel":true,"moveCtaBelowWorkingModel":true},"timestamp":1777362100458}
+{"sessionId":"7ed09b","runId":"pre-fix","hypothesisId":"H4","location":"components/services/ServiceDetailTemplate.tsx:141","message":"Dedicated branch render path entered","data":{"slug":"dedicated-development-teams"},"timestamp":1777362100459}
