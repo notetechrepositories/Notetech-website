@@ -55,6 +55,8 @@ function HeroPatternBackground({ beige = false }: { beige?: boolean }) {
 type PageHeroProps = {
   breadcrumbs: BreadcrumbItem[];
   title: string;
+  /** Optional custom title node (overrides `title` text rendering) */
+  titleSlot?: ReactNode;
   /** Prominent line under the title (e.g. service “headline”) */
   subtitle?: string;
   description?: string;
@@ -78,6 +80,7 @@ type PageHeroProps = {
 export default function PageHero({
   breadcrumbs,
   title,
+  titleSlot,
   subtitle,
   description,
   badge,
@@ -124,9 +127,11 @@ export default function PageHero({
             }`}
           >
             <div className="flex flex-wrap items-start gap-4">
-              <h1 className={`text-display-sm max-w-4xl ${isLightTone ? "text-slate-900" : "text-white"}`}>
-                {title}
-              </h1>
+              {titleSlot ?? (
+                <h1 className={`text-display-sm max-w-4xl ${isLightTone ? "text-slate-900" : "text-white"}`}>
+                  {title}
+                </h1>
+              )}
               {badge ? (
                 <Badge
                   className={`mt-1 shrink-0 normal-case ${

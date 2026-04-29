@@ -4,6 +4,7 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import Button from "@/components/ui/Button";
 import type { ServiceDetail } from "@/data/services";
 import Image from "next/image";
+import DedicatedTeamPageContent from "@/components/services/DedicatedTeamPageContent";
 
 type ServiceDetailTemplateProps = {
   service: ServiceDetail;
@@ -14,12 +15,15 @@ export default function ServiceDetailTemplate({
 }: ServiceDetailTemplateProps) {
   const isDedicatedDevelopmentTeams =
     service.slug === "dedicated-development-teams";
+  const isSoftwareProductDevelopment =
+    service.slug === "software-product-development";
   const isCloudAwsModernization = service.slug === "cloud-aws-modernization";
   const isQaTestAutomation = service.slug === "qa-test-automation";
   const isSupportMaintenance = service.slug === "support-maintenance";
   const isAiWorkflowAutomation = service.slug === "ai-workflow-automation";
   const isIntegrationsApis = service.slug === "integrations-apis";
-  const isSoftwareProductDevelopment = service.slug === "software-product-development";
+  const isDedicatedStyleService =
+    isDedicatedDevelopmentTeams || isSoftwareProductDevelopment;
   const showWorkingModel =
     service.slug !== "software-product-development" &&
     service.slug !== "integrations-apis" &&
@@ -79,42 +83,59 @@ export default function ServiceDetailTemplate({
     ? "min-h-[23rem] lg:min-h-[30rem]"
     : "min-h-[28rem] lg:min-h-[36rem]";
 
+  const pageHero = (
+    <PageHero
+      breadcrumbs={[
+        { label: "Home", href: "/" },
+        { label: "Services", href: "/services" },
+        { label: service.title },
+      ]}
+      title={service.title}
+      titleSlot={
+        isDedicatedDevelopmentTeams ? (
+          <h1 className="text-display-sm max-w-4xl leading-[1.03] text-white">
+            <span className="block">Dedicated</span>
+            <span className="block text-[#5f84b0]">Development Teams</span>
+          </h1>
+        ) : isSoftwareProductDevelopment ? (
+          <h1 className="text-display-sm max-w-4xl leading-[1.03]">
+             <span className="block text-[#2f5f97]">Software</span>
+             <span className="block text-[#2f5f97]">Product Development</span>
+          </h1>
+        ) : undefined
+      }
+      subtitle={undefined}
+      description={undefined}
+      badge={service.badge}
+      tone={isSoftwareProductDevelopment ? "beigePattern" : "navy"}
+      contentMinHeightClassName="min-h-[6rem] sm:min-h-[7rem] lg:min-h-[8rem]"
+      backgroundDecor={
+        <div className="absolute -inset-y-[18%] -right-[2%] hidden w-[45%] overflow-hidden [clip-path:polygon(0_32%,100%_0,100%_68%,0_100%)] lg:block">
+          <Image
+            src="/imagery/capabilities-banner.jpg"
+            alt=""
+            fill
+            sizes="(max-width: 1024px) 100vw, 45vw"
+            className="absolute inset-0 h-full w-full object-cover object-[56%_50%] saturate-[0.92] contrast-[1.04]"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(118deg,rgb(8_18_36/0.45)_0%,transparent_50%),linear-gradient(to_top,rgb(8_18_36/0.28)_0%,transparent_42%)]" />
+        </div>
+      }
+    />
+  );
+
+  if (isDedicatedStyleService) {
+    return (
+      <>
+        {pageHero}
+        <DedicatedTeamPageContent service={service} />
+      </>
+    );
+  }
+
   return (
     <>
-      <PageHero
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Services", href: "/services" },
-          { label: service.title },
-        ]}
-        title={service.title}
-        subtitle={undefined}
-        description={undefined}
-        badge={service.badge}
-        children={
-          isDedicatedDevelopmentTeams ? (
-            undefined
-          ) : undefined
-        }
-        tone="navy"
-        contentMinHeightClassName={
-          "min-h-[6rem] sm:min-h-[7rem] lg:min-h-[8rem]"
-        }
-        backgroundDecor={
-          (
-            <div className="absolute -inset-y-[18%] -right-[2%] hidden w-[45%] overflow-hidden [clip-path:polygon(0_32%,100%_0,100%_68%,0_100%)] lg:block">
-              <Image
-                src="/imagery/capabilities-banner.jpg"
-                alt=""
-                fill
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                className="absolute inset-0 h-full w-full object-cover object-[56%_50%] saturate-[0.92] contrast-[1.04]"
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(118deg,rgb(8_18_36/0.45)_0%,transparent_50%),linear-gradient(to_top,rgb(8_18_36/0.28)_0%,transparent_42%)]" />
-            </div>
-          )
-        }
-      />
+      {pageHero}
 
       <HomeSection tone="white" className="!bg-white pt-2 pb-8 lg:pt-3 lg:pb-10">
           <div className="space-y-4 lg:space-y-6">

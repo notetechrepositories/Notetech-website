@@ -15,6 +15,8 @@ type HomeSectionProps = {
   className?: string;
   /** Alternate section background */
   tone?: "white" | "subtle" | "patterned";
+  /** Suppress scroll-reveal animation for this section */
+  disableAnimation?: boolean;
 };
 
 export default function HomeSection({
@@ -22,6 +24,7 @@ export default function HomeSection({
   children,
   className = "",
   tone = "white",
+  disableAnimation = false,
 }: HomeSectionProps) {
   const bg =
     tone === "patterned"
@@ -30,13 +33,14 @@ export default function HomeSection({
         ? "bg-surface-muted"
         : "bg-surface";
   const reduceMotion = useReducedMotion();
+  const noAnim = disableAnimation || reduceMotion;
 
   return (
     <motion.section
       id={id}
       className={`scroll-mt-20 ${bg} ${className}`}
-      initial={reduceMotion ? false : { opacity: 0, y: MOTION_REVEAL_Y }}
-      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+      initial={noAnim ? false : { opacity: 0, y: MOTION_REVEAL_Y }}
+      whileInView={noAnim ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2, margin: "0px 0px -10% 0px" }}
       transition={{ duration: MOTION_DURATION_REVEAL, ease: MOTION_EASE_STANDARD }}
     >
