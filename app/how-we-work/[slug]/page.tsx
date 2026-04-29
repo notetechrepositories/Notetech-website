@@ -1,4 +1,5 @@
 import DocPageTemplate from "@/components/content/DocPageTemplate";
+import DeliveryProcessTemplate from "@/components/content/DeliveryProcessTemplate";
 import {
   HOW_WE_WORK_SLUGS,
   howWeWorkPages,
@@ -32,6 +33,10 @@ export default async function HowWeWorkDetailPage(props: Props) {
   const { slug } = await props.params;
   const page = howWeWorkPages[slug as keyof typeof howWeWorkPages];
   if (!page) notFound();
+
+  if (slug === "delivery-process") {
+    return <DeliveryProcessTemplate page={page} />;
+  }
 
   return <DocPageTemplate page={page} />;
 }

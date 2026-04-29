@@ -1,6 +1,6 @@
 import HomeSection from "@/components/home/HomeSection";
 import PageHero from "@/components/marketing/PageHero";
-import ExpandableHowWeWorkCard from "@/components/content/ExpandableHowWeWorkCard";
+import HowWeWorkCardsGrid from "@/components/content/HowWeWorkCardsGrid";
 import Button from "@/components/ui/Button";
 import { technologyPage } from "@/data/technologyPage";
 import type { Metadata } from "next";
@@ -57,18 +57,7 @@ export default function TechnologyPage() {
 
       <HomeSection tone="white" className="!bg-white py-16 lg:py-20">
         <div className="space-y-8 lg:space-y-10">
-          <div className="grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-            {technologyPage.sections.map((section, index) => {
-              const imgSrc = PHOTO_CARD_IMAGES[index % PHOTO_CARD_IMAGES.length];
-              return (
-                <ExpandableHowWeWorkCard
-                  key={section.id}
-                  section={section}
-                  imgSrc={imgSrc}
-                />
-              );
-            })}
-          </div>
+          <HowWeWorkCardsGrid sections={technologyPage.sections} images={PHOTO_CARD_IMAGES} />
         </div>
       </HomeSection>
 

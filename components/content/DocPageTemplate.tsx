@@ -1,7 +1,7 @@
 import HomeSection from "@/components/home/HomeSection";
 import SectionHeading from "@/components/home/SectionHeading";
 import PageHero from "@/components/marketing/PageHero";
-import ExpandableHowWeWorkCard from "@/components/content/ExpandableHowWeWorkCard";
+import HowWeWorkCardsGrid from "@/components/content/HowWeWorkCardsGrid";
 import Button from "@/components/ui/Button";
 import VisualSlot from "@/components/visuals/VisualSlot";
 import type { VisualSlotId } from "@/data/visualSlots";
@@ -94,6 +94,8 @@ function LabelledText({ text }: { text: string }) {
 }
 
 export default function DocPageTemplate({ page }: DocPageTemplateProps) {
+  const isEngagementModelsPage = page.title === "Engagement Models";
+
   return (
     <>
       <PageHero
@@ -136,7 +138,12 @@ export default function DocPageTemplate({ page }: DocPageTemplateProps) {
 
       {page.sectionImages?.length ? (
         /* ── Card layout: beige bg, alternating image sides ── */
-        <HomeSection tone="white" className="!bg-white py-16 lg:py-20">
+        <HomeSection
+          tone="white"
+          className={`!bg-white ${
+            isEngagementModelsPage ? "py-8 lg:py-10" : "py-16 lg:py-20"
+          }`}
+        >
           <div className="space-y-8 lg:space-y-10">
             {page.contentHeading ? (
               <div>
@@ -146,14 +153,10 @@ export default function DocPageTemplate({ page }: DocPageTemplateProps) {
                 <div className="mt-2 h-0.5 w-10 bg-[#46c3e6]" />
               </div>
             ) : null}
-            <div className="grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-              {page.sections.map((section, index) => {
-                const imgSrc = PHOTO_CARD_IMAGES[index % PHOTO_CARD_IMAGES.length];
-                return (
-                  <ExpandableHowWeWorkCard key={section.title} section={section} imgSrc={imgSrc} />
-                );
-              })}
-            </div>
+            <HowWeWorkCardsGrid
+              sections={page.sections}
+              images={page.sectionImages ?? PHOTO_CARD_IMAGES}
+            />
           </div>
         </HomeSection>
       ) : (
@@ -243,19 +246,52 @@ export default function DocPageTemplate({ page }: DocPageTemplateProps) {
         </>
       )}
 
-      <HomeSection tone="white" className="!bg-white pb-16 lg:pb-20">
-        <section className="rounded-2xl bg-[#f7faff] p-8 text-center shadow-sm ring-1 ring-[#c9d9ee] lg:p-12">
+      <HomeSection
+        tone="white"
+        className={`!bg-white ${
+          isEngagementModelsPage
+            ? "-mt-10 pb-12 lg:-mt-12 lg:pb-16"
+            : "pb-16 lg:pb-20"
+        }`}
+      >
+        <section
+          className={`relative overflow-hidden rounded-2xl text-center ${
+            isEngagementModelsPage
+              ? "p-6 lg:p-8 shadow-[0_20px_45px_rgba(8,21,40,0.42)] ring-1 ring-[#6e93bb]/50"
+              : "bg-[#f7faff] p-8 shadow-sm ring-1 ring-[#c9d9ee] lg:p-12"
+          }`}
+        >
+          {isEngagementModelsPage ? (
+            <>
+              <Image
+                src="/imagery/companyPage/engagement.jpg"
+                alt=""
+                fill
+                sizes="(max-width: 1024px) 100vw, 1200px"
+                className="object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(7,22,42,0.82)_0%,rgba(11,35,64,0.72)_55%,rgba(6,18,36,0.86)_100%)]" />
+            </>
+          ) : null}
           {page.cta.title && (
-            <h2 className="font-display mb-4 text-2xl font-semibold tracking-tight text-slate-900">
+            <h2
+              className={`relative z-10 font-display mb-4 text-2xl font-semibold tracking-tight ${
+                isEngagementModelsPage ? "text-white" : "text-slate-900"
+              }`}
+            >
               {page.cta.title}
             </h2>
           )}
           {page.cta.description && (
-            <p className="mx-auto mb-8 max-w-xl text-[0.97rem] leading-relaxed text-slate-600">
+            <p
+              className={`relative z-10 mx-auto mb-6 max-w-xl text-[0.97rem] leading-relaxed ${
+                isEngagementModelsPage ? "text-[#d8e7f7]" : "text-slate-600"
+              }`}
+            >
               {page.cta.description}
             </p>
           )}
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="relative z-10 flex flex-wrap justify-center gap-3">
             <Button href={page.cta.primaryHref} variant="primary" className="px-6">
               {page.cta.primaryLabel}
             </Button>

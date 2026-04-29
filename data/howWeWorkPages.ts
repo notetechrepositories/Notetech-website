@@ -24,9 +24,12 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     visualSlot: "services",
     heroImageSrc: "/imagery/2623597.jpg",
     sectionImages: [
-      "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
-      "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
-      "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+      "/imagery/Dedicated Development Team.jpg",
+      "/imagery/Time & Materials.png",
+      "/imagery/Fixed Scope.jpg",
+      "/imagery/Support & Maintenance.jpg",
+      "/imagery/Team flexibility & replacement policy.jpg",
+      "/imagery/Client-owned IP.jpg",
     ],
     sections: [
       {
@@ -56,7 +59,7 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
               "Delivery happens in sprints with clear visibility",
               "Scope can evolve based on learnings and feedback",
             ],
-            note: "Good when: requirements change as you learn.",
+            note: "Good when you need: requirements to evolve as you learn.",
           },
         ],
       },
@@ -114,6 +117,8 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     ],
     cta: {
       title: "",
+      description:
+        "We help you choose the lowest-risk engagement model for predictable delivery and long-term ownership.",
       primaryLabel: "Schedule a Call",
       primaryHref: "/contact",
       secondaryLabel: "Request a Proposal",
@@ -131,8 +136,11 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     visualSlot: "quality",
     heroImageSrc: "/imagery/5415251564243.jpg",
     sectionImages: [
-      "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
-      "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+      "/imagery/Discovery.jpg",
+      "/imagery/Plan.jpg",
+      "/imagery/Kickoff.jpg",
+      "/imagery/Build and deliver.jpg",
+      "/imagery/Stabilize and improve.jpg",
     ],
     sections: [
       {
@@ -187,6 +195,8 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     ],
     cta: {
       title: "",
+      description:
+        "We apply this process to every engagement — let's walk through how it fits your project and team.",
       primaryLabel: "Talk to Delivery Leads",
       primaryHref: "/contact",
     },
