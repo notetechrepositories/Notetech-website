@@ -11,11 +11,13 @@ const COLS = 3;
 type HowWeWorkCardsGridProps = {
   sections: DocPageSection[];
   images: readonly string[];
+  isEngagementModelsPage?: boolean;
 };
 
 export default function HowWeWorkCardsGrid({
   sections,
   images,
+  isEngagementModelsPage = false,
 }: HowWeWorkCardsGridProps) {
   const [openCardIndex, setOpenCardIndex] = useState<number | null>(null);
 
@@ -54,6 +56,7 @@ export default function HowWeWorkCardsGrid({
                     section={section}
                     imgSrc={imgSrc}
                     isOpen={isOpen}
+                    isEngagementModelsPage={isEngagementModelsPage}
                     onToggle={() =>
                       setOpenCardIndex((prev) =>
                         prev === index ? null : index,
@@ -73,7 +76,10 @@ export default function HowWeWorkCardsGrid({
             {/* Content panel — anchored below this row only */}
             {activeSection ? (
               <div className="rounded-2xl border border-[#355b86] bg-[#123560] p-6 shadow-[0_10px_24px_rgba(16,33,51,0.28)] lg:p-8">
-                <HowWeWorkCardDetails section={activeSection} />
+                <HowWeWorkCardDetails
+                  section={activeSection}
+                  isEngagementModelsPage={isEngagementModelsPage}
+                />
               </div>
             ) : null}
           </div>

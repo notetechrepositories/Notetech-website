@@ -24,19 +24,33 @@ export type ServiceCta = {
   secondaryHref?: string;
 };
 
+export type RichItem = {
+  icon: string;
+  title: string;
+  description: string;
+};
+
 export type ServiceDetail = {
   slug: ServiceSlug;
   /** Navigation / card title */
   title: string;
+  /** Kicker shown in the intro section. Falls back to `title` when absent. */
+  introKicker?: string;
   imageSrc?: string;
   imageAlt?: string;
   /** Per-section images: [bestFor, whatYouGet, workingModel]. Falls back to imageSrc. */
   sectionImages?: [string?, string?, string?];
   /** Large page headline (often differs from H1 in doc — we use one strong line) */
   headline: string;
+  /** Optional two-line split for the headline, used in rich layout. */
+  headlineLines?: [string, string];
   intro: string;
   bestFor: string[];
+  /** Rich version of bestFor with icon, title and description per item. */
+  bestForRich?: RichItem[];
   whatYouGet: string[];
+  /** Rich version of whatYouGet with icon, title and description per item. */
+  whatYouGetRich?: RichItem[];
   workingModel?: string;
   toolsCapabilities?: string[];
   cta: ServiceCta;
@@ -65,6 +79,7 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "dedicated-development-teams": {
     slug: "dedicated-development-teams",
     title: "Dedicated Development Teams",
+    introKicker: "The Engineering Advantage",
     imageSrc: "/imagery/service-dedicated-team.jpg",
     imageAlt: "Software development team collaborating around project deliverables",
     sectionImages: [
@@ -73,12 +88,33 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
       "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
     ],
     headline: "Stable engineering capacity aligned to your roadmap",
+    headlineLines: ["Stable engineering capacity", "aligned to your roadmap"],
     intro:
       "Build a dedicated team that operates as an extension of your organization—clear ownership, transparent tracking, and maintainable delivery.",
     bestFor: [
       "Continuous product development and roadmap execution",
       "Enterprise platforms needing reliable capacity",
       "Long-running programs where knowledge retention matters",
+    ],
+    bestForRich: [
+      {
+        icon: "refresh",
+        title: "Continuous product development",
+        description:
+          "Ideal for ongoing feature releases and iterative improvement cycles where context retention is critical.",
+      },
+      {
+        icon: "building",
+        title: "Enterprise platforms",
+        description:
+          "Robust engineering for complex internal systems that require long-term stability and high security standards.",
+      },
+      {
+        icon: "calendar",
+        title: "Long-running programs",
+        description:
+          "Partnerships focused on multi-year technical roadmaps requiring dedicated domain expertise and scaling.",
+      },
     ],
     whatYouGet: [
       "Dedicated engineers (lead + senior developers + QA; DevOps as needed)",
@@ -87,12 +123,46 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
       "Engineering discipline: code reviews, testing, maintainability",
       "Continuity planning to reduce single points of failure",
     ],
+    whatYouGetRich: [
+      {
+        icon: "users",
+        title: "Dedicated engineers",
+        description:
+          "A hand-picked team that works exclusively for you, becoming a natural extension of your organization.",
+      },
+      {
+        icon: "clock",
+        title: "1-2 week cycles",
+        description:
+          "Fast-paced delivery with regular demos and retrospectives to ensure constant alignment and velocity.",
+      },
+      {
+        icon: "file-text",
+        title: "Written progress updates",
+        description:
+          "Transparent documentation of every sprint, featuring detailed technical decisions and roadmap progress.",
+      },
+      {
+        icon: "medal",
+        title: "Engineering discipline",
+        description:
+          "Rigorous standards for code quality, automated testing, and CI/CD pipelines as part of the team's DNA.",
+      },
+      {
+        icon: "shield",
+        title: "Continuity planning",
+        description:
+          "Proactive management of team health and knowledge transfer to ensure zero disruption to your workflow.",
+      },
+    ],
     workingModel:
       "You set priorities and requirements; our team designs, builds, tests, and maintains the software while adapting to your tools and standards.",
     cta: {
       title: "Schedule a Call",
       primaryLabel: "Schedule a Call",
       primaryHref: "/contact",
+      secondaryLabel: "Download Brochure",
+      secondaryHref: "/brochure",
     },
     metaTitle: "Dedicated Development Teams",
     metaDescription:
@@ -145,6 +215,7 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "cloud-aws-modernization": {
     slug: "cloud-aws-modernization",
     title: "Cloud & AWS Modernization",
+    introKicker: "Cloud Engineering",
     imageSrc: "/imagery/service/aws.jpg",
     imageAlt: "Cloud infrastructure and hardware environment for modernization services",
     sectionImages: [
@@ -160,12 +231,64 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
       "AWS migration and cloud readiness",
       "Reliability and performance improvements",
     ],
+    bestForRich: [
+      {
+        icon: "building",
+        title: "Legacy systems modernization",
+        description:
+          "Best suited for platforms that are difficult to scale, costly to maintain, or fragile during change.",
+      },
+      {
+        icon: "refresh",
+        title: "Cloud migration readiness",
+        description:
+          "Structured planning and phased execution for teams moving workloads and services into AWS safely.",
+      },
+      {
+        icon: "shield",
+        title: "Reliability-focused upgrades",
+        description:
+          "Improve stability, observability, and performance without disrupting day-to-day operations.",
+      },
+    ],
     whatYouGet: [
       "Assessment + phased modernization plan",
       "Migration approach with rollback strategy",
       "CI/CD improvements (where applicable)",
       "Monitoring and alerting aligned to your environment",
       "Cost-aware architecture decisions",
+    ],
+    whatYouGetRich: [
+      {
+        icon: "file-text",
+        title: "Assessment and phased roadmap",
+        description:
+          "A clear modernization plan with prioritized milestones based on technical risk and business impact.",
+      },
+      {
+        icon: "calendar",
+        title: "Migration with rollback strategy",
+        description:
+          "Execution sequencing that includes rollback options, minimizing service risk during each transition phase.",
+      },
+      {
+        icon: "clock",
+        title: "CI/CD and release flow improvements",
+        description:
+          "Practical automation improvements aligned to your existing tooling, governance, and release cadence.",
+      },
+      {
+        icon: "medal",
+        title: "Monitoring and alerting alignment",
+        description:
+          "Operational visibility designed around your environment so teams can detect and resolve issues faster.",
+      },
+      {
+        icon: "users",
+        title: "Cost-aware architecture decisions",
+        description:
+          "Modernization choices that balance reliability, performance, and long-term cloud operating cost.",
+      },
     ],
     toolsCapabilities: [
       "EC2, RDS, S3, CloudFront, Lambda (based on need)",

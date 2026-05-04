@@ -14,9 +14,8 @@ export const selectedEngagementsLanding = {
   metaDescription:
     "Representative long-term engagements across ERP, Industrial IoT, CRM mobility, and healthcare intelligence. Details are generalized and expanded under NDA where appropriate.",
   title: "Selected Engagements",
-  headline: "Representative long-term product engineering partnerships",
-  intro:
-    "These engagements reflect the kind of work Notetech is built for: multi-year partnerships, business-critical systems, disciplined delivery, and IP-sensitive collaboration. Some client details remain confidential and can be shared during qualified discussions.",
+  headline: "",
+  intro: "",
 } as const;
 
 export const selectedEngagements: SelectedEngagement[] = [
@@ -24,7 +23,7 @@ export const selectedEngagements: SelectedEngagement[] = [
     slug: "erp-cloud-platform",
     title: "Enterprise ERP & Cloud Platform Engineering Partner",
     summary:
-      "Long-term engineering partnership spanning ERP extensions, integration platforms, workflow automation, cloud modernization, and managed support for a North American client.",
+      "Long-term dedicated team partnership (2015–present) with a Canada-based global ERP and digital transformation company—product engineering, integrations, workflow automation, and cloud modernization under NDA.",
     stack: [".NET", "AWS", "REST APIs", "ERP", "CI/CD"],
     outcome:
       "10+ years of active collaboration demonstrating product-level engineering depth, structured offshore governance, and scalable long-term delivery.",
@@ -88,31 +87,128 @@ export const selectedEngagementsDocPage: DocPageData = {
   metaDescription: selectedEngagementsLanding.metaDescription,
   headline: selectedEngagementsLanding.headline,
   intro: selectedEngagementsLanding.intro,
-  contentHeading: "Selected engagement snapshots",
   parentLabel: "Company",
   parentHref: "/company",
   visualSlot: "case-studies",
-  heroImageSrc: "/imagery/companyPage/engagement.jpg",
   sectionImages: [
-    "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
-    "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
-    "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+    "/imagery/ERP.jpg",
+    "/imagery/technology-analytics.jpg",
+    "/imagery/service-product-development.jpg",
+    "/imagery/audience-enterprise-it.jpg",
   ],
-  sections: selectedEngagements.map((engagement) => ({
-    title: engagement.title,
-    description: engagement.summary,
-    subsections: [
-      {
-        heading: "Stack",
-        bullets: engagement.stack,
-      },
-      {
-        heading: "Engagement details",
-        bullets: engagement.details,
-        note: `Outcome: ${engagement.outcome}`,
-      },
-    ],
-  })),
+  sections: [
+    {
+      title: "Enterprise ERP & Cloud Platform Engineering Partner",
+      description: "(Client Confidential – Details Shared Prior to Engagement)",
+      subsectionIndicesUnderImage: [2],
+      subsections: [
+        {
+          heading: "Overview",
+          headingStyle: "subtitle",
+          paragraphs: [
+            "Since 2015 (ongoing through 2026), Notetech has been the long-term engineering partner for a Canada-based global ERP and digital transformation company serving mid-market and enterprise customers across North America.",
+            "Engagements are covered by signed NDAs: we do not publish the client name or commercial product branding here. Appropriate detail can be shared with you before formal discussions.",
+          ],
+        },
+        {
+          heading: "This engagement spans:",
+          bullets: [
+            "ERP product engineering",
+            "Integration platform development",
+            "Workflow automation systems",
+            "Cloud modernization",
+            "Multi-entity financial tooling",
+            "Ongoing enhancement & managed support",
+          ],
+          note: "The relationship continues as a strategic, multi-year partnership.",
+          noteWrap: "card",
+        },
+        {
+          heading: "Engagement Snapshot",
+          headingStyle: "subtitle",
+          wrap: "card",
+          bullets: [
+            "Duration: 2015 – Present (10+ Years)",
+            "Region: Canada / North America",
+            "Model: Dedicated Offshore Development Team",
+            "Focus: ERP Extensions, Integration Platforms, Workflow Automation",
+            "Status: Active & Expanding",
+          ],
+        },
+        {
+          heading: "Product Engineering Contributions",
+          headingStyle: "subtitle",
+          paragraphsWidth: "full",
+          paragraphs: [
+            "Our Notetech engineering team has contributed to the development, enhancement, and support of multiple enterprise software products including:",
+          ],
+          bulletsStructured: [
+            {
+              icon: "layers",
+              title: "Industry-Specific ERP Platform",
+              description:
+                "All-in-one ERP solution tailored for specialized manufacturing & distribution sectors.",
+            },
+            {
+              icon: "integration",
+              title: "Cloud Integration Platform",
+              description:
+                "A modern integration layer connecting ERP systems with third-party applications, enabling secure data flow and real-time synchronization.",
+            },
+            {
+              icon: "portal",
+              title: "Experience & Portal Platform",
+              description:
+                "A digital experience layer that allows organizations to publish portals, manage customer interactions, and extend ERP functionality outward.",
+            },
+            {
+              icon: "ledger",
+              title: "Multi-Entity Financial Management Tool",
+              description:
+                "Advanced intercompany accounting and consolidated reporting framework built on enterprise ERP systems.",
+            },
+            {
+              icon: "automation",
+              title: "Document & Workflow Automation Platform",
+              description:
+                "Automation engine for purchasing workflows, sales order processing, expense management, and operational document routing.",
+            },
+          ],
+          note: "These platforms are deployed across North American enterprises and support complex business environments.",
+          noteWrap: "card",
+        },
+        {
+          heading: "Why This Engagement Matters",
+          headingStyle: "subtitle",
+          bullets: [
+            "Long-term enterprise trust",
+            "Product-level engineering capability",
+            "ERP & integration domain depth",
+            "Cultural alignment with Western companies",
+            "Structured offshore governance",
+            "Scalable engineering partnership",
+            "Notetech is not a short-term vendor.",
+            "We are a long-term product engineering partner.",
+          ],
+        },
+      ],
+    },
+    ...selectedEngagements.slice(1).map((engagement) => ({
+      title: engagement.title,
+      description: engagement.summary,
+      subsections: [
+        {
+          heading: "Stack",
+          bullets: engagement.stack,
+        },
+        {
+          heading: "Engagement details",
+          bullets: engagement.details,
+          note: `Outcome: ${engagement.outcome}`,
+        },
+      ],
+    })),
+  ],
   cta: {
     title: "Discuss relevant engagements under NDA",
     description:

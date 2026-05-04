@@ -12,10 +12,31 @@ export type DocCard = {
   body: string;
 };
 
+/** Title + description row with optional lead icon (see `DeliveryProcessTemplate` icon set). */
+export type DocBulletStructuredItem = {
+  title: string;
+  description: string;
+  icon?: "layers" | "integration" | "portal" | "ledger" | "automation";
+};
+
 export type DocSubsection = {
   heading: string;
+  /** Default / `"kicker"`: small uppercase label. `"subtitle"`: display sub-heading. */
+  headingStyle?: "kicker" | "subtitle";
+  /** `"card"`: entire subsection (heading + body) in a bordered panel. */
+  wrap?: "card";
+  /** `"full"`: paragraph block spans parent width (not `max-w-prose`). */
+  paragraphsWidth?: "prose" | "full";
+  /** Body copy as paragraphs (no list markers). Shown after heading, before bullets. */
+  paragraphs?: string[];
+  /** `"titleDescription"`: each bullet splits on an em/en dash into a title line + description line. */
+  bulletsLayout?: "default" | "titleDescription";
+  /** When set, rendered as title + description rows with optional icons; takes precedence over `bullets`. */
+  bulletsStructured?: DocBulletStructuredItem[];
   bullets?: string[];
   note?: string;
+  /** `"card"`: note in a small bordered panel instead of italic body text. */
+  noteWrap?: "card";
 };
 
 export type DocPageSection = {
@@ -23,6 +44,8 @@ export type DocPageSection = {
   description?: string;
   bullets?: string[];
   subsections?: DocSubsection[];
+  /** 0-based indices of `subsections` rendered below the section image (right column, lg+). Used by DeliveryProcessTemplate. */
+  subsectionIndicesUnderImage?: number[];
   cards?: DocCard[];
   columns?: 1 | 2 | 3;
 };
@@ -156,6 +179,7 @@ export default function DocPageTemplate({ page }: DocPageTemplateProps) {
             <HowWeWorkCardsGrid
               sections={page.sections}
               images={page.sectionImages ?? PHOTO_CARD_IMAGES}
+              isEngagementModelsPage={isEngagementModelsPage}
             />
           </div>
         </HomeSection>
@@ -199,9 +223,24 @@ export default function DocPageTemplate({ page }: DocPageTemplateProps) {
                   <div className="grid gap-6">
                     {section.subsections.map((sub, si) => (
                       <div key={si}>
-                        <p className="mb-3 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-primary">
-                          {sub.heading}
-                        </p>
+                        {sub.headingStyle === "subtitle" ? (
+                          <h3 className="mb-3 font-display text-lg font-semibold tracking-tight text-slate-900 sm:text-xl">
+                            {sub.heading}
+                          </h3>
+                        ) : (
+                          <p className="mb-3 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-primary">
+                            {sub.heading}
+                          </p>
+                        )}
+                        {sub.paragraphs?.length ? (
+                          <div className="mb-3 max-w-prose space-y-3 text-[0.95rem] leading-relaxed text-slate-700">
+                            {sub.paragraphs.map((para, pi) => (
+                              <p key={pi} className="text-pretty">
+                                {para}
+                              </p>
+                            ))}
+                          </div>
+                        ) : null}
                         {sub.bullets?.length ? (
                           <ul className="grid gap-3">
                             {sub.bullets.map((item) => (

@@ -1,4 +1,6 @@
 import DocPageTemplate from "@/components/content/DocPageTemplate";
+import CareersPageContent from "@/components/company/CareersPageContent";
+import AwardsPageContent from "@/components/company/AwardsPageContent";
 import { COMPANY_SLUGS, companyPages } from "@/data/companyPages";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -29,6 +31,13 @@ export default async function CompanyDetailPage(props: Props) {
   const { slug } = await props.params;
   const page = companyPages[slug as keyof typeof companyPages];
   if (!page) notFound();
+
+  if (slug === "careers") {
+    return <CareersPageContent page={page} />;
+  }
+  if (slug === "awards") {
+    return <AwardsPageContent page={page} />;
+  }
 
   return <DocPageTemplate page={page} />;
 }

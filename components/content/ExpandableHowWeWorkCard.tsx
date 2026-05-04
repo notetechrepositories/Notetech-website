@@ -42,30 +42,82 @@ function parseLabelledText(text: string) {
   };
 }
 
-function InnerDetailCard({ text, compact = false }: { text: string; compact?: boolean }) {
+function InnerDetailCard({
+  text,
+  compact = false,
+  isEngagementModelsPage = false,
+}: {
+  text: string;
+  compact?: boolean;
+  isEngagementModelsPage?: boolean;
+}) {
   return (
     <div
       className={`flex items-start gap-3 rounded-lg bg-[#8ea4bd] px-3 py-2 leading-relaxed text-[#f2f6fb] ${
         compact ? "text-[0.84rem]" : "text-[0.9rem]"
       }`}
     >
-      <span className="mt-px shrink-0 font-semibold text-[#e5edf7]">›</span>
+      <BulletMarker isEngagementModelsPage={isEngagementModelsPage} />
       <span className="whitespace-pre-line">{text}</span>
     </div>
   );
 }
 
-function SubsectionBlock({ sub }: { sub: DocSubsection }) {
+function BulletMarker({ isEngagementModelsPage }: { isEngagementModelsPage: boolean }) {
+  if (isEngagementModelsPage) {
+    return (
+      <span
+        className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[#c8d9ec]/60 bg-[#1f4f7f]"
+        aria-hidden
+      >
+        <svg viewBox="0 0 20 20" className="h-3 w-3 text-[#f2f8ff]" fill="none">
+          <path
+            d="M5.5 10.5 8.6 13.6 14.5 7.7"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </span>
+    );
+  }
+
+  return <span className="mt-px shrink-0 font-semibold text-[#e5edf7]">›</span>;
+}
+
+function SubsectionBlock({
+  sub,
+  isEngagementModelsPage,
+}: {
+  sub: DocSubsection;
+  isEngagementModelsPage: boolean;
+}) {
   const parsedNote = sub.note ? parseLabelledText(sub.note) : null;
   const isGoodWhenYouNeedNote =
     parsedNote?.label?.toLowerCase() === "good when you need";
 
   return (
     <div>
-      <p className="mb-1.5 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-[#d9e4f0]">
-        {sub.heading}
-      </p>
+      {sub.headingStyle === "subtitle" ? (
+        <p className="mb-2 font-display text-base font-semibold tracking-tight text-white sm:text-lg">
+          {sub.heading}
+        </p>
+      ) : (
+        <p className="mb-1.5 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-[#d9e4f0]">
+          {sub.heading}
+        </p>
+      )}
       <div className="mb-3 h-px bg-[#a7b9cc]/35" />
+      {sub.paragraphs?.length ? (
+        <div className="mb-3 max-w-prose space-y-3 text-[0.9rem] leading-relaxed text-[#f2f6fb]">
+          {sub.paragraphs.map((para, pi) => (
+            <p key={pi} className="text-pretty">
+              {para}
+            </p>
+          ))}
+        </div>
+      ) : null}
       {sub.bullets?.length ? (
         <ul className="space-y-2">
           {sub.bullets.map((item, i) => (
@@ -73,7 +125,7 @@ function SubsectionBlock({ sub }: { sub: DocSubsection }) {
               key={i}
               className="flex items-start gap-3 rounded-lg bg-[#8ea4bd] px-3 py-2 text-[0.9rem] leading-relaxed text-[#f2f6fb]"
             >
-              <span className="mt-px shrink-0 font-semibold text-[#e5edf7]">›</span>
+              <BulletMarker isEngagementModelsPage={isEngagementModelsPage} />
               <span className="whitespace-pre-line">{item}</span>
             </li>
           ))}
@@ -86,7 +138,10 @@ function SubsectionBlock({ sub }: { sub: DocSubsection }) {
               {parsedNote.label}
             </p>
             <div className="mb-3 h-px bg-[#a7b9cc]/35" />
-            <InnerDetailCard text={parsedNote.body} />
+            <InnerDetailCard
+              text={parsedNote.body}
+              isEngagementModelsPage={isEngagementModelsPage}
+            />
           </div>
         ) : (
           <div className="mt-3 rounded-xl border-l-2 border-[#dbe7f4]/55 bg-[#8ea4bd] px-4 py-3">
@@ -115,12 +170,19 @@ type ExpandableHowWeWorkCardProps = {
   section: DocPageSection;
   imgSrc: string;
   isOpen: boolean;
+  isEngagementModelsPage?: boolean;
   onToggle: () => void;
   onHoverOpen: () => void;
   onHoverClose: () => void;
 };
 
-export function HowWeWorkCardDetails({ section }: { section: DocPageSection }) {
+export function HowWeWorkCardDetails({
+  section,
+  isEngagementModelsPage = false,
+}: {
+  section: DocPageSection;
+  isEngagementModelsPage?: boolean;
+}) {
   const parsedDescription = section.description
     ? parseLabelledText(section.description)
     : null;
@@ -156,14 +218,22 @@ export function HowWeWorkCardDetails({ section }: { section: DocPageSection }) {
                 {parsedDescription?.label}
               </p>
               <div className="mb-3 h-px bg-[#a7b9cc]/35" />
-              <InnerDetailCard text={parsedDescription?.body ?? ""} compact={isTimeAndMaterials} />
+              <InnerDetailCard
+                text={parsedDescription?.body ?? ""}
+                compact={isTimeAndMaterials}
+                isEngagementModelsPage={isEngagementModelsPage}
+              />
             </div>
             <div>
               <p className="mb-1.5 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-[#d9e4f0]">
                 {parsedPrimaryNote?.label}
               </p>
               <div className="mb-3 h-px bg-[#a7b9cc]/35" />
-              <InnerDetailCard text={parsedPrimaryNote?.body ?? ""} compact={isTimeAndMaterials} />
+              <InnerDetailCard
+                text={parsedPrimaryNote?.body ?? ""}
+                compact={isTimeAndMaterials}
+                isEngagementModelsPage={isEngagementModelsPage}
+              />
             </div>
           </div>
           <div>
@@ -177,7 +247,7 @@ export function HowWeWorkCardDetails({ section }: { section: DocPageSection }) {
                   key={i}
                   className="flex items-start gap-3 rounded-lg bg-[#8ea4bd] px-3 py-2 text-[0.9rem] leading-relaxed text-[#f2f6fb]"
                 >
-                  <span className="mt-px shrink-0 font-semibold text-[#e5edf7]">›</span>
+                  <BulletMarker isEngagementModelsPage={isEngagementModelsPage} />
                   <span className="whitespace-pre-line">{item}</span>
                 </li>
               ))}
@@ -191,7 +261,10 @@ export function HowWeWorkCardDetails({ section }: { section: DocPageSection }) {
               {parsedDescription?.label}
             </p>
             <div className="mb-3 h-px bg-[#a7b9cc]/35" />
-            <InnerDetailCard text={parsedDescription?.body ?? ""} />
+            <InnerDetailCard
+              text={parsedDescription?.body ?? ""}
+              isEngagementModelsPage={isEngagementModelsPage}
+            />
           </div>
           <div>
             <p className="mb-1.5 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-[#d9e4f0]">
@@ -204,7 +277,7 @@ export function HowWeWorkCardDetails({ section }: { section: DocPageSection }) {
                   key={i}
                   className="flex items-start gap-3 rounded-lg bg-[#8ea4bd] px-3 py-2 text-[0.9rem] leading-relaxed text-[#f2f6fb]"
                 >
-                  <span className="mt-px shrink-0 font-semibold text-[#e5edf7]">›</span>
+                  <BulletMarker isEngagementModelsPage={isEngagementModelsPage} />
                   <span className="whitespace-pre-line">{item}</span>
                 </li>
               ))}
@@ -215,7 +288,10 @@ export function HowWeWorkCardDetails({ section }: { section: DocPageSection }) {
               {parsedPrimaryNote?.label}
             </p>
             <div className="mb-3 h-px bg-[#a7b9cc]/35" />
-            <InnerDetailCard text={parsedPrimaryNote?.body ?? ""} />
+            <InnerDetailCard
+              text={parsedPrimaryNote?.body ?? ""}
+              isEngagementModelsPage={isEngagementModelsPage}
+            />
           </div>
         </div>
       ) : (
@@ -228,7 +304,10 @@ export function HowWeWorkCardDetails({ section }: { section: DocPageSection }) {
                 </p>
                 <div className="mb-3 h-px bg-[#a7b9cc]/35" />
                 {parsedDescription?.body ? (
-                  <InnerDetailCard text={parsedDescription.body} />
+                  <InnerDetailCard
+                    text={parsedDescription.body}
+                    isEngagementModelsPage={isEngagementModelsPage}
+                  />
                 ) : null}
               </div>
             ) : (
@@ -240,7 +319,11 @@ export function HowWeWorkCardDetails({ section }: { section: DocPageSection }) {
           {section.subsections?.length ? (
             <div className="grid gap-6 lg:grid-cols-2">
               {section.subsections.map((sub, si) => (
-                <SubsectionBlock key={si} sub={sub} />
+                <SubsectionBlock
+                  key={si}
+                  sub={sub}
+                  isEngagementModelsPage={isEngagementModelsPage}
+                />
               ))}
             </div>
           ) : section.bullets?.length ? (
@@ -259,7 +342,7 @@ export function HowWeWorkCardDetails({ section }: { section: DocPageSection }) {
                           key={i}
                           className="flex items-start gap-3 rounded-lg bg-[#8ea4bd] px-3 py-2 text-[0.9rem] leading-relaxed text-[#f2f6fb]"
                         >
-                          <span className="mt-px shrink-0 font-semibold text-[#e5edf7]">›</span>
+                          <BulletMarker isEngagementModelsPage={isEngagementModelsPage} />
                           <span className="whitespace-pre-line">{item}</span>
                         </li>
                       ))}
@@ -273,7 +356,7 @@ export function HowWeWorkCardDetails({ section }: { section: DocPageSection }) {
                       key={i}
                       className="flex items-start gap-3 rounded-lg bg-[#8ea4bd] px-3 py-2 text-[0.9rem] leading-relaxed text-[#f2f6fb]"
                     >
-                      <span className="mt-px shrink-0 font-semibold text-[#e5edf7]">›</span>
+                      <BulletMarker isEngagementModelsPage={isEngagementModelsPage} />
                       <span className="whitespace-pre-line">{item}</span>
                     </li>
                   ))}
@@ -292,6 +375,7 @@ export default function ExpandableHowWeWorkCard({
   section,
   imgSrc,
   isOpen,
+  isEngagementModelsPage: _isEngagementModelsPage = false,
   onToggle,
   onHoverOpen,
   onHoverClose,

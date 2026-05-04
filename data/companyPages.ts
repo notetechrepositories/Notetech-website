@@ -161,10 +161,10 @@ export const companyPages: Record<CompanySlug, DocPageData> = {
   awards: {
     title: "Awards & Recognition",
     metaDescription:
-      "Industry recognition and notable outcomes connected to client products developed with Notetech.",
-    headline: "Recognition earned through long-term product delivery",
+      "Award-winning client products built with Notetech—stable delivery, delighted users, and industry recognition including IBM Lotus / PartnerWorld ecosystem.",
+    headline: "Award-winning client products built with Notetech",
     intro:
-      "Over the years, client products developed with Notetech have received industry recognition, including award and finalist acknowledgements within the IBM Lotus and PartnerWorld ecosystem. Additional detail can be shared under NDA where appropriate.",
+      "Great offshore delivery is proven in outcomes—stable products, delighted users, and industry recognition. Over the years, several client products developed with Notetech Software have received major awards and finalist recognitions—especially within the IBM Lotus / PartnerWorld ecosystem.\n\nThese recognitions were awarded to our client companies for solutions that Notetech helped architect, build, and deliver.",
     parentLabel: "Company",
     parentHref: "/company",
     visualSlot: "case-studies",
@@ -173,34 +173,7 @@ export const companyPages: Record<CompanySlug, DocPageData> = {
       "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
       "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
     ],
-    sections: [
-      {
-        title: "Recognition themes from our track record",
-        bullets: [
-          "Industry recognition connected to enterprise CRM and mobility platforms developed with Notetech.",
-          "Award and finalist recognition within the IBM Lotus and PartnerWorld ecosystem.",
-          "Long-term retention after strategic IP and source-code transitions, reinforcing engineering trust.",
-        ],
-      },
-      {
-        title: "Notable outcomes",
-        cards: [
-          {
-            title: "Source code acquisition milestone",
-            body: "Source code developed by Notetech for a U.S. client was later acquired by a California-based global CRM software company, which then retained Notetech as its engineering partner for continued development and maintenance.",
-          },
-          {
-            title: "Enterprise-scale continuity",
-            body: "Multiple engagements in CRM, ERP, Industrial IoT, and healthcare intelligence demonstrate multi-year engineering continuity under strong security and IP constraints.",
-          },
-          {
-            title: "Recognition beyond marketing claims",
-            body: "The strongest signal in the document is not trophy language alone but sustained retention, product evolution, and trust through complex delivery cycles and platform transitions.",
-          },
-        ],
-        columns: 3,
-      },
-    ],
+    sections: [],
     cta: {
       title: "Ask for the deeper context under NDA",
       description:
