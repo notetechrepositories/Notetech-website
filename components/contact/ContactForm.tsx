@@ -71,6 +71,11 @@ const TIMELINE_OPTIONS = [
   { value: "exploring", label: "Exploring" },
 ];
 
+/** When true, form submits without hCaptcha or backend storage (CEO preview / Amplify demo). */
+const contactFormDemo =
+  process.env.NEXT_PUBLIC_CONTACT_DEMO === "1" ||
+  process.env.NEXT_PUBLIC_CONTACT_DEMO?.toLowerCase() === "true";
+
 const labelClass = "block text-sm font-semibold text-headline mb-1.5";
 const inputClass =
   "w-full rounded-[var(--radius-card)] border border-border-subtle bg-surface px-3.5 py-2.5 text-sm text-headline placeholder:text-ink-subtle focus:border-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/15 transition-[border-color,box-shadow] duration-200";
@@ -336,17 +341,25 @@ export default function ContactForm() {
       </div>
 
       {/* Hidden field carries the captcha token into FormData */}
-      <input type="hidden" name="captchaToken" value={captchaToken ?? ""} />
+      <input
+        type="hidden"
+        name="captchaToken"
+        value={contactFormDemo ? "demo" : captchaToken ?? ""}
+      />
 
-      {/* hCaptcha widget */}
-      <div className="flex justify-start">
-        <HCaptcha
-          ref={captchaRef}
-          sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY ?? "10000000-ffff-ffff-ffff-000000000001"}
-          onVerify={(token) => setCaptchaToken(token)}
-          onExpire={() => setCaptchaToken(null)}
-        />
-      </div>
+      {/* hCaptcha widget (hidden in demo — API accepts without real verification) */}
+      {!contactFormDemo ? (
+        <div className="flex justify-start">
+          <HCaptcha
+            ref={captchaRef}
+            sitekey={
+              process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY ?? "10000000-ffff-ffff-ffff-000000000001"
+            }
+            onVerify={(token) => setCaptchaToken(token)}
+            onExpire={() => setCaptchaToken(null)}
+          />
+        </div>
+      ) : null}
 
       {state.status === "error" && (
         <p className="text-sm text-red-600">{state.message}</p>
@@ -355,7 +368,7 @@ export default function ContactForm() {
       <div className="flex flex-col items-center gap-3 pt-1">
         <Button
           type="submit"
-          disabled={pending || !captchaToken}
+          disabled={pending || (!contactFormDemo && !captchaToken)}
           className="inline-flex items-center gap-2 px-6 py-2.5 text-sm"
         >
           {pending ? (

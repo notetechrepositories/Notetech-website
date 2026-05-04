@@ -3,8 +3,25 @@ import { Resend } from "resend";
 import { getPool } from "@/lib/db";
 
 export const runtime = "nodejs";
+/** Avoid static analysis / build issues for this route */
+export const dynamic = "force-dynamic";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResend(): Resend | null {
+  const key = process.env.RESEND_API_KEY?.trim();
+  if (!key) return null;
+  return new Resend(key);
+}
+
+/**
+ * Demo / design preview: no DB, email, captcha, or rate limits.
+ * Amplify: set `CONTACT_BACKEND_DISABLED=true` (server) and/or `NEXT_PUBLIC_CONTACT_DEMO=true` (client + server).
+ */
+function isContactBackendDisabled(): boolean {
+  const flag = (v: string | undefined) => v === "1" || v?.toLowerCase() === "true";
+  return (
+    flag(process.env.CONTACT_BACKEND_DISABLED) || flag(process.env.NEXT_PUBLIC_CONTACT_DEMO)
+  );
+}
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -140,6 +157,24 @@ export async function POST(req: Request) {
     );
   }
 
+  const fields = {
+    fullName,
+    workEmail,
+    phoneNumber: str(body.phoneNumber, 80),
+    company,
+    role: str(body.role, 120),
+    lookingFor,
+    projectSummary,
+    timeline,
+    securityRequirements: str(body.securityRequirements, 2000),
+    contactMethod: str(body.contactMethod, 80),
+  };
+
+  if (isContactBackendDisabled()) {
+    console.info("contact: CONTACT_BACKEND_DISABLED — skipping captcha, DB, email");
+    return NextResponse.json({ ok: true, demo: true }, { status: 201 });
+  }
+
   // 3. hCaptcha verification
   const captchaToken = str(body.captchaToken, 2000);
   if (!captchaToken) {
@@ -178,19 +213,6 @@ export async function POST(req: Request) {
   }
 
   // 5. Insert into Postgres
-  const fields = {
-    fullName,
-    workEmail,
-    phoneNumber: str(body.phoneNumber, 80),
-    company,
-    role: str(body.role, 120),
-    lookingFor,
-    projectSummary,
-    timeline,
-    securityRequirements: str(body.securityRequirements, 2000),
-    contactMethod: str(body.contactMethod, 80),
-  };
-
   try {
     const pool = getPool();
     await pool.query(
@@ -220,17 +242,22 @@ export async function POST(req: Request) {
   }
 
   // 6. Send email to sales
-  try {
-    await resend.emails.send({
-      from: "noreply@notetech.com",
-      to: "sales@notetech.com",
-      subject: `New lead: ${fields.fullName} from ${fields.company ?? "unknown"}`,
-      html: buildEmailHtml(fields),
-      replyTo: fields.workEmail,
-    });
-  } catch (e) {
-    // Email failure must not surface as a user error — lead is already saved
-    console.error("Resend email failed:", e);
+  const resend = getResend();
+  if (resend) {
+    try {
+      await resend.emails.send({
+        from: "noreply@notetech.com",
+        to: "sales@notetech.com",
+        subject: `New lead: ${fields.fullName} from ${fields.company ?? "unknown"}`,
+        html: buildEmailHtml(fields),
+        replyTo: fields.workEmail,
+      });
+    } catch (e) {
+      // Email failure must not surface as a user error — lead is already saved
+      console.error("Resend email failed:", e);
+    }
+  } else {
+    console.warn("RESEND_API_KEY not set — skipping notification email (lead saved in DB)");
   }
 
   return NextResponse.json({ ok: true }, { status: 201 });
