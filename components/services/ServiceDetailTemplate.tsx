@@ -26,8 +26,6 @@ export default function ServiceDetailTemplate({
     isSupportMaintenance ||
     isIntegrationsApis ||
     isAiWorkflowAutomation;
-  const isDedicatedStyleService =
-    isDedicatedDevelopmentTeams || isTargetedServiceForDedicatedUi;
   const showWorkingModel =
     service.slug !== "software-product-development" &&
     service.slug !== "integrations-apis" &&
@@ -55,8 +53,11 @@ export default function ServiceDetailTemplate({
       : isSupportMaintenance
         ? "We have supported certain products for up to 17 years."
         : workingModelText;
-  const showSoftwareEngagementStyleCta =
-    isSoftwareProductDevelopment && !showWorkingModel;
+  const showEngagementCtaBand =
+    !showWorkingModel &&
+    (isSoftwareProductDevelopment ||
+      isIntegrationsApis ||
+      isAiWorkflowAutomation);
   const targetedHeroTitleBySlug: Partial<
     Record<ServiceDetail["slug"], { top: string; bottom: string }>
   > = {
@@ -130,45 +131,31 @@ export default function ServiceDetailTemplate({
     />
   );
 
-  if (isDedicatedStyleService) {
-    return (
-      <>
-        {pageHero}
-        <DedicatedTeamPageContent
-          service={service}
-          richLayout={isDedicatedDevelopmentTeams || isCloudAwsModernization}
-          richLayoutTheme={isCloudAwsModernization ? "cloudNeutral" : "dedicated"}
-          bestForTitle={isDedicatedDevelopmentTeams ? "Best for" : bestForTitle}
-          whatYouGetTitle={
-            isDedicatedDevelopmentTeams ? "What you get" : whatYouGetTitle
-          }
-          showWorkingModel={showWorkingModel}
-          workingModelTitle={workingModelTitle}
-          workingModelPrimaryLine={workingModelPrimaryLine}
-          showToolsCapabilities={
-            showWorkingModel &&
-            !isCloudAwsModernization &&
-            !isQaTestAutomation &&
-            !isSupportMaintenance
-          }
-          ctaVariant={showSoftwareEngagementStyleCta ? "engagement" : "default"}
-          ctaTitle={
-            showSoftwareEngagementStyleCta ? "Discuss your product" : undefined
-          }
-          ctaDescription={
-            showSoftwareEngagementStyleCta
-              ? "Tell us what you're shipping next and we'll shape the right engagement model with you."
-              : undefined
-          }
-        />
-      </>
-    );
-  }
-
   return (
     <>
       {pageHero}
-      <DedicatedTeamPageContent service={service} />
+      <DedicatedTeamPageContent
+        service={service}
+        richLayout
+        bestForTitle={isDedicatedDevelopmentTeams ? "Best for" : bestForTitle}
+        whatYouGetTitle={
+          isDedicatedDevelopmentTeams ? "What you get" : whatYouGetTitle
+        }
+        showWorkingModel={showWorkingModel}
+        workingModelTitle={workingModelTitle}
+        workingModelPrimaryLine={workingModelPrimaryLine}
+        showToolsCapabilities={
+          showWorkingModel &&
+          !isCloudAwsModernization &&
+          !isQaTestAutomation &&
+          !isSupportMaintenance
+        }
+        ctaVariant={showEngagementCtaBand ? "engagement" : "default"}
+        ctaTitle={showEngagementCtaBand ? service.cta.title : undefined}
+        ctaDescription={
+          showEngagementCtaBand ? service.cta.body : undefined
+        }
+      />
     </>
   );
 }

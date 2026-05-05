@@ -172,6 +172,7 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "software-product-development": {
     slug: "software-product-development",
     title: "Software Product Development",
+    introKicker: "Product Engineering",
     imageSrc: "/imagery/service/CODE_PC.jpg",
     imageAlt: "Engineers planning and building software product features",
     sectionImages: [
@@ -187,11 +188,57 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
       "Major features and platform extensions",
       "Refactoring/rebuilds for performance and stability",
     ],
+    bestForRich: [
+      {
+        icon: "refresh",
+        title: "MVP builds and new product modules",
+        description:
+          "Early-stage and incremental delivery when you need working software fast without sacrificing a path to scale.",
+      },
+      {
+        icon: "building",
+        title: "Major features and platform extensions",
+        description:
+          "Substantial product and platform work where architecture, integrations, and release discipline matter.",
+      },
+      {
+        icon: "shield",
+        title: "Refactoring and rebuilds",
+        description:
+          "Stabilization and modernization when performance, maintainability, or technical debt block the roadmap.",
+      },
+    ],
     whatYouGet: [
       "Architecture and delivery plan aligned to business goals",
       "Web/API development and integration-ready implementation",
       "Release readiness support (rollout planning and operational basics)",
       "Documentation and knowledge transfer as needed",
+    ],
+    whatYouGetRich: [
+      {
+        icon: "file-text",
+        title: "Architecture and delivery plan",
+        description:
+          "Technical direction and sequencing aligned to your goals, constraints, and definition of done.",
+      },
+      {
+        icon: "medal",
+        title: "Web and API implementation",
+        description:
+          "Implementation that is integration-ready, testable, and maintainable in your environment.",
+      },
+      {
+        icon: "calendar",
+        title: "Release readiness support",
+        description:
+          "Practical help with rollout planning, operational basics, and cutover risk reduction.",
+      },
+      {
+        icon: "users",
+        title: "Documentation and knowledge transfer",
+        description:
+          "What your team needs to operate and extend the system, when handoff is part of the plan.",
+      },
     ],
     toolsCapabilities: [
       ".NET/C#, web and API layers",
@@ -307,6 +354,7 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "qa-test-automation": {
     slug: "qa-test-automation",
     title: "QA & Test Automation",
+    introKicker: "Quality Engineering",
     imageSrc: "/imagery/service/qa_test.jpg",
     imageAlt: "Quality engineer validating software quality and automated test outcomes",
     sectionImages: [
@@ -322,11 +370,57 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
       "Integration-heavy systems with complex workflows",
       "Products needing predictable quality gates",
     ],
+    bestForRich: [
+      {
+        icon: "shield",
+        title: "Regressions and release risk",
+        description:
+          "When each release feels fragile, we help tighten strategy and automation where it reduces real risk.",
+      },
+      {
+        icon: "building",
+        title: "Integration-heavy systems",
+        description:
+          "Complex workflows and many moving parts need deliberate test design—not only UI checks.",
+      },
+      {
+        icon: "medal",
+        title: "Predictable quality gates",
+        description:
+          "Clear, repeatable signals before production so teams ship with shared confidence.",
+      },
+    ],
     whatYouGet: [
       "Test strategy (unit / integration / E2E as appropriate)",
       "Automated regression suite setup and maintenance",
       "CI integration for quality checks",
       "Performance testing support when required",
+    ],
+    whatYouGetRich: [
+      {
+        icon: "file-text",
+        title: "Test strategy",
+        description:
+          "Layered coverage—unit, integration, and E2E—chosen for your architecture and risk profile.",
+      },
+      {
+        icon: "refresh",
+        title: "Automated regression suites",
+        description:
+          "Build and maintain suites that catch breakages early without becoming a burden to run.",
+      },
+      {
+        icon: "clock",
+        title: "CI integration",
+        description:
+          "Quality checks wired into your pipeline so failures are visible before merge or release.",
+      },
+      {
+        icon: "medal",
+        title: "Performance testing",
+        description:
+          "Support when load, latency, or stability under stress is part of release readiness.",
+      },
     ],
     toolsCapabilities: [
       "Playwright / Cypress / Selenium",
@@ -345,6 +439,7 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "support-maintenance": {
     slug: "support-maintenance",
     title: "Support & Maintenance",
+    introKicker: "Ongoing Engineering",
     imageSrc: "/imagery/service/support_hand.jpg",
     imageAlt: "Operations team coordinating support and maintenance workflows",
     sectionImages: [
@@ -360,12 +455,64 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
       "Roadmap + maintenance handled by one team",
       "Teams seeking continuity and long-term ownership",
     ],
+    bestForRich: [
+      {
+        icon: "shield",
+        title: "Production stability",
+        description:
+          "Systems where uptime, predictable fixes, and careful change matter more than one-off heroics.",
+      },
+      {
+        icon: "calendar",
+        title: "Roadmap and maintenance together",
+        description:
+          "One team context for enhancements and fixes so priorities stay aligned over time.",
+      },
+      {
+        icon: "users",
+        title: "Continuity and ownership",
+        description:
+          "Long-horizon partnerships where retaining product knowledge reduces operational risk.",
+      },
+    ],
     whatYouGet: [
       "Issue triage and resolution workflow",
       "Bug fixes, enhancements, and maintenance releases",
       "Root-cause analysis for major incidents (as needed)",
       "Reliability improvements aligned to your environment",
       "Optional SLA-style support structure",
+    ],
+    whatYouGetRich: [
+      {
+        icon: "file-text",
+        title: "Triage and resolution workflow",
+        description:
+          "Clear intake, prioritization, and communication so production issues don’t stall.",
+      },
+      {
+        icon: "refresh",
+        title: "Fixes, enhancements, and releases",
+        description:
+          "Structured maintenance releases that balance urgency with regression safety.",
+      },
+      {
+        icon: "shield",
+        title: "Root-cause analysis",
+        description:
+          "Deeper investigation for major incidents when preventing recurrence matters.",
+      },
+      {
+        icon: "medal",
+        title: "Reliability improvements",
+        description:
+          "Targeted hardening aligned to how your system runs in the real world.",
+      },
+      {
+        icon: "clock",
+        title: "SLA-style support options",
+        description:
+          "Support tiers shaped to criticality, as defined in your agreement.",
+      },
     ],
     toolsCapabilities: [
       "Support tiers and SLAs shaped to your criticality (defined in agreement)",
@@ -385,6 +532,7 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "integrations-apis": {
     slug: "integrations-apis",
     title: "Integrations & APIs",
+    introKicker: "Integration Engineering",
     imageSrc: "/imagery/service/code.jpg",
     imageAlt: "Developer integrating software systems and APIs across platforms",
     sectionImages: [
@@ -399,12 +547,58 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
       "Building API layers for products and internal teams",
       "Synchronization and workflow orchestration"
     ],
+    bestForRich: [
+      {
+        icon: "building",
+        title: "Connecting enterprise systems",
+        description:
+          "ERP, CRM, internal services, payments, and other endpoints brought together with clear contracts.",
+      },
+      {
+        icon: "file-text",
+        title: "API layers for products and teams",
+        description:
+          "Surfaces that internal or external consumers can rely on—versioned, documented, and governable.",
+      },
+      {
+        icon: "refresh",
+        title: "Sync and workflow orchestration",
+        description:
+          "Data and process flows that stay consistent when systems disagree or fail mid-flight.",
+      },
+    ],
     whatYouGet: [
       "API design (security, versioning, documentation)",
       "Reliability patterns (retries/idempotency where needed)",
       "Monitoring for failures and latency",
       "Integration testing and operational handover",
         ],
+    whatYouGetRich: [
+      {
+        icon: "shield",
+        title: "API design",
+        description:
+          "Security, versioning, and documentation suited to production consumers and auditors.",
+      },
+      {
+        icon: "medal",
+        title: "Reliability patterns",
+        description:
+          "Retries, idempotency, and failure handling where messy real-world behavior shows up.",
+      },
+      {
+        icon: "clock",
+        title: "Monitoring and observability",
+        description:
+          "Visibility into failures and latency so operations can respond before users do.",
+      },
+      {
+        icon: "calendar",
+        title: "Testing and handover",
+        description:
+          "Integration testing and operational handover so your team can run what we build.",
+      },
+    ],
     toolsCapabilities: [
       "REST and service-oriented patterns common in enterprise stacks",
       "AWS and hybrid hosting for integration components when required",
@@ -415,6 +609,8 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
       body: "Describe the systems and failure modes you worry about—we’ll map a pragmatic approach.",
       primaryLabel: "Plan an integration",
       primaryHref: "/contact",
+      secondaryLabel: "View services overview",
+      secondaryHref: "/services",
     },
     metaTitle: "Integrations & APIs",
     metaDescription:
@@ -424,6 +620,7 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
   "ai-workflow-automation": {
     slug: "ai-workflow-automation",
     title: "AI Workflow Automation",
+    introKicker: "Agentic Automation",
     imageSrc: "/imagery/service/AI.jpg",
     imageAlt: "Enterprise software team exploring AI-assisted workflow automation",
     sectionImages: [
@@ -438,11 +635,57 @@ export const servicesBySlug: Record<ServiceSlug, ServiceDetail> = {
       "Operational assistants with permission controls",
       "Automation to reduce repetitive operational effort",
     ],
+    bestForRich: [
+      {
+        icon: "users",
+        title: "Human-in-the-loop automation",
+        description:
+          "Workflows where approvals and oversight stay part of the path—not bolted on after the fact.",
+      },
+      {
+        icon: "shield",
+        title: "Assistants with permission boundaries",
+        description:
+          "Operational helpers constrained by auth, scope, and policy so access stays intentional.",
+      },
+      {
+        icon: "clock",
+        title: "Less repetitive operations work",
+        description:
+          "Focus on high-leverage automation that removes toil without hiding risk.",
+      },
+    ],
     whatYouGet: [
       "Support triage and routing workflows",
       "QA acceleration workflows",
       "Operational runbooks and guided incident response",
       "Knowledge assistants for internal documentation (with access boundaries)",
+    ],
+    whatYouGetRich: [
+      {
+        icon: "file-text",
+        title: "Support triage and routing",
+        description:
+          "Structured intake and routing so the right work lands with the right owners faster.",
+      },
+      {
+        icon: "medal",
+        title: "QA acceleration",
+        description:
+          "Workflows that speed quality checks while preserving accountability and traceability.",
+      },
+      {
+        icon: "calendar",
+        title: "Runbooks and incident guidance",
+        description:
+          "Guided steps during incidents so teams respond consistently under pressure.",
+      },
+      {
+        icon: "building",
+        title: "Knowledge assistants",
+        description:
+          "Internal documentation helpers with access boundaries aligned to your content stores.",
+      },
     ],
     toolsCapabilities: [
       "Patterns for retrieval and grounding aligned to your content stores (as permitted)",

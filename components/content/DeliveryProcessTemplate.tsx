@@ -44,7 +44,7 @@ function SubsectionNote({
   if (sub.noteWrap === "card") {
     return (
       <div
-        className={`mt-4 w-full rounded-lg border border-[#e2e8f0] bg-white/90 px-4 py-4 text-[0.95rem] leading-relaxed text-body shadow-sm sm:px-5 sm:py-[1.125rem] ${
+        className={`mt-3 w-full rounded-lg border border-[#e2e8f0] bg-white/90 px-4 py-3.5 text-[0.95rem] leading-relaxed text-body shadow-sm sm:px-5 sm:py-4 ${
           alignRight ? "text-right" : ""
         } ${className ?? ""}`}
       >
@@ -54,7 +54,7 @@ function SubsectionNote({
   }
   return (
     <p
-      className={`mt-3 text-[0.9rem] leading-relaxed text-body italic ${
+      className={`mt-2.5 text-[0.9rem] leading-relaxed text-body italic ${
         alignRight ? "text-right" : ""
       } ${className ?? ""}`}
     >
@@ -65,12 +65,13 @@ function SubsectionNote({
 
 function SubsectionBlock({ sub }: { sub: DocSubsection }) {
   const hasStructured = Boolean(sub.bulletsStructured?.length);
+  const isSnapshot = sub.heading.trim().toLowerCase() === "engagement snapshot";
   const inner = (
     <>
       <SubsectionHeading sub={sub} />
       {sub.paragraphs?.length ? (
         <div
-          className={`${hasStructured ? "mt-4" : "mt-3"} space-y-3 text-[1.0625rem] leading-[1.72] text-body ${
+          className={`${hasStructured ? "mt-3" : "mt-2.5"} space-y-2.5 text-[1.02rem] leading-[1.66] text-body ${
             sub.paragraphsWidth === "full" ? "max-w-none" : "max-w-prose"
           }`}
         >
@@ -82,20 +83,20 @@ function SubsectionBlock({ sub }: { sub: DocSubsection }) {
         </div>
       ) : null}
       {sub.bulletsStructured?.length ? (
-        <ul className="mt-6 flex list-none flex-col gap-5 p-0 sm:gap-6">
+        <ul className="mt-4 flex list-none flex-col gap-4 p-0 sm:gap-5">
           {sub.bulletsStructured.map((row, i) => (
             <li
               key={i}
-              className="grid grid-cols-[2.75rem_minmax(0,1fr)] items-start gap-x-4 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-x-5"
+              className="grid grid-cols-[2.4rem_minmax(0,1fr)] items-start gap-x-3.5 sm:grid-cols-[2.75rem_minmax(0,1fr)] sm:gap-x-4"
             >
               <div className="flex h-[1.375rem] items-center justify-start sm:h-6" aria-hidden>
                 <BulletLeadIcon icon={row.icon} />
               </div>
-              <div className="min-w-0 space-y-1.5">
+              <div className="min-w-0 space-y-1">
                 <p className="text-pretty font-semibold leading-snug text-headline sm:text-[1.0625rem]">
                   {row.title}
                 </p>
-                <p className="text-pretty text-[0.98rem] leading-relaxed text-body sm:text-[1.02rem] sm:leading-[1.65]">
+                <p className="text-pretty text-[0.96rem] leading-relaxed text-body sm:text-[1rem] sm:leading-[1.6]">
                   {row.description}
                 </p>
               </div>
@@ -103,7 +104,13 @@ function SubsectionBlock({ sub }: { sub: DocSubsection }) {
           ))}
         </ul>
       ) : sub.bullets?.length ? (
-        <ul className={`mt-3 ${sub.bulletsLayout === "titleDescription" ? "space-y-4" : "space-y-3"}`}>
+        <ul
+          className={`${
+            isSnapshot
+              ? "mt-2.5 space-y-2 border-l-2 border-[#d7e4f4] pl-4 text-[0.98rem] sm:text-[1rem]"
+              : `mt-2.5 ${sub.bulletsLayout === "titleDescription" ? "space-y-3" : "space-y-2.5"}`
+          }`}
+        >
           {sub.bullets.map((item, i) => {
             const parts =
               sub.bulletsLayout === "titleDescription" ? splitBulletTitleDescription(item) : null;
@@ -111,7 +118,7 @@ function SubsectionBlock({ sub }: { sub: DocSubsection }) {
               return (
                 <li key={i} className="flex items-start gap-3">
                   <BulletIcon />
-                  <span className="block min-w-0 text-[1.0625rem] leading-[1.72] text-body">
+                  <span className="block min-w-0 text-[1.02rem] leading-[1.64] text-body">
                     <span className="block font-semibold text-headline">{parts.title}</span>
                     <span className="mt-0.5 block text-[1.02rem] leading-snug text-body">
                       {parts.description}
@@ -121,20 +128,29 @@ function SubsectionBlock({ sub }: { sub: DocSubsection }) {
               );
             }
             return (
-              <li key={i} className="flex items-start gap-3">
+              <li key={i} className={`flex items-start gap-3 ${isSnapshot ? "gap-2.5" : ""}`}>
                 <BulletIcon />
-                <span className="text-[1.0625rem] leading-[1.72] text-body">{item}</span>
+                <span className="text-[1.02rem] leading-[1.64] text-body">{item}</span>
               </li>
             );
           })}
         </ul>
       ) : null}
-      <SubsectionNote sub={sub} className={hasStructured && sub.noteWrap === "card" ? "!mt-8" : undefined} />
+      <SubsectionNote
+        sub={sub}
+        className={
+          hasStructured && sub.noteWrap === "card"
+            ? "!mt-6"
+            : isSnapshot && sub.noteWrap === "card"
+              ? "!mt-4"
+              : undefined
+        }
+      />
     </>
   );
   if (sub.wrap === "card") {
     return (
-      <div className="rounded-xl border border-[#e2e8f0] bg-white/80 p-4 shadow-sm ring-1 ring-slate-200/40 sm:p-5">
+      <div className="rounded-xl border border-[#e2e8f0] bg-white/80 p-3.5 shadow-sm ring-1 ring-slate-200/40 sm:p-4.5">
         {inner}
       </div>
     );
@@ -262,6 +278,7 @@ export default function DeliveryProcessTemplate({
   page,
 }: DeliveryProcessTemplateProps) {
   const isDeliveryProcess = page.title === "Delivery Process";
+  const isSelectedEngagements = page.title === "Selected Engagements";
 
   return (
     <>
@@ -294,8 +311,8 @@ export default function DeliveryProcessTemplate({
       />
 
       {/* Nav cards — only for Engagement Models, not Delivery Process */}
-      {!isDeliveryProcess && <HomeSection tone="white" className="!bg-white pb-0 pt-8 lg:pt-10" disableAnimation>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+      {!isDeliveryProcess && <HomeSection tone="white" className="!bg-white pb-0 pt-6 lg:pt-8" disableAnimation>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {page.sections.map((section, index) => {
             const sectionImages = page.sectionImages ?? [];
             const imgSrc =
@@ -336,8 +353,8 @@ export default function DeliveryProcessTemplate({
       </HomeSection>}
 
       {/* Steps card — intro + all steps in one container, mirrors dedicated-team style */}
-      <HomeSection tone="white" className="!bg-white py-8 lg:py-10" disableAnimation>
-        <div className="border border-border-subtle bg-[#f8f8f6] p-8 shadow-[0_18px_42px_-16px_rgba(11,18,32,0.45)]">
+      <HomeSection tone="white" className="!bg-white py-7 lg:py-8" disableAnimation>
+        <div className="border border-border-subtle bg-[#f8f8f6] p-6 shadow-[0_18px_42px_-16px_rgba(11,18,32,0.45)] lg:p-7">
 
           {/* Intro — kicker uses page.title; omit entire block when no headline or intro (e.g. Selected Engagements) */}
           {page.headline || page.intro ? (
@@ -551,7 +568,7 @@ export default function DeliveryProcessTemplate({
                     key={section.title}
                     id={`step-${index + 1}`}
                     aria-labelledby={`delivery-step-${index + 1}`}
-                    className="scroll-mt-32 mt-10 border-t border-[#e2e8f0] pt-10 lg:scroll-mt-40 lg:mt-12 lg:pt-12"
+                    className="scroll-mt-28 mt-8 border-t border-[#e2e8f0] pt-8 lg:scroll-mt-36 lg:mt-10 lg:pt-10"
                   >
                     <div>
                       <div>
@@ -566,14 +583,14 @@ export default function DeliveryProcessTemplate({
                         <p className="mt-4 text-kicker text-[#5479a3]">{section.description}</p>
                       ) : null}
                     </div>
-                    <div className="mt-8 flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-12">
+                    <div className="mt-6 flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-10">
                       <div
                         className={`min-w-0 flex-1 lg:max-w-3xl ${
                           isImageRight ? "lg:order-1" : "lg:order-2 lg:ml-auto"
                         }`}
                       >
                         {mainFirst.length > 0 ? (
-                          <div className="space-y-5">
+                          <div className="space-y-4">
                             {mainFirst.map((sub, si) => (
                               <SubsectionBlock key={`main-${si}`} sub={sub} />
                             ))}
@@ -581,7 +598,7 @@ export default function DeliveryProcessTemplate({
                         ) : null}
                       </div>
                       <div
-                        className={`w-full shrink-0 space-y-6 lg:w-[38%] ${
+                        className={`w-full shrink-0 space-y-5 lg:w-[38%] ${
                           isImageRight ? "lg:order-2 lg:ml-auto lg:mr-6" : "lg:order-1"
                         }`}
                       >
@@ -595,7 +612,7 @@ export default function DeliveryProcessTemplate({
                           />
                         </div>
                         {asideSubs.length > 0 ? (
-                          <div className="space-y-5">
+                          <div className="space-y-4">
                             {asideSubs.map((sub, si) => (
                               <SubsectionBlock key={`aside-${si}`} sub={sub} />
                             ))}
@@ -604,10 +621,27 @@ export default function DeliveryProcessTemplate({
                       </div>
                     </div>
                     {rest.length > 0 ? (
-                      <div className="mt-8 w-full max-w-6xl space-y-10">
-                        {rest.map((sub, si) => (
-                          <SubsectionBlock key={`rest-${si}`} sub={sub} />
-                        ))}
+                      <div className="mt-6 w-full max-w-6xl">
+                        <div
+                          className={
+                            isSelectedEngagements
+                              ? "grid gap-x-8 gap-y-6 md:grid-cols-2"
+                              : "space-y-7"
+                          }
+                        >
+                          {rest.map((sub, si) => (
+                            <div
+                              key={`rest-${si}`}
+                              className={
+                                isSelectedEngagements && (sub.wrap === "card" || sub.headingStyle === "subtitle")
+                                  ? "md:col-span-2"
+                                  : ""
+                              }
+                            >
+                              <SubsectionBlock sub={sub} />
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     ) : null}
                   </section>
@@ -619,9 +653,9 @@ export default function DeliveryProcessTemplate({
                   key={section.title}
                   id={`step-${index + 1}`}
                   aria-labelledby={`delivery-step-${index + 1}`}
-                  className="scroll-mt-32 mt-10 border-t border-[#e2e8f0] pt-10 lg:scroll-mt-40 lg:mt-12 lg:pt-12"
+                  className="scroll-mt-28 mt-8 border-t border-[#e2e8f0] pt-8 lg:scroll-mt-36 lg:mt-10 lg:pt-10"
                 >
-                  <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-12">
+                  <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:gap-10">
                     <div
                       className={`w-full shrink-0 overflow-hidden rounded-xl border border-[#e2e8f0] lg:w-[38%] ${
                         isImageRight ? "lg:order-2 lg:ml-auto lg:mr-6" : "lg:order-1"
@@ -652,32 +686,23 @@ export default function DeliveryProcessTemplate({
                         <p className="mt-4 text-kicker text-[#5479a3]">{section.description}</p>
                       ) : null}
                       {section.subsections?.length ? (
-                        <div className="mt-4 space-y-5">
+                        <div
+                          className={
+                            isSelectedEngagements
+                              ? "mt-5 grid gap-x-8 gap-y-6 md:grid-cols-2"
+                              : "mt-4 space-y-5"
+                          }
+                        >
                           {section.subsections.map((sub, si) => (
-                            <div key={si}>
-                              <SubsectionHeading sub={sub} />
-                              {sub.paragraphs?.length ? (
-                                <div className="mt-3 max-w-prose space-y-3 text-[1.0625rem] leading-[1.72] text-body">
-                                  {sub.paragraphs.map((para, pi) => (
-                                    <p key={pi} className="text-pretty">
-                                      {para}
-                                    </p>
-                                  ))}
-                                </div>
-                              ) : null}
-                              {sub.bullets?.length ? (
-                                <ul className="mt-3 space-y-3">
-                                  {sub.bullets.map((item, i) => (
-                                    <li key={i} className="flex items-start gap-3">
-                                      <BulletIcon />
-                                      <span className="text-[1.0625rem] leading-[1.72] text-body">
-                                        {item}
-                                      </span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              ) : null}
-                              <SubsectionNote sub={sub} />
+                            <div
+                              key={si}
+                              className={
+                                isSelectedEngagements && (sub.wrap === "card" || sub.headingStyle === "subtitle")
+                                  ? "md:col-span-2"
+                                  : ""
+                              }
+                            >
+                              <SubsectionBlock sub={sub} />
                             </div>
                           ))}
                         </div>
@@ -701,7 +726,7 @@ export default function DeliveryProcessTemplate({
           )}
 
           {/* CTA */}
-          <section className="relative mt-10 overflow-hidden rounded-2xl p-6 text-center shadow-[0_20px_45px_rgba(8,21,40,0.42)] ring-1 ring-[#6e93bb]/50 lg:mt-12 lg:p-8">
+          <section className="relative mt-8 overflow-hidden rounded-2xl p-5 text-center shadow-[0_20px_45px_rgba(8,21,40,0.42)] ring-1 ring-[#6e93bb]/50 lg:mt-10 lg:p-7">
             <Image
               src="/imagery/companyPage/engagement.jpg"
               alt=""

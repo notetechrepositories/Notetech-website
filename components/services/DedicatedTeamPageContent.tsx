@@ -1,6 +1,5 @@
 import HomeSection from "@/components/home/HomeSection";
 import Button from "@/components/ui/Button";
-import Image from "next/image";
 import type { RichItem, ServiceDetail } from "@/data/services";
 
 // ---------- inline SVG icon primitives (used only in rich layout) ----------
@@ -146,10 +145,8 @@ type Props = {
   ctaVariant?: "default" | "engagement";
   ctaTitle?: string;
   ctaDescription?: string;
-  /** When true, uses the new rich layout (dedicated development teams only). */
+  /** When true, uses the Cloud-style rich layout shell. */
   richLayout?: boolean;
-  /** Visual theme used by rich layout variants. */
-  richLayoutTheme?: "dedicated" | "cloudNeutral";
 };
 
 export default function DedicatedTeamPageContent({
@@ -164,7 +161,6 @@ export default function DedicatedTeamPageContent({
   ctaTitle,
   ctaDescription,
   richLayout = false,
-  richLayoutTheme = "dedicated",
 }: Props) {
   const workingModelText =
     service.workingModel ??
@@ -172,23 +168,16 @@ export default function DedicatedTeamPageContent({
   const resolvedWorkingModelPrimaryLine =
     workingModelPrimaryLine ?? workingModelText;
 
-  // ── Rich layout (Dedicated Development Teams only) ──────────────────────
+  // ── Rich layout (shared Cloud-style shell for all service detail pages) ─
   if (richLayout) {
-    const isCloudNeutral = richLayoutTheme === "cloudNeutral";
     const introKicker = service.introKicker ?? service.title;
 
     return (
-      <HomeSection
-        tone="white"
-        className={isCloudNeutral ? "!bg-[#f8f8f6]" : "!bg-[#f8f8f6]"}
-      >
+      <HomeSection tone="white" className="!bg-[#f8f8f6]">
         <div className="mx-auto overflow-hidden border border-border-subtle bg-white shadow-[0_18px_42px_-16px_rgba(11,18,32,0.45)]">
 
-          {/* Blue accent bar (dedicated only) */}
-          {!isCloudNeutral ? <div className="h-1 w-full bg-primary" /> : null}
-
           {/* Intro */}
-          <div className={`p-8 lg:p-10 ${isCloudNeutral ? "bg-[#f8f8f6]" : ""}`}>
+          <div className="bg-[#f8f8f6] p-8 lg:p-10">
             <p className="text-kicker">{introKicker}</p>
             <h2 className="mt-3 font-display text-3xl tracking-tight text-headline lg:text-[2.5rem] lg:leading-[1.14]">
               {service.headlineLines ? (
@@ -208,7 +197,7 @@ export default function DedicatedTeamPageContent({
           {/* Best for */}
           <section
             aria-labelledby="dedicated-best-for-heading"
-            className={`border-t border-[#e2e8f0] px-8 py-10 lg:px-10 lg:py-12 ${isCloudNeutral ? "bg-[#f8f8f6]" : "bg-[#f8f9fc]"}`}
+            className="border-t border-[#e2e8f0] bg-[#f8f8f6] px-8 py-10 lg:px-10 lg:py-12"
           >
             <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-14">
               <div className="w-full shrink-0 overflow-hidden rounded-2xl lg:w-[44%]">
@@ -221,7 +210,7 @@ export default function DedicatedTeamPageContent({
               </div>
 
               <div className="flex-1">
-                <p className="text-kicker">{isCloudNeutral ? "Best for" : "Strategic fit"}</p>
+                <p className="text-kicker">Best for</p>
                 <h3
                   id="dedicated-best-for-heading"
                   className="mt-2 font-display text-2xl font-bold tracking-tight text-headline lg:text-3xl"
@@ -267,7 +256,7 @@ export default function DedicatedTeamPageContent({
           {/* What you get */}
           <section
             aria-labelledby="dedicated-what-you-get-heading"
-            className={`border-t border-[#e2e8f0] px-8 py-10 lg:px-10 lg:py-12 ${isCloudNeutral ? "bg-[#f8f8f6]" : "bg-white"}`}
+            className="border-t border-[#e2e8f0] bg-[#f8f8f6] px-8 py-10 lg:px-10 lg:py-12"
           >
             <div className="flex items-center gap-4">
               <h3
@@ -278,7 +267,7 @@ export default function DedicatedTeamPageContent({
                   ? "What You Get"
                   : whatYouGetTitle}
               </h3>
-              <div className={`h-px flex-1 ${isCloudNeutral ? "bg-border-subtle" : "bg-primary"}`} />
+              <div className="h-px flex-1 bg-border-subtle" />
             </div>
 
             {service.whatYouGetRich ? (
@@ -317,11 +306,11 @@ export default function DedicatedTeamPageContent({
           {showWorkingModel ? (
             <section
               aria-labelledby="dedicated-working-model-heading"
-              className={`border-t border-[#e2e8f0] px-8 py-10 lg:px-10 lg:py-12 ${isCloudNeutral ? "bg-[#f8f8f6]" : "bg-[#eef2fb]"}`}
+              className="border-t border-[#e2e8f0] bg-[#f8f8f6] px-8 py-10 lg:px-10 lg:py-12"
             >
               <div className="relative mx-auto max-w-2xl overflow-hidden rounded-2xl bg-white px-8 py-10 text-center shadow-[0_8px_32px_-8px_rgba(11,18,32,0.18)] ring-1 ring-[#dde4ef] lg:px-12 lg:py-12">
                 <span
-                  className={`pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full ${isCloudNeutral ? "bg-[#f1f4f9]" : "bg-[#e8eef8]"}`}
+                  className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full bg-[#f1f4f9]"
                   aria-hidden
                 />
                 <h3
@@ -333,6 +322,24 @@ export default function DedicatedTeamPageContent({
                 <p className="relative z-10 mx-auto mt-4 text-[1.0625rem] italic leading-[1.75] text-body">
                   &ldquo;{resolvedWorkingModelPrimaryLine}&rdquo;
                 </p>
+                {showToolsCapabilities && service.toolsCapabilities?.length ? (
+                  <div className="relative z-10 mx-auto mt-6 max-w-xl border-t border-border-subtle pt-6 text-left">
+                    <h4 className="mb-3 text-kicker">Tools & capabilities</h4>
+                    <ul className="space-y-2.5">
+                      {service.toolsCapabilities.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2.5">
+                          <span
+                            className="mt-[0.46em] block h-1.5 w-1.5 shrink-0 rounded-full bg-primary"
+                            aria-hidden
+                          />
+                          <span className="text-[1.0625rem] leading-[1.72] text-body">
+                            {item}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
                 <div className="relative z-10 mt-7">
                   <Button
                     href={service.cta.primaryHref}
@@ -341,6 +348,55 @@ export default function DedicatedTeamPageContent({
                   >
                     {service.cta.primaryLabel}
                   </Button>
+                </div>
+              </div>
+            </section>
+          ) : null}
+
+          {!showWorkingModel && ctaVariant === "engagement" ? (
+            <section
+              aria-labelledby="rich-engagement-cta-heading"
+              className="border-t border-[#e2e8f0] bg-[#f8f8f6] px-8 py-10 lg:px-10 lg:py-12"
+            >
+              <div className="relative mx-auto max-w-2xl overflow-hidden rounded-2xl bg-white px-8 py-10 text-center shadow-[0_8px_32px_-8px_rgba(11,18,32,0.18)] ring-1 ring-[#dde4ef] lg:px-12 lg:py-12">
+                <span
+                  className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full bg-[#f1f4f9]"
+                  aria-hidden
+                />
+                {ctaTitle ? (
+                  <h3
+                    id="rich-engagement-cta-heading"
+                    className="relative z-10 font-display text-2xl font-bold tracking-tight text-headline lg:text-3xl"
+                  >
+                    {ctaTitle}
+                  </h3>
+                ) : (
+                  <h3 id="rich-engagement-cta-heading" className="sr-only">
+                    Get in touch
+                  </h3>
+                )}
+                {ctaDescription ? (
+                  <p className="relative z-10 mx-auto mt-4 max-w-xl text-[1.0625rem] italic leading-[1.75] text-body">
+                    &ldquo;{ctaDescription}&rdquo;
+                  </p>
+                ) : null}
+                <div className="relative z-10 mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
+                  <Button
+                    href={service.cta.primaryHref}
+                    variant="primary"
+                    className="px-8"
+                  >
+                    {service.cta.primaryLabel}
+                  </Button>
+                  {service.cta.secondaryHref && service.cta.secondaryLabel ? (
+                    <Button
+                      href={service.cta.secondaryHref}
+                      variant="ghost"
+                      className="px-8"
+                    >
+                      {service.cta.secondaryLabel}
+                    </Button>
+                  ) : null}
                 </div>
               </div>
             </section>
@@ -468,33 +524,50 @@ export default function DedicatedTeamPageContent({
             </div>
           </section>
         ) : ctaVariant === "engagement" ? (
-          <section className="relative mt-10 overflow-hidden rounded-2xl px-6 py-5 text-center shadow-[0_20px_45px_rgba(8,21,40,0.42)] ring-1 ring-[#6e93bb]/50 lg:mt-12 lg:px-8 lg:py-6">
-            <Image
-              src="/imagery/companyPage/engagement.jpg"
-              alt=""
-              fill
-              sizes="(max-width: 1024px) 100vw, 1200px"
-              className="object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(7,22,42,0.82)_0%,rgba(11,35,64,0.72)_55%,rgba(6,18,36,0.86)_100%)]" />
-            {ctaTitle ? (
-              <h3 className="relative z-10 mb-4 font-display text-2xl font-semibold tracking-tight text-white">
-                {ctaTitle}
-              </h3>
-            ) : null}
-            {ctaDescription ? (
-              <p className="relative z-10 mx-auto mb-6 max-w-xl text-[0.97rem] leading-relaxed text-[#d8e7f7]">
-                {ctaDescription}
-              </p>
-            ) : null}
-            <div className="relative z-10">
-              <Button
-                href={service.cta.primaryHref}
-                variant="primary"
-                className="px-7"
-              >
-                {service.cta.primaryLabel}
-              </Button>
+          <section
+            aria-labelledby="legacy-engagement-cta-heading"
+            className="mt-10 border-t border-[#e2e8f0] pt-10 text-center lg:mt-12 lg:pt-12"
+          >
+            <div className="relative mx-auto max-w-2xl overflow-hidden rounded-2xl bg-white px-8 py-10 shadow-[0_8px_32px_-8px_rgba(11,18,32,0.18)] ring-1 ring-[#dde4ef] lg:px-12 lg:py-12">
+              <span
+                className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full bg-[#f1f4f9]"
+                aria-hidden
+              />
+              {ctaTitle ? (
+                <h3
+                  id="legacy-engagement-cta-heading"
+                  className="relative z-10 font-display text-2xl font-bold tracking-tight text-headline lg:text-3xl"
+                >
+                  {ctaTitle}
+                </h3>
+              ) : (
+                <h3 id="legacy-engagement-cta-heading" className="sr-only">
+                  Get in touch
+                </h3>
+              )}
+              {ctaDescription ? (
+                <p className="relative z-10 mx-auto mt-4 max-w-xl text-[1.0625rem] italic leading-[1.75] text-body">
+                  &ldquo;{ctaDescription}&rdquo;
+                </p>
+              ) : null}
+              <div className="relative z-10 mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
+                <Button
+                  href={service.cta.primaryHref}
+                  variant="primary"
+                  className="px-8"
+                >
+                  {service.cta.primaryLabel}
+                </Button>
+                {service.cta.secondaryHref && service.cta.secondaryLabel ? (
+                  <Button
+                    href={service.cta.secondaryHref}
+                    variant="ghost"
+                    className="px-8"
+                  >
+                    {service.cta.secondaryLabel}
+                  </Button>
+                ) : null}
+              </div>
             </div>
           </section>
         ) : null}
