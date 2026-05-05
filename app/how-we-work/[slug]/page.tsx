@@ -34,7 +34,14 @@ export default async function HowWeWorkDetailPage(props: Props) {
   const page = howWeWorkPages[slug as keyof typeof howWeWorkPages];
   if (!page) notFound();
 
-  if (slug === "delivery-process" || slug === "engagement-models") {
+  if (
+    slug === "delivery-process" ||
+    slug === "engagement-models" ||
+    slug === "communication-reporting" ||
+    slug === "onboarding-kickoff" ||
+    slug === "pricing-approach" ||
+    slug === "pilot-engagements"
+  ) {
     return <DeliveryProcessTemplate page={page} />;
   }
 

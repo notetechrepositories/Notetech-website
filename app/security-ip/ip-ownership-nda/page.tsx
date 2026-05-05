@@ -1,5 +1,5 @@
-import DocPageTemplate from "@/components/content/DocPageTemplate";
 import type { DocPageData } from "@/components/content/DocPageTemplate";
+import DeliveryProcessTemplate from "@/components/content/DeliveryProcessTemplate";
 import type { Metadata } from "next";
 
 const securityIpPage: DocPageData = {
@@ -14,11 +14,13 @@ const securityIpPage: DocPageData = {
   heroImageSrc:
     "/imagery/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
   sectionImages: [
-    "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
-    "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
-    "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
-    "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
-    "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
+    "/imagery/Client-owned IP.jpg",
+    "/imagery/access and tooling.jpg",
+    "/imagery/Technical setup.jpg",
+    "/imagery/Project alignment.jpg",
+    "/imagery/CR_Working.jpg",
+    "/imagery/Dedicated Development Team.jpg",
+    "/imagery/CR_What.jpg",
   ],
   sections: [
     {
@@ -168,5 +170,5 @@ export const metadata: Metadata = {
 };
 
 export default function SecurityIpPage() {
-  return <DocPageTemplate page={securityIpPage} />;
+  return <DeliveryProcessTemplate page={securityIpPage} />;
 }

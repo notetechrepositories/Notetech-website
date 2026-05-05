@@ -277,8 +277,14 @@ function BulletLeadIcon({ icon }: { icon?: DocBulletStructuredItem["icon"] }) {
 export default function DeliveryProcessTemplate({
   page,
 }: DeliveryProcessTemplateProps) {
-  const isDeliveryProcess = page.title === "Delivery Process";
+  const isPhaseTimelineLayout =
+    page.title === "Delivery Process" || page.title === "Onboarding & Kickoff";
   const isSelectedEngagements = page.title === "Selected Engagements";
+  const hideTopNavCards =
+    page.title === "Communication & Reporting" ||
+    page.title === "Pricing Approach" ||
+    page.title === "Pilot Engagements" ||
+    page.title === "Technology";
 
   return (
     <>
@@ -310,8 +316,9 @@ export default function DeliveryProcessTemplate({
         }
       />
 
-      {/* Nav cards — only for Engagement Models, not Delivery Process */}
-      {!isDeliveryProcess && <HomeSection tone="white" className="!bg-white pb-0 pt-6 lg:pt-8" disableAnimation>
+      {/* Nav cards — Engagement Models / Selected Engagements; hidden for phase-timeline pages, Communication & Reporting, Pricing Approach, Pilot Engagements */}
+      {!isPhaseTimelineLayout && !hideTopNavCards && (
+      <HomeSection tone="white" className="!bg-white pb-0 pt-6 lg:pt-8" disableAnimation>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {page.sections.map((section, index) => {
             const sectionImages = page.sectionImages ?? [];
@@ -350,20 +357,26 @@ export default function DeliveryProcessTemplate({
             );
           })}
         </div>
-      </HomeSection>}
+      </HomeSection>
+      )}
 
       {/* Steps card — intro + all steps in one container, mirrors dedicated-team style */}
       <HomeSection tone="white" className="!bg-white py-7 lg:py-8" disableAnimation>
         <div className="border border-border-subtle bg-[#f8f8f6] p-6 shadow-[0_18px_42px_-16px_rgba(11,18,32,0.45)] lg:p-7">
 
-          {/* Intro — kicker uses page.title; omit entire block when no headline or intro (e.g. Selected Engagements) */}
-          {page.headline || page.intro ? (
+          {/* Intro — kicker uses page.title; omit entire block when no headline, intro, or contentHeading (e.g. Selected Engagements) */}
+          {page.headline || page.intro || page.contentHeading ? (
             <div>
               <p className="text-kicker">{page.title}</p>
               {page.headline ? (
                 <h2 className="mt-2 font-display text-3xl tracking-tight text-headline lg:text-[2.5rem] lg:leading-[1.14]">
                   {page.headline}
                 </h2>
+              ) : null}
+              {page.contentHeading ? (
+                <p className="mt-3 text-[1.0625rem] font-medium leading-snug text-headline">
+                  {page.contentHeading}
+                </p>
               ) : null}
               {page.intro ? (
                 <p className="mt-4 text-[1.0625rem] leading-[1.75] text-body">{page.intro}</p>
@@ -372,7 +385,7 @@ export default function DeliveryProcessTemplate({
           ) : null}
 
           {/* Steps */}
-          {isDeliveryProcess ? (
+          {isPhaseTimelineLayout ? (
             <div className="relative mt-10 border-t border-[#e2e8f0] pt-10 lg:mt-12 lg:pt-12">
               <div
                 className="pointer-events-none absolute bottom-0 left-1/2 top-10 hidden w-px -translate-x-1/2 bg-[#d6deea] lg:block"
@@ -549,6 +562,20 @@ export default function DeliveryProcessTemplate({
                 .replace(/^Step\s*\d+\s*[—-]\s*/i, "")
                 .trim();
               const isImageRight = index % 2 === 0;
+              const isTechnologyWhatWeWorkWith =
+                page.title === "Technology" && section.title === "What we work with";
+              const technologyObservabilitySub = isTechnologyWhatWeWorkWith
+                ? section.subsections?.find(
+                    (sub) =>
+                      sub.heading === "Observability & Security (aligned to your environment)",
+                  )
+                : undefined;
+              const technologyMainSubsections = isTechnologyWhatWeWorkWith
+                ? section.subsections?.filter(
+                    (sub) =>
+                      sub.heading !== "Observability & Security (aligned to your environment)",
+                  )
+                : section.subsections;
 
               const asideIdx = section.subsectionIndicesUnderImage;
               const subs = section.subsections;
@@ -655,9 +682,13 @@ export default function DeliveryProcessTemplate({
                   aria-labelledby={`delivery-step-${index + 1}`}
                   className="scroll-mt-28 mt-8 border-t border-[#e2e8f0] pt-8 lg:scroll-mt-36 lg:mt-10 lg:pt-10"
                 >
-                  <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:gap-10">
+                  <div
+                    className={`flex flex-col gap-6 lg:flex-row lg:gap-10 ${
+                      isTechnologyWhatWeWorkWith ? "lg:items-stretch" : "lg:items-center"
+                    }`}
+                  >
                     <div
-                      className={`w-full shrink-0 overflow-hidden rounded-xl border border-[#e2e8f0] lg:w-[38%] ${
+                      className={`flex w-full shrink-0 flex-col overflow-hidden rounded-xl border border-[#e2e8f0] lg:w-[38%] ${
                         isImageRight ? "lg:order-2 lg:ml-auto lg:mr-6" : "lg:order-1"
                       }`}
                     >
@@ -666,8 +697,17 @@ export default function DeliveryProcessTemplate({
                         alt=""
                         width={640}
                         height={400}
-                        className="h-[220px] w-full object-cover object-center sm:h-[260px] lg:h-[280px]"
+                        className={`w-full object-cover object-center ${
+                          isTechnologyWhatWeWorkWith
+                            ? "h-[280px] sm:h-[320px] lg:h-[360px]"
+                            : "h-[220px] sm:h-[260px] lg:h-[280px]"
+                        }`}
                       />
+                      {technologyObservabilitySub ? (
+                        <div className="mt-5 rounded-xl border border-[#e2e8f0] bg-white/90 p-4 shadow-sm ring-1 ring-slate-200/40 lg:mt-auto">
+                          <SubsectionBlock sub={technologyObservabilitySub} />
+                        </div>
+                      ) : null}
                     </div>
                     <div
                       className={`min-w-0 flex-1 lg:max-w-3xl ${
@@ -683,21 +723,26 @@ export default function DeliveryProcessTemplate({
                         </h3>
                       </div>
                       {section.description ? (
-                        <p className="mt-4 text-kicker text-[#5479a3]">{section.description}</p>
+                        <p className="mt-3 text-kicker text-[#5479a3]">{section.description}</p>
                       ) : null}
-                      {section.subsections?.length ? (
+                      {technologyMainSubsections?.length ? (
                         <div
                           className={
-                            isSelectedEngagements
+                            isTechnologyWhatWeWorkWith
+                              ? "mt-5 grid gap-4 md:auto-rows-fr md:grid-cols-2 xl:grid-cols-3"
+                              : isSelectedEngagements
                               ? "mt-5 grid gap-x-8 gap-y-6 md:grid-cols-2"
                               : "mt-4 space-y-5"
                           }
                         >
-                          {section.subsections.map((sub, si) => (
+                          {technologyMainSubsections.map((sub, si) => (
                             <div
                               key={si}
                               className={
-                                isSelectedEngagements && (sub.wrap === "card" || sub.headingStyle === "subtitle")
+                                isTechnologyWhatWeWorkWith
+                                  ? "h-full rounded-xl border border-[#e2e8f0] bg-white/90 p-4 shadow-sm ring-1 ring-slate-200/40"
+                                  : isSelectedEngagements &&
+                                      (sub.wrap === "card" || sub.headingStyle === "subtitle")
                                   ? "md:col-span-2"
                                   : ""
                               }

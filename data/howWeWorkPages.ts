@@ -214,9 +214,9 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     heroImageSrc:
       "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
     sectionImages: [
-      "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
-      "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
-      "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+      "/imagery/CR_What.jpg",
+      "/imagery/CR_Working.jpg",
+      "/imagery/CR_Stake.jpg",
     ],
     sections: [
       {
@@ -252,6 +252,8 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     ],
     cta: {
       title: "",
+      description:
+        "Tell us how your team likes to collaborate—we’ll align on channels, cadence, and reporting from day one.",
       primaryLabel: "Schedule a Call",
       primaryHref: "/contact",
     },
@@ -269,22 +271,25 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     visualSlot: "services",
     heroImageSrc: "/imagery/13868.jpg",
     sectionImages: [
-      "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
-      "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
-      "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
+      "/imagery/Access and tooling.jpg",
+      "/imagery/Project alignment.jpg",
+      "/imagery/Technical setup.jpg",
+      "/imagery/Goals.jpg",
     ],
     sections: [
       {
-        title: "Access and tooling",
+        title: "Step 1 — Access and tooling",
+        description: "We set up:",
         bullets: [
-          "Repositories, ideally client-controlled.",
-          "Tracker and communication channels.",
-          "Relevant environments such as dev, staging, and prod where applicable.",
-          "Credentials and permissions aligned to least-privilege access.",
+          "repositories (client-controlled preferred)",
+          "tracker and communication channels",
+          "environments (dev/staging/prod as applicable)",
+          "credentials and permissions (least privilege)",
         ],
       },
       {
-        title: "Project alignment",
+        title: "Step 2 — Project alignment",
+        description: "We align on:",
         bullets: [
           "Product goals and roadmap priorities.",
           "Definition of done and quality expectations.",
@@ -293,7 +298,8 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
         ],
       },
       {
-        title: "Technical setup",
+        title: "Step 3 — Technical setup",
+        description: "We cover:",
         bullets: [
           "Local setup and build steps.",
           "CI/CD expectations where applicable.",
@@ -302,7 +308,8 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
         ],
       },
       {
-        title: "First sprint goals",
+        title: "Step 4 — First sprint goals",
+        description: "We aim to:",
         bullets: [
           "align backlog and scope",
           "deliver initial working increment",
@@ -329,9 +336,9 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     visualSlot: "technology",
     heroImageSrc: "/imagery/79003071435657.jpg",
     sectionImages: [
-      "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
-      "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
-      "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
+      "/imagery/price.jpg",
+      "/imagery/estimate.jpg",
+      "/imagery/whatyouRec.jpg",
     ],
     sections: [
       {
@@ -381,9 +388,9 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     visualSlot: "case-studies",
     heroImageSrc: "/imagery/9191566793009.jpg",
     sectionImages: [
-      "/imagery/3d-render-abstract-tech-background-with-flowing-cyber-lines.jpg",
-      "/imagery/service/3d-abstract-background-with-flowing-particles-cyber-dots-network-connections.jpg",
-      "/imagery/service/smooth-wave-patterns-flow-abstract-elegance-generated-by-ai.jpg",
+      "/imagery/pilot1.jpg",
+      "/imagery/pilot2.jpg",
+      "/imagery/pilot3.jpg",
     ],
     sections: [
       {
@@ -416,6 +423,8 @@ export const howWeWorkPages: Record<HowWeWorkSlug, DocPageData> = {
     ],
     cta: {
       title: "",
+      description:
+        "Start with a focused pilot to validate delivery quality, collaboration fit, and roadmap confidence before scaling.",
       primaryLabel: "Discuss a Pilot",
       primaryHref: "/contact",
     },

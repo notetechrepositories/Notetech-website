@@ -98,7 +98,7 @@ export const technologyPage = {
     },
     {
       id: "engineering-principles",
-      title: "How we apply technology (engineering principles)",
+      title: "How we apply technology",
       subsections: [
         {
           heading: "Build for maintainability",
